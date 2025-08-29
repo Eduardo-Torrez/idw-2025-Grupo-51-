@@ -1,4 +1,4 @@
-# idw-2025 Grupo51
+# idw-2025 Grupo-51
 Proyecto de Copnsultorio medicos de clinica 
 Armar el header, section, article, footer 
 
