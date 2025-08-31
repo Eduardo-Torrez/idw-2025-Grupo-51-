@@ -1,5 +1,19 @@
-# idw-2025 Grupo-51
-Proyecto de Copnsultorio medicos de clinica 
+
+# Proyecto Final Integrador
+
+### Reserva de turnos médicos en una clínica
+
+## iwd-2025 Grupo Nro 51
+
+**Integrantes:**
+
+- Francisco Diaz
+- Malena del Valle Moyano
+- Mario Eduardo Porco Torrez
+- Mariana Torres
+
+
+de Consultorio medicos de clinica 
 Armar el header, section, article, footer 
 
-Nombre de los integrantes: Mario Eduardo Porco Torrez, Malena Moyano, Mariana Torrez, Francisco Diaz
+
