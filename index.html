@@ -3,95 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultorio Medicos OSPE</title>
+    <title>Clínica Integral</title>
+    <!--favicon-->
+    <link rel="shortcut icon" href="img/favicon.png" type="icon">
+    <!--css-->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Centro medico OSPE</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">inicio</a></li>
-                <li><a href="#">contacto</a></li>
-                <li><a href="#">laboratorio</a></li>
-                <li><a href="#">novedade</a></li>
-                <li><a href="cobertura.html">cobertura</a></li>
-                <li><a href="institucional.html">institucion</a></li>
+    <header class="contenedor">
+        <div class="contenedor_logo">
+            <img src="img/logo.png" alt="logo" class="logo">
+        </div>
+
+        <!--Menu hamburguesa-->
+        <input type="checkbox" id="menu-hamburguesa" class="menu_hamburguesa">
+        <button class="menu_hamburguesa_boton" aria-label="Menu de navegación" onclick="">
+            <img src="img/menu.png" alt="menu" class="boton_hamburguesa_open">
+            <img src="img/x.png" alt="menu-x" class="boton_hamburguesa_contenido_close">
+        </button>
+        <nav class="header_menu">
+            <ul class="header_menu_lista">
+                <li class="header_menu_item">
+                    <a href="#" class="header_menu_link">Inicio</a>
+                </li>
+                <li class="header_menu_item">
+                    <a href="#" class="header_menu_link">Institucional</a>
+                </li>
+                <li class="header_menu_item menu_desplegable">
+                    <a href="#" class="header_menu_link ">Servicios</a>
+                    <ul class="menu_desplegable">
+                        <li class="menu_desplegable_item">
+                            <a href="#" class="header_menu_link">Especialidad</a>
+                        </li>
+                        <li class="menu_desplegable_item">
+                            <a href="#" class="header_menu_link">Obra social</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="header_menu_item">
+                    <a href="#" class="header_menu_link">Contacto</a>
+                </li>
             </ul>
+            
         </nav>
     </header>
 
-<main>
-    <section>
-        <h2>Obra sociales</h2>
-        <ul>
-            <li><h4>PAMI</h4></li>
-            <li><h4>IPS</h4></li>
-            <li><h4>OSME</h4></li>
-            <li><h4>PIEVE</h4></li>
-        </ul>
-    </section>
-    <section>
-        <h2>Bienvenido  al centro medico OSPE</h2>
-        <p>Somos un Centro medio de alta complejidad, Nuestro equipo de profecionales estan a su dispocicion </p>
+    <main>
+        <section>
+            <h2>Obra sociales</h2>
+            <ul>
+                <li><h4>PAMI</h4></li>
+                <li><h4>IPS</h4></li>
+                <li><h4>OSME</h4></li>
+                <li><h4>PIEVE</h4></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Bienvenido  al centro medico OSPE</h2>
+            <p>Somos un Centro medio de alta complejidad, Nuestro equipo de profecionales estan a su dispocicion </p>
+                <div>
+                    <h2>Turnos</h2>
+                    <p>Reserve su turno por internet. Facil y rapido</p>
+                    <button>Turno</button>
+                </div>
+        </section>
+        <section>
+            <h2>Profecionales con los que contamos  </h2>
             <div>
-                <h2>Turnos</h2>
-                <p>Reserve su turno por internet. Facil y rapido</p>
-                <button>Turno</button>
+                <div>
+                    <h3>Dor. Lucia Gallardo</h3>
+                    <p>Especialidad: Cardiologa</p>
+                    <p>Obra Social</p>
+                    <select name="Obra Social">
+                        <option value="PAMI">PAMI</option>
+                        <option value="IPS">IPS</option>
+                        <option value="OSDE">OSDE</option>
+                    </select>
+                </div>
+                <div>
+                    <h3>Dor. Camilo Rodriguez</h3>
+                    <p>Especialidad: Clinico</p>
+                    <p>Obra Social</p>
+                    <select name="Obra Social">
+                        <option value="PAMI">PAMI</option>
+                        <option value="IPS">IPS</option>
+                        <option value="PIEVE">PIEVE</option>
+                        <option value="OSUNDA">OSUNDA</option>
+                    </select>
+                    
+                </div>
+                <div>
+                    <h3>Dor. Ramiro Escalante</h3>
+                    <p>Especialidad: Neurologo</p>
+                    <p>Obra Social</p>
+                    <select name="Obra Social">
+                        <option value="PAMI">PAMI</option>
+                        <option value="IPS">IPS</option>
+                        <option value="PIEVE">PIEVE</option>
+                        <option value="OSDE">OSDE</option>
+                        <option value="OSUNSA">OSUNSA</option>
+                    </select>
+                    
+                </div>
             </div>
-    </section>
-    <section>
-        <h2>Profecionales con los que contamos  </h2>
-        <div>
-            <div>
-                <h3>Dor. Lucia Gallardo</h3>
-                <p>Especialidad: Cardiologa</p>
-                <p>Obra Social</p>
-                <select name="Obra Social">
-                    <option value="PAMI">PAMI</option>
-                    <option value="IPS">IPS</option>
-                    <option value="OSDE">OSDE</option>
-                </select>
-            </div>
-            <div>
-                <h3>Dor. Camilo Rodriguez</h3>
-                <p>Especialidad: Clinico</p>
-                <p>Obra Social</p>
-                <select name="Obra Social">
-                    <option value="PAMI">PAMI</option>
-                    <option value="IPS">IPS</option>
-                    <option value="PIEVE">PIEVE</option>
-                    <option value="OSUNDA">OSUNDA</option>
-                </select>
-                
-            </div>
-            <div>
-                <h3>Dor. Ramiro Escalante</h3>
-                <p>Especialidad: Neurologo</p>
-                <p>Obra Social</p>
-                <select name="Obra Social">
-                    <option value="PAMI">PAMI</option>
-                    <option value="IPS">IPS</option>
-                    <option value="PIEVE">PIEVE</option>
-                    <option value="OSDE">OSDE</option>
-                    <option value="OSUNSA">OSUNSA</option>
-                </select>
-                
-            </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
 
-<footer>
-        <ul>
-        <h5>Direccion</h5>
-        <h5>Telefono</h5>
-        <h5>correo</h5>
-        <h5>redes sociales</h5>
-        </ul>
-        <input></input>
-        <button> buscar</button>
-        <hr>
-        <p>&copy;OSPE- Instituto Médico de Alta Complejidad , Todos los derechos reservados</p>
+    <footer>
+            <ul>
+            <h5>Direccion</h5>
+            <h5>Telefono</h5>
+            <h5>correo</h5>
+            <h5>redes sociales</h5>
+            </ul>
+            <input></input>
+            <button> buscar</button>
+            <hr>
+            <p>&copy;OSPE- Instituto Médico de Alta Complejidad , Todos los derechos reservados</p>
     </footer>
 </body>
 </html>
