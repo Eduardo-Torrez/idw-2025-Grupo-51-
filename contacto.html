@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+</head>
+<body>
+    <header class="contenedor">
+        <div class="contenedor_logo">
+            <img src="img/logo.png" alt="logo" class="logo">
+        </div>
+
+        <!--Menu hamburguesa-->
+        <input type="checkbox" id="menu-hamburguesa" class="menu_hamburguesa">
+        <button class="menu_hamburguesa_boton" aria-label="Menu de navegación" onclick="">
+            <img src="img/menu.png" alt="menu" class="boton_hamburguesa_open">
+            <img src="img/x.png" alt="menu-x" class="boton_hamburguesa_contenido_close">
+        </button>
+        <nav class="header_menu">
+            <ul class="header_menu_lista">
+                <li class="header_menu_item"><a href="index.html" class="header_menu_link">Inicio</a></li>
+                <li class="header_menu_item"><a href="institucional.html" class="header_menu_link">Institucional</a></li>
+                <li class="header_menu_item menu_desplegable"><a href="#" class="header_menu_link ">Servicios</a>
+                    <ul class="menu_desplegable">
+                        <li class="menu_desplegable_item"><a href="#" class="header_menu_link">Especialidad</a></li>
+                        <li class="menu_desplegable_item"><a href="#" class="header_menu_link">Obra social</a>
+                            <ul class="menu_desplegable_os">
+                                <li class="header_menu_item"><a href="#" class="header_menu_link">PAMI</a></li>
+                                <li class="header_menu_item"><a href="#" class="header_menu_link">IPS</a></li>
+                                <li class="header_menu_item"><a href="#" class="header_menu_link">OSME</a></li>
+                                <li class="header_menu_item"><a href="#" class="header_menu_link">PIEVE</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="header_menu_item"><a href="contacto.html" class="header_menu_link">Contacto</a></li>
+            </ul>
+            
+        </nav>
+    </header>
+
+    <section class="form-contacto">
+        <div>
+            <h2>Contactanos</h2>
+            <p>Estamos aquí para responder a todas tus preguntas y programar tu próxima cita. Escríbenos, llámanos o vísitanos</p>
+        </div>
+
+        <div class="formulario">
+            <form action="#" method="post">
+                <label for="nombre">Nombre y Apellido*</label><br>
+                <input type="text" id="nombre" name="nombre" required><br><br>
+
+                <label for="email">Correo electrónico*</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="telefono">Teléfono*</label><br>
+                <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10,15}" placeholder="Ej: 1123456789" required><br><br>
+
+                <label for="mensaje">Mensaje*</label><br>
+                <textarea id="mensaje" name="mensaje" rows="4" cols="40" required></textarea><br><br>
+
+                <button type="submit">Conocenos</button>
+            </form>
+        </div>
+
+    </section>
+
+    <footer class="contenedor">
+        <div class="footer_contenedor">
+            <div class="footer_contenido">
+                <img src="img/logo.png" alt="logo" class="logo_footer" style="max-width: 20%;">
+                <input type="text"></input>
+                <button>Buscar</button>
+            </div>
+            <ul class="footer_contenido">
+                <li class="footer_contenido_item">Direccion</li>
+                <li class="footer_contenido_item">telefono</li>
+                <li class="footer_contenido_item">contacto@ejemplo.com</li>
+            </ul>
+            <ul class="footer_contenido">
+                <li><a href="#" class="footer_contenido_item">Política de privacidad</a></li>
+                <li><a href="#" class="footer_contenido_item">Terminos de servicios</a></li>
+                <li><a href="#" class="footer_contenido_item">Panel de control</a></li>
+            </ul>
+            <ul class="footer_contenido">
+                <li><a href="https://www.facebook.com/" class="footer_contenido_item">Facebook</a></li>
+                <li><a href="https://www.instagram.com/" class="footer_contenido_item">Instagram</a></li>
+                <li><a href="https://x.com/" class="footer_contenido_item">X</a></li>
+            </ul>
+        </div>
+        
+        <hr>
+        <span class="copyright">&copy;Clínica Integral. Todos los derechos reservados</span>
+    </footer>
+</body>
+</html>
