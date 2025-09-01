@@ -1,36 +1,151 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institucional</title>
+    <title>Clínica Integral</title>
+    <!--favicon-->
+    <link rel="shortcut icon" href="img/favicon.png" type="icon">
+    <!--css-->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h3>Institucional</h3>
-<footer>
-    <header>
-        <h1>Centro medico OSPE</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">inicio</a></li>
-                <li><a href="#">contacto</a></li>
-                <li><a href="#">laboratorio</a></li>
-                <li><a href="#">novedade</a></li>
-                <li><a href="cobertura.html">cobertura</a></li>
-                <li><a href="institucional.html">institucion</a></li>
+    <header class="contenedor">
+        <div class="contenedor_logo">
+            <img src="img/logo.png" alt="logo" class="logo_footer" style="max-width: 20%;">
+        </div>
+        <!--Menu hamburguesa-->
+        <input type="checkbox" id="menu-hamburguesa" class="menu_hamburguesa">
+        <button class="menu_hamburguesa_boton" aria-label="Menu de navegación" onclick="">
+            <img src="img/menu.png" alt="menu" class="boton_hamburguesa_open">
+            <img src="img/x.png" alt="menu-x" class="boton_hamburguesa_contenido_close">
+        </button>
+        <nav class="header_menu">
+            <ul class="header_menu_lista">
+                <li class="header_menu_item">
+                    <a href="index.html" class="header_menu_link">Inicio</a>
+                </li>
+                <li class="header_menu_item">
+                    <a href="institucional.html" class="header_menu_link">Institucional</a>
+                </li>
+                <li class="header_menu_item menu_desplegable">
+                    <a href="#" class="header_menu_link ">Servicios</a>
+                    <ul class="menu_desplegable">
+                        <li class="menu_desplegable_item">
+                            <a href="#" class="header_menu_link">Especialidad</a>
+                        </li>
+                        <li class="menu_desplegable_item">
+                            <a href="#" class="header_menu_link">Obra social</a>
+                            <ul class="menu_desplegable_os">
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">PAMI</a>
+                                </li>
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">IPS</a>
+                                </li>
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">OSME</a>
+                                </li>
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">PIEVE</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="header_menu_item">
+                    <a href="#" class="header_menu_link">Contacto</a>
+                </li>
             </ul>
         </nav>
     </header>
-    <ul>
-    <h5>Direccion</h5>
-    <h5>Telefono</h5>
-    <h5>correo</h5>
-    <h5>redes sociales</h5>
-    </ul>
-    <input></input>
-    <button> buscar</button>
-    <hr>
-    <h4>© CSA- Instituto Médico de Alta Complejidad , Todos los derechos reservados.
-</footer>
+<mai class="contenedo-main">
+    <section class="main-contenedor-intitucional">
+        <h1 class="titulos">Nuestra historia</h1>
+        <div class="fotos-listas">
+            <ul class="lis-intitucional">
+                <li class="Fotos-listas-clinica">
+                    <img src="img/img-institucional/institucional-1.jpg" >
+                    <img src="img/img-institucional/institucional-2.jpg" >
+                    <img src="img/img-institucional/institucional-3.jpg" >
+                    <img src="img/img-institucional/institucional-4.jpg" >  
+                </li>
+            </ul>
+        </div>
+        <div class="presentacion">
+            <p> Fundada por un grupo de profesionales apasionados por la salud y el bienestar, nuestra clínica 
+                se enfoca en ofrecer un enfoque integral y personalizado para cada paciente. Combinamos la
+                experiencia de nuestros especialistas con tecnología de vanguardia y un ambiente cómodo,
+                asegurando que cada persona que nos visita reciba el mejor cuidado posible. 
+                Nos comprometemos a ser un espacio donde la confianza, la excelencia y la empatía se encuentren
+                para mejorar tu salud y bienestar.</p>
+        </div>
+    </section>
+    <section class="main-contenedor-intitucional">
+        <ul>
+            <li>
+                <h1>Misión</h1>
+                <p>Brindar atención médica de calidad, cercana y personalizada, que promueva la salud y el bienestar de nuestros pacientes.
+                En Clínica Integral, nos comprometemos a ofrecer soluciones integrales e innovadoras, basadas en principios éticos y un trato 
+                humano excepcional, asegurando que cada persona se sienta respaldada y cuidada en todo momento.</p>
+            </li>
+            <li>
+                <h1>Vision</h1>
+                <p>Ser reconocidos como una clínica de referencia en atención integral de vanguardia y de calidad, donde la innovación,
+                el profesionalismo y la empatía se fusionen para ofrecer un servicio excepcional. Queremos ser un referente de confianza 
+                para nuestros pacientes, impulsando el bienestar y la salud de nuestra comunidad, con un equipo comprometido y en constante evolución.</p>
+            </li>
+        </ul>
+    </section>
+    <section class="main-contenedor-intitucional">
+        <lu class="slaider-especialistas">
+            <div>
+                <li class="doctor-1">
+                    <img src="img/img-institucional/doctor-1.jpg">
+                    <h3>SANTIAGO STANLEY</h4>
+                    <h4>inmunilogiá</h4>    
+                </li>
+                <li class="doctor-2">
+                    <img src="img/img-institucional/doctor-2.jpg">
+                    <h3>MIECAELA RODRIGUEZ</h4>
+                    <h4>Cardiologia</h4>    
+                </li>
+                <li class="doctor-3">
+                    <img src="img/img-institucional/doctor-3.jpg">
+                    <h3>VICTORIA BKAKE</h4>
+                    <h4>Psicologia</h4>    
+                </li>
+            </div>
+        </lu>
+    </section>
+</mai>
+<footer class="contenedor">
+        <div class="footer_contenedor">
+            <div class="footer_contenido">
+                <img src="img/logo.png" alt="logo" class="logo_footer" style="max-width: 20%;">
+                <input type="text"></input>
+                <button>Buscar</button>
+            </div>
+            <ul class="footer_contenido">
+                <li class="footer_contenido_item">Direccion</li>
+                <li class="footer_contenido_item">telefono</li>
+                <li class="footer_contenido_item">contacto@ejemplo.com</li>
+            </ul>
+            <ul class="footer_contenido">
+                <li><a href="#" class="footer_contenido_item">Política de privacidad</a></li>
+                <li><a href="#" class="footer_contenido_item">Terminos de servicios</a></li>
+                <li><a href="#" class="footer_contenido_item">Panel de control</a></li>
+            </ul>
+            <ul class="footer_contenido">
+                <li><a href="https://www.facebook.com/" class="footer_contenido_item">Facebook</a></li>
+                <li><a href="https://www.instagram.com/" class="footer_contenido_item">Instagram</a></li>
+                <li><a href="https://x.com/" class="footer_contenido_item">X</a></li>
+            </ul>
+        </div>
+        
+        <hr>
+        <span class="copyright">&copy;Clínica Integral. Todos los derechos reservados</span>
+    </footer>  
 </body>
 </html>
