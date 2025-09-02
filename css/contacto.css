@@ -1,0 +1,99 @@
+.form-contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 5% 10%;
+    color: var(--colorBase);
+}
+
+
+.form-contacto h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: var(--colorPrincipal);
+    text-align: center;
+}
+
+.form-contacto p {
+    font-size: 1rem;
+    max-width: 600px;
+    text-align: center;
+    color: var(--colorTerciario);
+    margin-bottom: 3rem; 
+
+}
+
+
+.formulario {
+    width: 100%;
+    max-width: 600px;
+    background-color: var(--colorBlanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+
+.formulario label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--colorTerciario);
+}
+
+
+.formulario input,
+.formulario textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--colorTerciario);
+    border-radius: 0.5rem;
+    font-family: var(--fuentePrincipal);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+    border-color: var(--colorTerciario);
+    outline: none;
+}
+
+/* Cambiar color del placeholder */
+.formulario input::placeholder,
+.formulario textarea::placeholder {
+    color: var(--colorTerciario); /* o el color que quieras, ej: #588FA5 */
+    opacity: 0.6; /* opcional, para que el color se vea bien */
+    font-style: italic; /* opcional, si querés que sea cursiva */
+}
+
+
+.formulario button {
+    display: inline-block;
+    background-color: var(--colorTerciario);
+    color: var(--colorBlanco);
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.formulario button:hover {
+    background-color: var(--colorPrincipal);
+    color: var(--colorSecundario);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .form-contacto {
+        padding: 5% 5%;
+    }
+
+    .formulario {
+        padding: 1.5rem;
+    }
+}
