@@ -10,35 +10,53 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="contenedor">
+    <header class="header_contenedor">
         <div class="contenedor_logo">
             <img src="img/logo.png" alt="logo" class="logo">
         </div>
 
         <!--Menu hamburguesa-->
         <input type="checkbox" id="menu-hamburguesa" class="menu_hamburguesa">
-        <button class="menu_hamburguesa_boton" aria-label="Menu de navegación" onclick="">
+        <label class="menu_hamburguesa_boton" for="menu-hamburguesa">
             <img src="img/menu.png" alt="menu" class="boton_hamburguesa_open">
-            <img src="img/x.png" alt="menu-x" class="boton_hamburguesa_contenido_close">
-        </button>
+            <img src="img/x.png" alt="menu-x" class="boton_hamburguesa_close">
+        </label>
         <nav class="header_menu">
             <ul class="header_menu_lista">
-                <li class="header_menu_item"><a href="index.html" class="header_menu_link">Inicio</a></li>
-                <li class="header_menu_item"><a href="institucional.html" class="header_menu_link">Institucional</a></li>
-                <li class="header_menu_item menu_desplegable"><a href="#" class="header_menu_link ">Servicios</a>
+                <li class="header_menu_item">
+                    <a href="index.html" class="header_menu_link">Inicio</a>
+                </li>
+                <li class="header_menu_item">
+                    <a href="institucional.html" class="header_menu_link">Institucional</a>
+                </li>
+                <li class="header_menu_item menu_servicios">
+                    <a href="servicio.html" class="header_menu_link ">Servicios</a>
                     <ul class="menu_desplegable">
-                        <li class="menu_desplegable_item"><a href="#" class="header_menu_link">Especialidad</a></li>
-                        <li class="menu_desplegable_item"><a href="#" class="header_menu_link">Obra social</a>
-                            <ul class="menu_desplegable_os">
-                                <li class="header_menu_item"><a href="#" class="header_menu_link">PAMI</a></li>
-                                <li class="header_menu_item"><a href="#" class="header_menu_link">IPS</a></li>
-                                <li class="header_menu_item"><a href="#" class="header_menu_link">OSME</a></li>
-                                <li class="header_menu_item"><a href="#" class="header_menu_link">PIEVE</a></li>
+                        <li class="menu_desplegable_item">
+                            <a href="#" class="header_menu_link">Especialidad</a>
+                        </li>
+                        <li class="menu_desplegable_item menu_servicios">
+                            <a href="#" class="header_menu_link">Obra social</a>
+                            <ul class="menu_desplegable">
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">PAMI</a>
+                                </li>
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">IPS</a>
+                                </li>
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">OSME</a>
+                                </li>
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">PIEVE</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
                 </li>
-                <li class="header_menu_item"><a href="contacto.html" class="header_menu_link">Contacto</a></li>
+                <li class="header_menu_item">
+                    <a href="contacto.html" class="header_menu_link">Contacto</a>
+                </li>
             </ul>
             
         </nav>
@@ -50,93 +68,88 @@
             <p class="texto">En Clínica Integral, combinamos tecnología de vanguardia con una atención humana y cercana. Nuestro compromiso es ofrecerte soluciones integrales para que vivas con bienestar, confianza y tranquilidad.</p>
             <a href="institucional.html" class="boton">Conocenos</a>
         </div>
-        <img src="img/hero.jpg" alt="imagen de laboratorio">
+        <div class="hero_imagen">
+            <img src="img/hero.jpg" alt="imagen de laboratorio">
+        </div>
     </section>
 
     <main class="contenedor">
-        <section class="main_contenido">
-            <h2 class="subtitulo">¿Por qué elegir Clínica Integral</h2>
-            <div class="caracteristicas">
-                <div class="contenido_texto">
-                    <img src="img/salud-escudo.png" alt="icono" class="contenido_icono">
-                    <h3 class="contenido_titulo">Compromiso con tu Bienestar</h3>
-                    <p class="texto">Nos comprometemos a mantener una comunicación abierta y clara contigo, explicando cada paso del tratamiento y los costos involucrados. La confianza es clave, y te aseguramos que siempre serás bien informado y acompañado.</p>
-                </div>
-                <div class="contenido_texto">
-                    <img src="img/ambulancia.png" alt="icono" class="contenido_icono">
-                    <h3 class="contenido_titulo">Servicios 24 horas</h3>
-                    <p class="texto">En situaciones críticas, sabemos que necesitas una respuesta rápida. Por eso, contamos con servicios de urgencias y atención médica 24/7, para que puedas contar con nosotros cuando más lo necesites.</p>
-                </div>
-                <div class="contenido_texto">
-                    <img src="img/humano.png" alt="icono" class="contenido_icono">
-                    <h3 class="contenido_titulo">Innovación Constante en Tratamientos</h3>
-                    <p class="texto">Utilizamos equipos y técnicas de última generación para brindarte diagnósticos precisos y tratamientos efectivos. La innovación es parte fundamental de nuestra filosofía de cuidado.</p>
-                </div>
+        <h2 class="subtitulo">¿Por qué elegir Clínica Integral?</h2>
+        <section class="main_contenido caracteristicas">
+            <div class="contenido_texto">
+                <img src="img/salud-escudo.png" alt="icono" class="contenido_icono">
+                <h3 class="contenido_titulo">Compromiso con tu Bienestar</h3>
+                <p class="texto">Nos comprometemos a mantener una comunicación abierta y clara contigo, explicando cada paso del tratamiento y los costos involucrados. La confianza es clave, y te aseguramos que siempre serás bien informado y acompañado.</p>
+            </div>
+            <div class="contenido_texto">
+                <img src="img/ambulancia.png" alt="icono" class="contenido_icono">
+                <h3 class="contenido_titulo">Servicios 24 horas</h3>
+                <p class="texto">En situaciones críticas, sabemos que necesitas una respuesta rápida. Por eso, contamos con servicios de urgencias y atención médica 24/7, para que puedas contar con nosotros cuando más lo necesites.</p>
+            </div>
+            <div class="contenido_texto">
+                <img src="img/humano.png" alt="icono" class="contenido_icono">
+                <h3 class="contenido_titulo">Innovación Constante en Tratamientos</h3>
+                <p class="texto">Utilizamos equipos y técnicas de última generación para brindarte diagnósticos precisos y tratamientos efectivos. La innovación es parte fundamental de nuestra filosofía de cuidado.</p>
             </div>
         </section>
         
-        <section class="main_contenido">
-            <div class="estadisticas">
-                <div class="contenido_texto">
-                    <h2 class="titulo">80%</h2>
-                    <p class="texto">Satisfacción de los pacientes</p>
-                </div>
-                <div class="contenido_texto">
-                    <h2 class="titulo">+25</h2>
-                    <p class="texto">Consultas online por día</p>
-                </div>
-                <div class="contenido_texto">
-                    <h2 class="titulo">90%</h2>
-                    <p class="texto">Éxito de los tratamientos</p>
-                </div>
+        <section class="main_contenido estadisticas">
+            <div class="contenido_texto">
+                <h2 class="titulo">80%</h2>
+                <p class="texto">Satisfacción de los pacientes</p>
+            </div>
+            <div class="contenido_texto">
+                <h2 class="titulo">+25</h2>
+                <p class="texto">Consultas online por día</p>
+            </div>
+            <div class="contenido_texto">
+                <h2 class="titulo">90%</h2>
+                <p class="texto">Éxito de los tratamientos</p>
             </div>
         </section>
-
-        <div class="main_contenido">
-            <h3 class="contenido_titulo">Somos un Centro medio de alta complejidad, Nuestro equipo de profesionales estan a su dispocicion</h3>
-            <p class="texto">Reserve su turno por internet. Fácil y rápido</p>
-        </div>
     </main>
 
-    <section class="contenido">
-        <h2 class="subtitulo">Pasos para solicitar turnos</h2>
-        <div class="pasos_para_reservar">
-            <div class="contenido_texto">
-                <img src="img/salud-mental.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Elegí la especialidad</h3>
-            </div>
-            <div class="contenido_texto">
-                <img src="img/psicologo.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Seleccioná al profesional</h3>
-            </div>
-            <div class="contenido_texto">
-                <img src="img/calendario.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Elegí fecha y horario</h3>
-            </div>
-            <div class="contenido_texto">
-                <img src="img/reporte-de-salud.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Completá tus datos</h3>
-            </div>
-            <div class="contenido_texto">
-                <img src="img/seguro-de-vida.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Confirmá tu turno</h3>
-            </div>
+    <section class="contenedor guia">
+        <div class="guia_contenido_texto">
+            <h2 class="subtitulo">Pasos para solicitar turnos</h2>
+            <ul class="guia_lista">
+                <li class="guia_lista_item">
+                    <img src="img/salud-mental.png" alt="icono" class="contenido_icono">
+                    <h3 class="contenido_titulo">Elegí la especialidad</h3>
+                </li>
+                <li class="guia_lista_item">
+                    <img src="img/psicologo.png" alt="icono" class="contenido_icono">
+                    <h3 class="contenido_titulo">Seleccioná al profesional</h3>
+                </li>
+                <li class="guia_lista_item">
+                    <img src="img/calendario.png" alt="icono" class="contenido_icono">
+                    <h3 class="contenido_titulo">Elegí fecha y horario</h3>
+                </li>
+                <li class="guia_lista_item">
+                    <img src="img/reporte-de-salud.png" alt="icono" class="contenido_icono">
+                    <h3 class="contenido_titulo">Completá tus datos</h3>
+                </li>
+                <li class="guia_lista_item">
+                    <img src="img/seguro-de-vida.png" alt="icono" class="contenido_icono">
+                    <h3 class="contenido_titulo">Confirmá tu turno</h3>
+                </li>
+            </ul>
+           <a href="servicios.html" class="boton">Solicitar un turno</a> 
         </div>
-
-        <a href="servicios.html" class="boton">Solicitar un turno</a>
+        <div class="guia_contenido_imagen">
+            <img src="img/medico-estetocopio.jpg" alt="brazos cruzas con estetoscopio" class="guia_imagen">
+        </div>
     </section>
 
-    <footer class="contenedor">
+    <footer class="contenedor footer">
         <div class="footer_contenedor">
             <div class="footer_contenido">
-                <img src="img/logo.png" alt="logo" class="logo_footer" style="max-width: 20%;">
-                <input type="text"></input>
-                <button>Buscar</button>
+                <img src="img/logo.png" alt="logo" class="logo_footer">
             </div>
             <ul class="footer_contenido">
-                <li class="footer_contenido_item">Direccion</li>
-                <li class="footer_contenido_item">telefono</li>
-                <li class="footer_contenido_item">contacto@ejemplo.com</li>
+                <li class="footer_contenido_item">Av. Pueyrredón 1461</li>
+                <li class="footer_contenido_item">555-5555-555</li>
+                <li class="footer_contenido_item">contacto@clinicaintegral.com</li>
             </ul>
             <ul class="footer_contenido">
                 <li><a href="#" class="footer_contenido_item">Política de privacidad</a></li>
@@ -149,8 +162,7 @@
                 <li><a href="https://x.com/" class="footer_contenido_item">X</a></li>
             </ul>
         </div>
-        
-        <hr>
+
         <span class="copyright">&copy;Clínica Integral. Todos los derechos reservados</span>
     </footer>
 </body>
