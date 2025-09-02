@@ -1,0 +1,376 @@
+/*Tipografia*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*Normalizacion de colores y fuente tipografica*/
+:root{
+    --colorPrincipal: #29424C;
+    --colorSecundario: #EFF5F8;
+    --colorTerciario: #588FA5;
+    --colorBase: #222636;
+    --colorNegro: #000000;
+    --colorBlanco: #ffffff;
+
+    --fuentePrincipal: "Montserrat", sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    text-decoration: none !important;
+    list-style: none;
+    outline: none !important;
+}
+
+/*aplica estilos a la parte de un documento que ha sido resaltada por el usuario */
+::selection {
+    color: var(--colorNegro);
+    background-color: var(--colorTerciario);
+}
+
+body{
+    max-width: 1440px;
+    margin: 0 auto;
+
+    color: var(--colorBase);
+    font-family: var(--fuentePrincipal);
+}
+img{
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4em;
+    padding: 10% 5%;
+}
+
+
+/*HEADER*/
+.header_contenedor{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5%;
+}
+.logo{
+    max-width: 25%;
+}
+.header_menu_lista{
+    display: flex;
+    align-items: flex-start;
+    gap: 4rem;
+}
+.header_menu_link{
+    display: block;
+    color: var(--colorTerciario);
+    padding: .5rem;
+    border-bottom: 2px solid var(--colorBlanco);
+}
+.header_menu_link:hover{
+    color: var(--colorPrincipal);
+    border-bottom: 2px solid var(--colorPrincipal);
+}
+
+.menu_desplegable{
+    padding: 0 1rem;
+    background-color: var(--colorSecundario);
+    position: absolute;
+    display: none;
+    z-index: 5;
+}
+.menu_desplegable .header_menu_link{
+    border-bottom: 2px solid var(--colorSecundario);
+}
+.menu_desplegable .header_menu_link:hover{
+    border-bottom: 2px solid var(--colorPrincipal);
+}
+
+.menu_servicios:hover > .menu_desplegable{
+    display: block;
+}
+.menu_servicios .menu_desplegable .menu_servicios{
+    position: relative;
+    
+}
+.menu_servicios .menu_desplegable .menu_servicios .menu_desplegable{
+    right: 30%;
+}
+
+/*MENU HAMBURGUESA*/
+.boton_hamburguesa_open, .boton_hamburguesa_close{
+    width: 30%;
+}
+.menu_hamburguesa, .menu_hamburguesa_boton{
+    display: none;
+}
+
+
+/******************** INICIO ********************/
+/*HERO*/
+.hero{
+    position: relative;
+    padding: 0;
+    color: var(--colorBlanco);
+}
+.contenido_texto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 5%;
+    text-align: center;
+}
+.titulo{
+    font-size: 4rem;
+}
+.texto{
+    font-size: 1rem;
+}
+.boton{
+    display: block;
+    padding: .75rem 1.5rem;
+    border-radius: 2.5rem;
+    color: var(--colorSecundario);
+    background-color: var(--colorTerciario);
+    border: 2px solid var(--colorTerciario);
+}
+.boton:hover{
+    color: var(--colorTerciario);
+    background-color: var(--colorSecundario);
+}
+
+.hero_imagen{
+    position: relative;
+    overflow: hidden;
+}
+.hero_imagen::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(25%);
+}
+.hero .contenido_texto{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    z-index: 1;
+}
+
+
+/*MAIN*/
+.subtitulo{
+    font-size: 2rem;
+}
+
+.main_contenido{
+    display: flex;
+    align-items: self-start;
+    justify-content: center;
+    gap: 2rem;
+}
+.contenido_icono{
+    max-width: 15%;
+}
+.caracteristicas .texto{
+    color: var(--colorTerciario);
+}
+.estadisticas{
+    background-color: var(--colorSecundario);
+    padding: 10% 0;
+    width: 100%;
+}
+
+
+
+.guia{
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--colorSecundario);
+
+    align-items: stretch; /* Fuerza igual altura */
+}
+.guia_contenido_texto{
+    text-align: left;
+    flex: 1 1 50%;
+}
+.guia_lista{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 10% 0;
+}
+.guia_lista_item{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    gap: 2rem;
+}
+.guia_contenido_texto .boton{
+    text-align: center;
+}
+.guia_contenido_imagen{
+    flex: 1 1 50%;
+    overflow: hidden;
+}
+.guia_imagen{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+
+/******************** INSTIUCIONAL ********************/
+/******************** SERVICIO ********************/
+/******************** CONTACTO ********************/
+
+/*FOOTER*/
+.footer{
+  gap: 2rem;
+  font-size: .85rem;
+}
+.footer_contenedor{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+
+    padding: 10% 5%;
+    border-radius: 3rem;
+    color: var(--colorSecundario);  
+    background-color: var(--colorBase);  
+}
+.footer_contenido{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 1.5rem;
+    flex: 1 1 calc(25% - 2rem);
+}
+.logo_footer{
+    max-width: 50%;
+    /* filter: invert(1); */
+    filter: brightness(0) invert(1);
+}
+.footer_contenido_item{
+    color: var(--colorSecundario);
+    border-bottom: 1px solid var(--colorBase);
+}
+
+/* aplicar hover solo a los enlaces*/
+a.footer_contenido_item:hover{
+    border-bottom: 1px solid var(--colorSecundario);
+}
+
+.copyright{
+    border-top: 2px solid var(--colorSecundario);
+    padding: 2%;
+    width: 100%;
+}
+
+
+
+
+
+
+/* Responsivo*/
+@media (max-width: 950px){
+    /*HEADER*/
+    .logo, .logo_footer{
+        max-width: 20%;
+    }
+    .contenedor_logo{
+        z-index: 3;
+    }
+    .header_menu{
+        position: fixed;
+        top: 0;
+        right: 0;
+        /* left: 50%; */
+        left: 0;
+        z-index: 2;
+        height: 100vh;
+        background-color: var(--colorPrincipal);
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all .5s ease-out;
+        visibility: hidden;
+    }
+    .header_menu_lista{
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20% 5%;
+        height: 100vh;
+        background-color: var(--colorPrincipal);
+        gap: 2rem;
+    }
+    .header_menu_link{
+        color: var(--colorBlanco);
+        border-bottom: 2px solid var(--colorPrincipal);
+        font-size: 1.2rem;
+    }
+    .header_menu_link:hover{
+        color: var(--colorBlanco);
+        border-bottom: 2px solid var(--colorBlanco);
+    }
+    .menu_desplegable, .menu_servicios:hover > .menu_desplegable{
+        display: none;
+    }
+
+    /*MENU HAMBURGUESA*/
+    .boton_hamburguesa_open{
+        width: 50%;
+    }
+    .boton_hamburguesa_close{
+        display: none;
+    }
+    .menu_hamburguesa_boton{
+        display: flex;
+        justify-content: center;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 5;
+    }
+    .boton_hamburguesa_close{
+        filter: brightness(0) invert(1);
+    }
+
+    #menu-hamburguesa:checked ~ .header_menu{
+        opacity: 1;
+        transform: translateX(0);
+        visibility: visible;
+    }
+    #menu-hamburguesa:checked + .menu_hamburguesa_boton .boton_hamburguesa_open{
+        display: none;
+    }
+    #menu-hamburguesa:checked + .menu_hamburguesa_boton .boton_hamburguesa_close{
+        display: block;
+    }
+
+
+    /*FOOTER*/
+    .footer_contenedor{
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer_contenido{
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        gap: 1.5rem;
+        flex: 1 1 100%;
+    }
+    
+}
