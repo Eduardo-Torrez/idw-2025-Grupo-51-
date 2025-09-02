@@ -1,0 +1,132 @@
+/*importamos style.css*/
+@import "style.css";
+
+/*HERO*/
+.hero{
+    position: relative;
+    padding: 0;
+    color: var(--colorBlanco);
+}
+.contenido_texto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 5%;
+    text-align: center;
+}
+.titulo{
+    font-size: 4rem;
+}
+.texto{
+    font-size: 1rem;
+}
+.boton{
+    display: block;
+    padding: .75rem 1.5rem;
+    border-radius: 2.5rem;
+    color: var(--colorSecundario);
+    background-color: var(--colorTerciario);
+    border: 2px solid var(--colorTerciario);
+}
+.boton:hover{
+    color: var(--colorTerciario);
+    background-color: var(--colorSecundario);
+}
+
+.hero_imagen{
+    position: relative;
+    overflow: hidden;
+}
+.hero_imagen::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(25%);
+}
+.hero .contenido_texto{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    z-index: 1;
+}
+
+
+/*MAIN*/
+.subtitulo{
+    font-size: 2rem;
+}
+
+.main_contenido{
+    display: flex;
+    align-items: self-start;
+    justify-content: center;
+    gap: 2rem;
+}
+.contenido_icono{
+    max-width: 15%;
+}
+.caracteristicas .texto{
+    color: var(--colorTerciario);
+}
+.estadisticas{
+    background-color: var(--colorSecundario);
+    padding: 10% 0;
+    width: 100%;
+}
+
+
+
+.guia{
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--colorSecundario);
+
+    align-items: stretch;
+}
+.guia_contenido_texto{
+    text-align: left;
+    flex: 1 1 50%;
+}
+.guia_lista{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 10% 0;
+}
+.guia_lista_item{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    gap: 2rem;
+}
+.guia_contenido_texto .boton{
+    text-align: center;
+}
+.guia_contenido_imagen{
+    flex: 1 1 50%;
+    overflow: hidden;
+}
+.guia_imagen{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+
+
+
+
+
+/* Responsivo*/
+@media (max-width: 950px){
+    
+}
+
