@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>Clínica Integral</title>
+    <!--favicon-->
+    <link rel="shortcut icon" href="img/favicon.png" type="icon">
+    <!--css-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header_contenedor">
+        <div class="contenedor_logo">
+            <img src="img/logo.png" alt="logo" class="logo">
+        </div>
+
+        <!--Menu hamburguesa-->
+        <input type="checkbox" id="menu-hamburguesa" class="menu_hamburguesa">
+        <label class="menu_hamburguesa_boton" for="menu-hamburguesa">
+            <img src="img/menu.png" alt="menu" class="boton_hamburguesa_open">
+            <img src="img/x.png" alt="menu-x" class="boton_hamburguesa_close">
+        </label>
+        <nav class="header_menu">
+            <ul class="header_menu_lista">
+                <li class="header_menu_item">
+                    <a href="index.html" class="header_menu_link">Inicio</a>
+                </li>
+                <li class="header_menu_item">
+                    <a href="institucional.html" class="header_menu_link">Institucional</a>
+                </li>
+                <li class="header_menu_item menu_servicios">
+                    <a href="servicio.html" class="header_menu_link ">Servicios</a>
+                    <ul class="menu_desplegable">
+                        <li class="menu_desplegable_item">
+                            <a href="#" class="header_menu_link">Especialidad</a>
+                        </li>
+                        <li class="menu_desplegable_item menu_servicios">
+                            <a href="#" class="header_menu_link">Obra social</a>
+                            <ul class="menu_desplegable">
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">PAMI</a>
+                                </li>
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">IPS</a>
+                                </li>
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">OSME</a>
+                                </li>
+                                <li class="header_menu_item">
+                                    <a href="#" class="header_menu_link">PIEVE</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="header_menu_item">
+                    <a href="contacto.html" class="header_menu_link">Contacto</a>
+                </li>
+            </ul>
+            
+        </nav>
+    </header>
+   <main class="contenedor">
+        <div class="contenedor_contenido">
+            <h1 class="titulo">Buscar servicio</h1>
+
+            <div class="servicios_opciones">
+                <div class="opcion">
+                    <img src="img/hospitalista.png" alt="Profesional" class="opcion_imagen">
+                    <p class="opcion_texto">Por profesional</p>
+                </div>
+                <div class="opcion">
+                    <img src="img/humano.png" alt="Especialidad" class="opcion_imagen">
+                    <p class="opcion_texto">Por especialidad</p>
+                </div>
+                <div class="opcion">
+                    <img src="img/carnet.png" alt="Obra social" class="opcion_imagen">
+                    <p class="opcion_texto">Por obra social</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="contenedor footer">
+        <div class="footer_contenedor">
+            <div class="footer_contenido">
+                <img src="img/logo.png" alt="logo" class="logo_footer">
+            </div>
+            <ul class="footer_contenido">
+                <li class="footer_contenido_item">Av. Pueyrredón 1461</li>
+                <li class="footer_contenido_item">555-5555-555</li>
+                <li class="footer_contenido_item">contacto@clinicaintegral.com</li>
+            </ul>
+            <ul class="footer_contenido">
+                <li><a href="#" class="footer_contenido_item">Política de privacidad</a></li>
+                <li><a href="#" class="footer_contenido_item">Terminos de servicios</a></li>
+                <li><a href="#" class="footer_contenido_item">Panel de control</a></li>
+            </ul>
+            <ul class="footer_contenido">
+                <li><a href="https://www.facebook.com/" class="footer_contenido_item">Facebook</a></li>
+                <li><a href="https://www.instagram.com/" class="footer_contenido_item">Instagram</a></li>
+                <li><a href="https://x.com/" class="footer_contenido_item">X</a></li>
+            </ul>
+        </div>
+
+        <span class="copyright">&copy;Clínica Integral. Todos los derechos reservados</span>
+    </footer>
+</body>
+</html>
