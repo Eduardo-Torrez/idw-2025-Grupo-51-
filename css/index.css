@@ -65,9 +65,15 @@
 
 .main_contenido{
     display: flex;
-    align-items: self-start;
+    align-items: stretch;
     justify-content: center;
-    gap: 2rem;
+    /* gap: 2rem; */
+    flex-wrap: wrap;
+}
+.main_contenido .contenido_texto{
+    flex: 1 1 30%;
+    max-width: 30%;
+    min-width: 250px;
 }
 .contenido_icono{
     max-width: 15%;
@@ -84,40 +90,43 @@
 
 
 .guia{
-    flex-direction: row;
     justify-content: center;
     background-color: var(--colorSecundario);
-
-    align-items: stretch;
-}
-.guia_contenido_texto{
-    text-align: left;
-    flex: 1 1 50%;
 }
 .guia_lista{
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
     padding: 10% 0;
 }
 .guia_lista_item{
     display: flex;
-    justify-content:flex-start;
+    flex: 1 1 18%;
+    max-width: 18%;
+    min-width: 200px;
+    flex-direction: column;
+    justify-content:end;
     align-items: center;
     gap: 2rem;
 }
-.guia_contenido_texto .boton{
-    text-align: center;
-}
-.guia_contenido_imagen{
-    flex: 1 1 50%;
-    overflow: hidden;
-}
-.guia_imagen{
+.guia_ruta{
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-
+    padding: 5% 0;
+    position: relative;
+    justify-items: center;
+}
+.guia_ruta_circulo{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    background-color: var(--colorBase);
+}
+.guia_ruta_linea{
+    width: 100%;
+    height: .25rem;
+    background-color: var(--colorBase);
+    position: absolute;
+    top: 50%;
 }
 
 
@@ -127,6 +136,32 @@
 
 /* Responsivo*/
 @media (max-width: 950px){
-    
+    .contenedor{
+        gap: 2em;
+        padding: 10% 5%;
+    }
+    .titulo{
+        font-size: 2rem;
+    }
+    .texto, .boton{
+        font-size: .85rem;
+    }
+    .boton{
+        font-size: .85rem;
+    }
+    /*HERO*/
+    .hero, .hero .contenido_texto{
+        position: static;
+        color: var(--colorPrincipal);
+    }
+    .hero .contenido_texto{
+        top: 0;
+        left: 0;
+        transform: none;
+        z-index: 1;
+    }
+    .hero_imagen::before{
+        display: none;
+    }
 }
 
