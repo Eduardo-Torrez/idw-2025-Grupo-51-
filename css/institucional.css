@@ -1,0 +1,22 @@
+@import "style.css";
+/*pricipal*/
+.titulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10rem;
+    padding: 5%;
+    text-align: center;
+}
+.Fotos-listas-clinica{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 5%;  
+    width: 30%;
+    height: 30%; 
+}
+.presentacion{
+    text-align: center;
+    color:#588FA5;
+}
