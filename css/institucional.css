@@ -1,22 +1,138 @@
 @import "style.css";
-/*pricipal*/
+/*----------------------pricipal----------------------*/
 .titulo{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10rem;
-    padding: 5%;
+    padding: 3%;
     text-align: center;
+    font-size: 100px;
+    color: rgba(34, 38, 54, 1);
 }
 .Fotos-listas-clinica{
     display: flex;
     align-items: center;
     text-align: center;
-    padding: 5%;  
+    padding: 3%;  
     width: 30%;
     height: 30%; 
+}
+.Fotos-listas-clinica img{
+    width: 400px;
+    height: 350px;
 }
 .presentacion{
     text-align: center;
     color:#588FA5;
+    font-size: 20px;
+    padding: 3%;
 }
+#seccion-dos{
+    background-color:rgba(34, 38, 54, 1); 
+    padding: 0%;
+    margin: 5%;
+    display: flex;
+}
+.seccion-objetivos{
+    color: aliceblue;
+    margin: 5%;
+    font-size: 18px;
+}
+.mision{
+    font-size: 500%;
+    margin: 1%;
+    text-align:left
+}
+.seccion-vicion{
+    color: aliceblue;
+    text-align: center;
+    margin: 5%;
+}
+.vision{
+    font-size: 500%;
+    margin: 1%;
+    text-align:left
+}
+/*-------------Gerencia-------------------*/
+.autoridades{
+    display: flex;
+    text-align: center;
+    margin: 2%;
+    font-size: 100%;
+    justify-content: space-around;
+}
+.autoridades img{
+    object-fit: cover;
+    border-radius: 8%;
+    border:3px solid var(--colorPrincipal);
+    height: 270px;
+    width: 270px;
+}
+/*----------- Administracion ------*/
+.administracion{
+    display: flex;
+    text-align: center;
+    margin: 5%;
+    font-size: 100%;
+    justify-content: space-around;
+}
+.administracion img{
+    object-fit: cover;
+    border-radius: 8%;
+    border: 3px solid var(--colorPrincipal);
+    height: 250px;
+    width: 250px;
+}
+/*----------------profecionales------------------*/
+.profesionales{
+    display: flex;
+    text-align: center;
+    margin: 5%;
+    font-size: 100%;
+    justify-content: space-around;
+}
+.profesionales img{
+    height: 270px;
+    width: 270px;
+    object-fit: cover;
+    border-radius: 1%;
+    border: 2px solid var(--colorPrincipal);
+}
+
+.profesional1 article{
+    color: aliceblue;
+    background-color: rgba(34, 38, 54, 1);
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
+    interpolate-size: allow-keywords;
+    padding: 0 10px;
+}
+.profesional1:hover article{
+    height: auto;
+}
+.profesional2 article{
+    color: aliceblue;
+    background-color: rgba(34, 38, 54, 1);
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
+    interpolate-size: allow-keywords;
+    padding: 0 10px;
+}
+.profesional2:hover article{
+    height: auto;
+}
+.profesional3 article{
+    color: aliceblue;
+    background-color: rgba(34, 38, 54, 1);
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s;
+    interpolate-size: allow-keywords;
+    padding: 0 10px;
+}
+.profesional3:hover article{
+    height: auto;
+}
+
