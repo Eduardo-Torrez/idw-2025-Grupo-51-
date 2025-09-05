@@ -20,6 +20,7 @@
     text-decoration: none !important;
     list-style: none;
     outline: none !important;
+    
 }
 
 /*aplica estilos a la parte de un documento que ha sido resaltada por el usuario */
@@ -56,6 +57,7 @@ img{
     align-items: center;
     justify-content: space-between;
     padding: 5%;
+    position: relative;
 }
 .logo{
     max-width: 25%;
