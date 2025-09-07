@@ -1,5 +1,5 @@
-/*importamos style.css*/
-@import "style.css";
+/*Los estilos de cada página se organizaron en archivos 
+separados realizados por cada integrante del grupo*/
 
 /*HERO*/
 .hero{
@@ -136,10 +136,6 @@
 
 /* Responsivo*/
 @media (max-width: 950px){
-    .contenedor{
-        gap: 2em;
-        padding: 10% 5%;
-    }
     .titulo{
         font-size: 2rem;
     }
