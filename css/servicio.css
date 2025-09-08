@@ -1,5 +1,86 @@
 @import "style.css";
 
+/* CONTENEDOR PRINCIPAL */
+.contenedor_contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    padding: 8% 5%;
+    text-align: center;
+    color: var(--colorBase);
+}
 
+/* TÍTULO */
+.contenedor_contenido .titulo {
+    font-size: 3rem;
+    color: var(--colorPrincipal);
+}
+
+/* OPCIONES DE SERVICIOS */
+.servicios_opciones {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* TARJETA OPCIÓN */
+.opcion {
+    flex: 1 1 calc(33.33% - 2rem);
+    background-color: var(--colorBlanco);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* ICONOS */
+.opcion img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+/* TEXTO */
+.opcion p {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--colorBase);
+}
+
+/* HOVER EFECTO */
+.opcion:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-color: var(--colorPrincipal);
+}
+
+/* RESPONSIVO */
+@media (max-width: 950px) {
+    .contenedor_contenido {
+        padding: 12% 5%;
+    }
+
+    .contenedor_contenido .titulo {
+        font-size: 2.2rem;
+    }
+
+    .opcion {
+        flex: 1 1 100%;
+        max-width: 400px;
+    }
+}
 
 /*aca escribis el css de servicio*/
