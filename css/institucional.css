@@ -1,14 +1,4 @@
-@import "style.css";
 /*----------------------pricipal----------------------*/
-.titulo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 3%;
-    text-align: center;
-    font-size: 100px;
-    color: rgba(34, 38, 54, 1);
-}
 .Fotos-listas-clinica{
     display: flex;
     align-items: center;
@@ -22,9 +12,7 @@
     height: 350px;
 }
 .presentacion{
-    text-align: center;
-    color:#588FA5;
-    font-size: 20px;
+    color: var(--colorTerciario);
     padding: 3%;
 }
 #seccion-dos{
@@ -38,20 +26,10 @@
     margin: 5%;
     font-size: 18px;
 }
-.mision{
-    font-size: 500%;
-    margin: 1%;
-    text-align:left
-}
 .seccion-vision{
     color: aliceblue;
     text-align: center;
     margin: 5%;
-}
-.vision{
-    font-size: 500%;
-    margin: 1%;
-    text-align:left
 }
 /*-------------Gerencia-------------------*/
 .autoridades{
