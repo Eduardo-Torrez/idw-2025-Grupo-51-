@@ -7,6 +7,8 @@
     <!--favicon-->
     <link rel="shortcut icon" href="img/favicon.png" type="icon">
     <!--css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -64,98 +66,103 @@
     </header>
 
     <section class="contenedor hero">
-        <div class="contenido_texto">
-            <h1 class="titulo">Cuidamos tu salud con excelencia y calidez</h1>
-            <p class="texto">En Clínica Integral, combinamos tecnología de vanguardia con una atención humana y cercana. Nuestro compromiso es ofrecerte soluciones integrales para que vivas con bienestar, confianza y tranquilidad.</p>
-            <a href="institucional.html" class="boton">Conocenos</a>
+        <div class="contenido_texto d-flex flex-column align-items-center text-center gap-4 p-5">
+            <h1 class="h1 display-4 fw-bold">Cuidamos tu salud con excelencia y calidez</h1>
+            <p class="w-75 fs-6">En Clínica Integral, combinamos tecnología de vanguardia con una atención humana y cercana. Nuestro compromiso es ofrecerte soluciones integrales para que vivas con bienestar, confianza y tranquilidad.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="institucional.html" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Conocenos</a>
+            </div>
         </div>
         <div class="hero_imagen">
             <img src="img/hero.jpg" alt="imagen de laboratorio">
         </div>
     </section>
 
-    <main class="contenedor">
-        <h2 class="subtitulo">¿Por qué elegir Clínica Integral?</h2>
-        <section class="main_contenido caracteristicas">
-            <div class="contenido_texto">
+    <main class="contenedor container-fluid">
+        <h2 class="h2">¿Por qué elegir Clínica Integral?</h2>
+        <section class="row align-items-stretch justify-content-lg-around justify-content-center caracteristicas">
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center text-center gap-4 p-5">
                 <img src="img/salud-escudo.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Compromiso con tu Bienestar</h3>
+                <h3 class="fs-5 fw-bold">Compromiso con tu Bienestar</h3>
                 <p class="texto">Nos comprometemos a mantener una comunicación abierta y clara contigo, explicando cada paso del tratamiento y los costos involucrados. La confianza es clave, y te aseguramos que siempre serás bien informado y acompañado.</p>
             </div>
-            <div class="contenido_texto">
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center text-center gap-4 p-5">
                 <img src="img/ambulancia.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Servicios 24 horas</h3>
+                <h3 class="fs-5 fw-bold">Servicios 24 horas</h3>
                 <p class="texto">En situaciones críticas, sabemos que necesitas una respuesta rápida. Por eso, contamos con servicios de urgencias y atención médica 24/7, para que puedas contar con nosotros cuando más lo necesites.</p>
             </div>
-            <div class="contenido_texto">
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center text-center gap-4 p-5">
                 <img src="img/humano.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Innovación Constante en Tratamientos</h3>
+                <h3 class="fs-5 fw-bold">Innovación Constante en Tratamientos</h3>
                 <p class="texto">Utilizamos equipos y técnicas de última generación para brindarte diagnósticos precisos y tratamientos efectivos. La innovación es parte fundamental de nuestra filosofía de cuidado.</p>
             </div>
         </section>
         
-        <section class="main_contenido estadisticas">
-            <div class="contenido_texto">
-                <h2 class="titulo">80%</h2>
+        <section class="row align-items-stretch justify-content-lg-around justify-content-center estadisticas">
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center text-center gap-2 p-5">
+                <h2 class="display-2 fw-bold">80%</h2>
                 <p class="texto">Satisfacción de los pacientes</p>
             </div>
-            <div class="contenido_texto">
-                <h2 class="titulo">+25</h2>
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center text-center gap-2 p-5">
+                <h2 class="display-2 fw-bold">+25</h2>
                 <p class="texto">Consultas online por día</p>
             </div>
-            <div class="contenido_texto">
-                <h2 class="titulo">90%</h2>
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column align-items-center text-center gap-2 p-5">
+                <h2 class="display-2 fw-bold">90%</h2>
                 <p class="texto">Éxito de los tratamientos</p>
             </div>
         </section>
     </main>
 
     <section class="contenedor guia">
-        <h2 class="subtitulo">Pasos para solicitar turnos</h2>
-        <ul class="guia_lista">
-            <li class="guia_lista_item">
+        <h2 class="h2">Pasos para solicitar turnos</h2>
+        <ul class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5
+                justify-content-center py-10 px-0">
+            <li class="col p-0 d-flex flex-column justify-content-end align-items-center gap-2">
                 <img src="img/salud-mental.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Elegí la especialidad</h3>
+                <h3 class="fs-6">Elegí la especialidad</h3>
                 <div class="guia_ruta">
                     <div class="guia_ruta_circulo"></div>
                     <div class="guia_ruta_linea"></div>
                 </div>
             </li>
-            <li class="guia_lista_item">
+            <li class="col p-0 d-flex flex-column justify-content-end align-items-center gap-2">
                 <img src="img/psicologo.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Seleccioná al profesional</h3>
+                <h3 class="fs-6">Seleccioná al profesional</h3>
                 <div class="guia_ruta">
                     <div class="guia_ruta_circulo"></div>
                     <div class="guia_ruta_linea"></div>
                 </div>
             </li>
-            <li class="guia_lista_item">
+            <li class="col p-0 d-flex flex-column justify-content-end align-items-center gap-2">
                 <img src="img/calendario.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Elegí fecha y horario</h3>
+                <h3 class="fs-6">Elegí fecha y horario</h3>
                 <div class="guia_ruta">
                     <div class="guia_ruta_circulo"></div>
                     <div class="guia_ruta_linea"></div>
                 </div>
             </li>
-            <li class="guia_lista_item">
+            <li class="col p-0 d-flex flex-column justify-content-end align-items-center gap-2">
                 <img src="img/reporte-de-salud.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Completá tus datos</h3>
+                <h3 class="fs-6">Completá tus datos</h3>
                 <div class="guia_ruta">
                     <div class="guia_ruta_circulo"></div>
                     <div class="guia_ruta_linea"></div>
                 </div>
             </li>
-            <li class="guia_lista_item">
+            <li class="col p-0 d-flex flex-column justify-content-end align-items-center gap-2">
                 <img src="img/seguro-de-vida.png" alt="icono" class="contenido_icono">
-                <h3 class="contenido_titulo">Confirmá tu turno</h3>
+                <h3 class="fs-6">Confirmá tu turno</h3>
                 <div class="guia_ruta">
                     <div class="guia_ruta_circulo"></div>
                     <div class="guia_ruta_linea"></div>
                 </div>
             </li>
         </ul>
-        <a href="servicios.html" class="boton">Solicitar un turno</a> 
-
+        
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="servicio.html" class="btn btn-lg px-4 me-sm-3">Solicitar un turno</a>
+        </div> 
     </section>
 
     <footer class="contenedor footer">
@@ -182,5 +189,10 @@
 
         <span class="copyright">&copy;Clínica Integral. Todos los derechos reservados</span>
     </footer>
+
+    <!--Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
 </body>
 </html>

@@ -7,32 +7,6 @@ separados realizados por cada integrante del grupo*/
     padding: 0;
     color: var(--colorBlanco);
 }
-.contenido_texto{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 5%;
-    text-align: center;
-}
-.titulo{
-    font-size: 4rem;
-}
-.texto{
-    font-size: 1rem;
-}
-.boton{
-    display: block;
-    padding: .75rem 1.5rem;
-    border-radius: 2.5rem;
-    color: var(--colorSecundario);
-    background-color: var(--colorTerciario);
-    border: 2px solid var(--colorTerciario);
-}
-.boton:hover{
-    color: var(--colorTerciario);
-    background-color: var(--colorSecundario);
-}
 
 .hero_imagen{
     position: relative;
@@ -59,22 +33,6 @@ separados realizados por cada integrante del grupo*/
 
 
 /*MAIN*/
-.subtitulo{
-    font-size: 2rem;
-}
-
-.main_contenido{
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    /* gap: 2rem; */
-    flex-wrap: wrap;
-}
-.main_contenido .contenido_texto{
-    flex: 1 1 30%;
-    max-width: 30%;
-    min-width: 250px;
-}
 .contenido_icono{
     max-width: 15%;
 }
@@ -92,22 +50,6 @@ separados realizados por cada integrante del grupo*/
 .guia{
     justify-content: center;
     background-color: var(--colorSecundario);
-}
-.guia_lista{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 10% 0;
-}
-.guia_lista_item{
-    display: flex;
-    flex: 1 1 18%;
-    max-width: 18%;
-    min-width: 200px;
-    flex-direction: column;
-    justify-content:end;
-    align-items: center;
-    gap: 2rem;
 }
 .guia_ruta{
     width: 100%;
@@ -128,23 +70,20 @@ separados realizados por cada integrante del grupo*/
     position: absolute;
     top: 50%;
 }
-
-
-
-
+.guia .btn{
+    border-color: var(--colorTerciario);
+    background-color: var(--colorTerciario);
+    color: var(--colorBlanco);
+}
+.guia .btn:hover{
+    color: var(--colorTerciario);
+    background-color: var(--colorSecundario);
+}
 
 
 /* Responsivo*/
 @media (max-width: 950px){
-    .titulo{
-        font-size: 2rem;
-    }
-    .texto, .boton{
-        font-size: .85rem;
-    }
-    .boton{
-        font-size: .85rem;
-    }
+
     /*HERO*/
     .hero, .hero .contenido_texto{
         position: static;
@@ -158,6 +97,18 @@ separados realizados por cada integrante del grupo*/
     }
     .hero_imagen::before{
         display: none;
+    }
+
+    /*BOOTSTRAP*/
+    .btn{
+        border-color: var(--colorTerciario);
+        background-color: var(--colorTerciario);
+        color: var(--colorBlanco);
+    }
+    .btn-outline-info{
+        border-color: var(--colorTerciario);
+        background-color: var(--colorTerciario);
+        color: var(--colorBlanco);
     }
 }
 
