@@ -1,15 +1,8 @@
 /*----------------------pricipal----------------------*/
-.Fotos-listas-clinica{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    padding: 3%;  
-    width: 30%;
-    height: 30%; 
-}
 .Fotos-listas-clinica img{
-    width: 400px;
-    height: 350px;
+    width: 30vh;
+    height: 30vh;
+
 }
 .presentacion{
     color: var(--colorTerciario);
