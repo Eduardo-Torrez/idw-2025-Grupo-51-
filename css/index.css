@@ -46,7 +46,6 @@ separados realizados por cada integrante del grupo*/
 }
 
 
-
 .guia{
     justify-content: center;
     background-color: var(--colorSecundario);
@@ -99,7 +98,6 @@ separados realizados por cada integrante del grupo*/
         display: none;
     }
 
-    /*BOOTSTRAP*/
     .btn{
         border-color: var(--colorTerciario);
         background-color: var(--colorTerciario);
