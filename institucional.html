@@ -9,6 +9,10 @@
     <!--css-->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/institucional.css">
+    <!--viewports-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--booststrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
     <header class="header_contenedor">
@@ -65,7 +69,7 @@
 
 <!-- +++++++++++++++++++++++ Principal+++++++++++++++++++++++++++ -->
 <main class="contenedor">
-    <section class="main-contenedor-intitucional">
+    <section class="container-fluid">
         <h1 class="titulo">Nuestra historia</h1>
         <div class="fotos-listas">
             <ul class="lis-intitucional">
@@ -73,7 +77,7 @@
                     <img src="img/img-institucional/institucional-1.jpg" >
                     <img src="img/img-institucional/institucional-2.jpg" >
                     <img src="img/img-institucional/institucional-3.jpg" >
-                    <img src="img/img-institucional/institucional-4.jpg" >  
+                    <img src="img/img-institucional/institucional-4.jpg" > 
                 </li>
             </ul>
         </div>
@@ -101,16 +105,26 @@
         </div>
     </section>
 
-    <section class="Autoridades-clinica">
+    <section class="ow align-items-stretch justify-content-lg-around justify-content-center">
         <h2 class="subtitulo">Autoridades</h2>
         <div class="autoridades">
             <div class="direcotor1">
-                <img src="img/img-institucional/director1.jpg" width="300px" height="300px"> 
+                <picture>
+                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/director1.jpg"/>
+                    <source media="(min-width:701px) and (max-width:1000px)" srcset="img/img-institucional/director1.jpg"/>
+                    <source media="(min-width:1001px)"/>
+                    <img src="img/img-institucional/director1.jpg"/> 
+                </picture> 
                 <h3>Dr. Martin Baldi</h3>
                 <h3>Director Medico</h3>
             </div>
             <div>
-                <img src="img/img-institucional/director2.jpg" width="300px" height="300x">
+                <picture>
+                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/director2.jpg"/>
+                    <source media="(min-width:701px) and (max-width:1000px)" srcset="img/img-institucional/director2.jpg"/>
+                    <source media="(min-width:1001px)"/>
+                    <img src="img/img-institucional/director2.jpg">
+                </picture> 
                 <h3>Dr. Mariano Cardone</h3>
                 <h3>Gerente General</h3>                
             </div>
@@ -118,22 +132,42 @@
         <h2 class="subtitulo">Administración</h2>
         <div class="administracion">
             <div>
-                <img src="img/img-institucional/administracion1.png">
+                <picture>
+                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/administracion1.png"/>
+                    <source media="(min-width:701px) and (max-width:700px)" srcset="img/img-institucional/administracion1.png"/>
+                    <source media="(min-width:1001px)"/>
+                    <img src="img/img-institucional/administracion1.png">   
+                </picture>
                 <h3>Cr. Francisco Fernández</h3>
                 <h3>Coordinador General</h3>                
             </div>
             <div>
-                <img src="img/img-institucional/administracion2.jpg">
+                <picture>
+                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/administracion2.jpg"/>
+                    <source media="(min-width:701px) and (max-width:700px)" srcset="img/img-institucional/administracion2.jpg"/>
+                    <source media="(min-width:1001px)"/>
+                    <img src="img/img-institucional/administracion2.jpg"/>   
+                </picture>
                 <h3>Lc. Maria Rodriguez</h3>
                 <h3>Jefe de Facturación</h3>                
             </div>
             <div>
-                <img src="img/img-institucional/administracion3.png">
+                <picture>
+                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/administracion3.jpg"/>
+                    <source media="(min-width:701px) and (max-width:700px)" srcset="img/img-institucional/administracion3.png"/>
+                    <source media="(min-width:1001px)"/>
+                    <img src="img/img-institucional/administracion3.png"/>   
+                </picture>
                 <h3>Lc. Natalia Martinez</h3>
                 <h3>Responsable de RRHH</h3>                
             </div>
             <div>
-                <img src="img/img-institucional/administracion4.jpg">
+                <picture>
+                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/administracion4.jpg"/>
+                    <source media="(min-width:701px) and (max-width:700px)" srcset="img/img-institucional/administracion4.jpg"/>
+                    <source media="(min-width:1001px)"/>
+                    <img src="img/img-institucional/administracion4.jpg"/>   
+                </picture>
                 <h3>Lc. Mariano Cardone</h3>
                 <h3>Dirección de Enfermeria</h3>                
             </div>
