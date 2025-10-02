@@ -1,24 +1,16 @@
 .form-contacto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 5% 10%;
     color: var(--colorBase);
 }
 
 
-.form-contacto h2 {
-    font-size: 3rem;
+.form-contacto h1 {
     margin-bottom: 2rem;
     color: var(--colorPrincipal);
-    text-align: center;
+    
 }
 
 .form-contacto p {
-    font-size: 1rem;
     max-width: 600px;
-    text-align: center;
     color: var(--colorTerciario);
     margin-bottom: 3rem; 
 
@@ -26,7 +18,6 @@
 
 
 .formulario {
-    width: 100%;
     max-width: 600px;
     background-color: var(--colorBlanco);
     padding: 2rem;
@@ -34,10 +25,8 @@
 }
 
 
-.formulario label {
-    display: block;
+.formulario .form-label {
     font-weight: 600;
-    margin-bottom: 0.5rem;
     color: var(--colorTerciario);
 }
 
@@ -60,32 +49,27 @@
     outline: none;
 }
 
-/* Cambiar color del placeholder */
+
 .formulario input::placeholder,
 .formulario textarea::placeholder {
-    color: var(--colorTerciario); /* o el color que quieras, ej: #588FA5 */
-    opacity: 0.6; /* opcional, para que el color se vea bien */
-    font-style: italic; /* opcional, si querés que sea cursiva */
+    color: var(--colorTerciario); 
+    opacity: 0.6; 
+    font-style: italic; 
 }
 
 
-.formulario button {
-    display: inline-block;
+.formulario button.btn-custom {
+    border-color: var(--colorTerciario);
     background-color: var(--colorTerciario);
     color: var(--colorBlanco);
-    border: none;
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.formulario button:hover {
+.formulario button.btn-custom:hover {
     background-color: var(--colorPrincipal);
     color: var(--colorSecundario);
 }
+
+
 
 /* Responsivo */
 @media (max-width: 768px) {
