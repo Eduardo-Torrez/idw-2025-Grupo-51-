@@ -79,6 +79,15 @@
     border: 1px solid var(--colorTerciario);
     background-color: transparent;
 }
+.form-control:focus, .form-select:focus{
+    border-color: var(--colorTerciario);
+}
+.card-img-top{
+    height: 250px;
+    width:100%;
+    object-fit: cover;
+    object-position: top;
+}
 .invertido {
     filter: brightness(0) invert(1);
 }
