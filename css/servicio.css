@@ -1,4 +1,3 @@
-@import "style.css";
 
 /* CONTENEDOR PRINCIPAL */
 .contenedor_contenido {
@@ -67,6 +66,23 @@
     border-color: var(--colorPrincipal);
 }
 
+.filtrar{
+    background-color: var(--colorSecundario);
+}
+.btn-servicio{
+    border-color: var(--colorTerciario);
+    background-color: var(--colorTerciario);
+    color: var(--colorBlanco);
+}
+.btn-servicio:hover{
+    color: var(--colorTerciario);
+    border: 1px solid var(--colorTerciario);
+    background-color: transparent;
+}
+.invertido {
+    filter: brightness(0) invert(1);
+}
+
 /* RESPONSIVO */
 @media (max-width: 950px) {
     .contenedor_contenido {
@@ -82,5 +98,3 @@
         max-width: 400px;
     }
 }
-
-/*aca escribis el css de servicio*/
