@@ -55,18 +55,18 @@
     width: 250px;
 }
 /*----------------profecionales------------------*/
-.profesionales{
+/* .profesionales{
     display: flex;
     text-align: center;
     margin: 5%;
     font-size: 100%;
     justify-content: space-around;
-}
+} */
 .profesionales img{
-    height: 270px;
+    /* height: 270px;
     width: 270px;
     object-fit: cover;
-    border-radius: 1%;
+    border-radius: 1%; */
     border: 2px solid var(--colorPrincipal);
 }
 
@@ -107,3 +107,12 @@
     height: auto;
 }
 
+.profesionales .card-body{
+    background-color: rgba(34, 38, 54, 1);
+    color: var(--colorBlanco);
+}
+.card-img-top{
+    height: 250px;
+    width:100%;
+    object-fit: cover;
+}
