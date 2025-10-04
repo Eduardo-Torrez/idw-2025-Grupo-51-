@@ -59,9 +59,9 @@
 
 
 <!-- +++++++++++++++++++++++ Principal+++++++++++++++++++++++++++ -->
-<main class="contenedor">
+<main class="d-flex flex-column align-items-center text-center p-5 gap-4">
     <section class="container-fluid">
-        <h1 class="titulo">Nuestra historia</h1>
+        <h1 class="h1 display-4 fw-bold">Nuestra historia</h1>
         <div class="fotos-listas">
             <ul class="lis-intitucional">
                 <li class="Fotos-listas-clinica">
@@ -81,14 +81,14 @@
                 para mejorar tu salud y bienestar.</p>
         </div>
     </section>
-    <section id="seccion-dos">
-        <div class="seccion-objetivos">
+    <section id="seccion-dos" class="row container-fluid">
+        <div class="col seccion-objetivos">
             <h2 class="titulo">Misión</h2>
             <p class="texto">Brindar atención médica de calidad, cercana y personalizada, que promueva la salud y el bienestar de nuestros pacientes.
             En Clínica Integral, nos comprometemos a ofrecer soluciones integrales e innovadoras, basadas en principios éticos y un trato 
             humano excepcional, asegurando que cada persona se sienta respaldada y cuidada en todo momento.</p>
         </div>
-        <div class="seccion-vision">
+        <div class="col seccion-vision">
             <h2 class="titulo">Visión</h2>
             <p class="texto">Ser reconocidos como una clínica de referencia en atención integral de vanguardia y de calidad, donde la innovación,
             el profesionalismo y la empatía se fusionen para ofrecer un servicio excepcional. Queremos ser un referente de confianza 
@@ -96,100 +96,103 @@
         </div>
     </section>
 
-    <section class="ow align-items-stretch justify-content-lg-around justify-content-center">
-        <h2 class="subtitulo">Autoridades</h2>
-        <div class="autoridades">
-            <div class="direcotor1">
-                <picture>
-                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/director1.jpg"/>
-                    <source media="(min-width:701px) and (max-width:1000px)" srcset="img/img-institucional/director1.jpg"/>
-                    <source media="(min-width:1001px)"/>
-                    <img src="img/img-institucional/director1.jpg"/> 
-                </picture> 
-                <h3>Dr. Martin Baldi</h3>
-                <h3>Director Medico</h3>
+    <section class="container-fluid py-5">
+        <h2 class="py-5">Autoridades</h2>
+        <div class="row align-items-stretch g-4 profesionales">
+            <div class="col-12 col-md-6 justify-content-center justify-content-lg-end d-flex">
+                    <div class="card" >
+                        <img src="img/img-institucional/director1.jpg" class="card-img-top">
+                        <div class="card-body">
+                            <article>
+                                <h5 class="card-title">Dr. Martin Baldi</h5>
+                                <h6 class="card-subtitle mb-2">Director Medico</h6>
+                            </article>
+                        </div>
+                    </div>
             </div>
-            <div>
-                <picture>
-                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/director2.jpg"/>
-                    <source media="(min-width:701px) and (max-width:1000px)" srcset="img/img-institucional/director2.jpg"/>
-                    <source media="(min-width:1001px)"/>
-                    <img src="img/img-institucional/director2.jpg">
-                </picture> 
-                <h3>Dr. Mariano Cardone</h3>
-                <h3>Gerente General</h3>                
-            </div>
-        </div> 
-        <h2 class="subtitulo">Administración</h2>
-        <div class="administracion">
-            <div>
-                <picture>
-                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/administracion1.png"/>
-                    <source media="(min-width:701px) and (max-width:700px)" srcset="img/img-institucional/administracion1.png"/>
-                    <source media="(min-width:1001px)"/>
-                    <img src="img/img-institucional/administracion1.png">   
-                </picture>
-                <h3>Cr. Francisco Fernández</h3>
-                <h3>Coordinador General</h3>                
-            </div>
-            <div>
-                <picture>
-                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/administracion2.jpg"/>
-                    <source media="(min-width:701px) and (max-width:700px)" srcset="img/img-institucional/administracion2.jpg"/>
-                    <source media="(min-width:1001px)"/>
-                    <img src="img/img-institucional/administracion2.jpg"/>   
-                </picture>
-                <h3>Lc. Maria Rodriguez</h3>
-                <h3>Jefe de Facturación</h3>                
-            </div>
-            <div>
-                <picture>
-                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/administracion3.png"/>
-                    <source media="(min-width:701px) and (max-width:700px)" srcset="img/img-institucional/administracion3.png"/>
-                    <source media="(min-width:1001px)"/>
-                    <img src="img/img-institucional/administracion3.png"/>   
-                </picture>
-                <h3>Lc. Natalia Martinez</h3>
-                <h3>Responsable de RRHH</h3>                
-            </div>
-            <div>
-                <picture>
-                    <source media="(min-width:400px) and (max-width:700px)" srcset="img/img-institucional/administracion4.jpg"/>
-                    <source media="(min-width:701px) and (max-width:700px)" srcset="img/img-institucional/administracion4.jpg"/>
-                    <source media="(min-width:1001px)"/>
-                    <img src="img/img-institucional/administracion4.jpg"/>   
-                </picture>
-                <h3>Lc. Mariano Cardone</h3>
-                <h3>Dirección de Enfermeria</h3>                
-            </div>
-        </div> 
-        <h2 class="subtitulo">Profesionales</h2>
-        <div class="profesionales">
-            <div class="profesional1">
-                <img src="img/img-institucional/doctor-1.jpg">
-                <article>
-                    <h3>Dr. SANTIAGO STANLEY</h4>
-                    <h4>Inmunología</h4>
-                </article>
-            </div>
-                
-            <div class="profecio">
-                <div class="profesional2">
-                        <img src="img/img-institucional/doctora-2.jpg">
-                    <article>
-                        <h3>Dr. MICAELA LARA</h4>
-                        <h4>Cardiología</h4>
-                    </article>
+            <div class="col-12 col-md-6 justify-content-center justify-content-lg-start d-flex">
+                <div class="card" >
+                    <img src="img/img-institucional/director2.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <article>
+                            <h5 class="card-title">Dr. Mariano Cardone</h5>
+                            <h6 class="card-subtitle mb-2">Gerente General</h6>
+                        </article>
+                    </div>
                 </div>
             </div>
-            <div class="Doctor3">
-                <div class="profesional3">
-                    <img src="img/img-institucional/doctor-3.jpg" >
-                    <article>
-                        <h3> Dr. VICTORIA BKAKE</h4>
-                    <h4>Psicología</h4>
-                    </article>
-                </div>    
+        </div>
+    </section>
+    <section class="container-fluid py-5">
+        <h2 class="py-5">Administración</h2>
+        <div class="row align-items-stretch justify-content-lg-around justify-content-center g-4 profesionales">
+            <div class="col-12 col-sm-6 col-lg-3 d-flex justify-content-center ">
+                <div class="card h-100">
+                    <img src="img/img-institucional/administracion1.png" class="card-img-top">   
+                    <div class="card-body">
+                        <h5 class="card-title">Cr. Francisco Fernández</h5>
+                        <h6 class="card-subtitle mb-2">Coordinador General</h6>
+                    </div>                
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 d-flex justify-content-center ">
+                <div class="card h-100">
+                    <img src="img/img-institucional/administracion2.jpg" class="card-img-top"/>   
+                    <div class="card-body">
+                        <h5 class="card-title">Lc. Maria Rodriguez</h5>
+                        <h6 class="card-subtitle mb-2">Jefe de Facturación</h6>   
+                    </div>
+                </div>             
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 d-flex justify-content-center ">
+                <div class="card h-100" >
+                    <img src="img/img-institucional/administracion3.png" class="card-img-top"/>   
+                    <div class="card-body">
+                        <h5 class="card-title">Lc. Natalia Martinez</h5>
+                        <h6 class="card-subtitle mb-2">Responsable de RRHH</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 d-flex justify-content-center ">
+                <div class="card h-100">
+                    <img src="img/img-institucional/administracion4.jpg" class="card-img-top"/>
+                    <div class="card-body">
+                        <h5 class="card-title">Lc. Mariano Cardone</h5>
+                        <h6 class="card-subtitle mb-2">Dirección de Enfermeria</h6>                
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </section>
+    <section class="container-fluid py-5">
+        <h2 class="py-5">Profesionales</h2>
+        <div class="row align-items-stretch justify-content-center g-4 profesionales">
+            <div class="col-12 col-sm-6 col-lg-3 d-flex">
+                <div class="card h-100 w-100">
+                    <img src="img/img-institucional/doctor-1.jpg" class="card-img-top">   
+                    <div class="card-body">
+                        <h5 class="card-title">Dr. SANTIAGO STANLEY</h5>
+                        <h6 class="card-subtitle mb-2">Inmunología</h6>
+                    </div>                
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 d-flex">
+                <div class="card h-100 w-100">
+                    <img src="img/img-institucional/doctora-2.jpg" class="card-img-top"/>   
+                    <div class="card-body">
+                        <h5 class="card-title">Dr. MICAELA LARA</h5>
+                        <h6 class="card-subtitle mb-2">Cardiología</h6>   
+                    </div>
+                </div>             
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3 d-flex">
+                <div class="card h-100 w-100" >
+                    <img src="img/img-institucional/doctor-3.jpg" class="card-img-top"/>   
+                    <div class="card-body">
+                        <h5 class="card-title">Dr. VICTORIA BKAKE</h5>
+                        <h6 class="card-subtitle mb-2">Psicología</h6>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
