@@ -66,6 +66,32 @@
     border-color: var(--colorPrincipal);
 }
 
+.filtrar{
+    background-color: var(--colorSecundario);
+}
+.btn-servicio{
+    border-color: var(--colorTerciario);
+    background-color: var(--colorTerciario);
+    color: var(--colorBlanco);
+}
+.btn-servicio:hover{
+    color: var(--colorTerciario);
+    border: 1px solid var(--colorTerciario);
+    background-color: transparent;
+}
+.form-control:focus, .form-select:focus{
+    border-color: var(--colorTerciario);
+}
+.card-img-top{
+    height: 250px;
+    width:100%;
+    object-fit: cover;
+    object-position: top;
+}
+.invertido {
+    filter: brightness(0) invert(1);
+}
+
 /* RESPONSIVO */
 @media (max-width: 950px) {
     .contenedor_contenido {

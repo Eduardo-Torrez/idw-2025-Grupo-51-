@@ -6,13 +6,11 @@
     <title>Clínica Integral</title>
     <!--favicon-->
     <link rel="shortcut icon" href="img/favicon.png" type="icon">
-    <!--booststrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!--css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/institucional.css">
-    <!--viewports-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
     <header class="navbar navbar-expand-lg py-4 px-2">
@@ -52,158 +50,45 @@
                     <li class="nav-item">
                         <a href="contacto.html" class="nav-link">Contacto</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="login.html" class="nav-link">Login</a>
-                    </li>
-                    <div class="text-center">
-                        <button id="modoBtn" class="btn btn-outline-secondary">🌙 Modo oscuro</button>
-                    </div>
                 </ul>
             </nav>
         </div>
     </header>
 
 
-<!-- +++++++++++++++++++++++ Principal+++++++++++++++++++++++++++ -->
-<main class="d-flex flex-column align-items-center text-center p-5 gap-4">
-    <section class="container-fluid">
-        <h1 class="h1 display-4 fw-bold">Nuestra historia</h1>
-        <div class="fotos-listas">
-            <ul class="lis-intitucional">
-                <li class="Fotos-listas-clinica">
-                    <img src="img/img-institucional/institucional-1.jpg" >
-                    <img src="img/img-institucional/institucional-2.jpg" >
-                    <img src="img/img-institucional/institucional-3.jpg" >
-                    <img src="img/img-institucional/institucional-4.jpg" > 
-                </li>
-            </ul>
-        </div>
-        <div class="presentacion">
-            <p class="texto"> Fundada por un grupo de profesionales apasionados por la salud y el bienestar, nuestra clínica 
-                se enfoca en ofrecer un enfoque integral y personalizado para cada paciente. Combinamos la
-                experiencia de nuestros especialistas con tecnología de vanguardia y un ambiente cómodo,
-                asegurando que cada persona que nos visita reciba el mejor cuidado posible. 
-                Nos comprometemos a ser un espacio donde la confianza, la excelencia y la empatía se encuentren
-                para mejorar tu salud y bienestar.</p>
-        </div>
-    </section>
-    <section id="seccion-dos" class="row container-fluid">
-        <div class="col seccion-objetivos">
-            <h2 class="titulo">Misión</h2>
-            <p class="texto">Brindar atención médica de calidad, cercana y personalizada, que promueva la salud y el bienestar de nuestros pacientes.
-            En Clínica Integral, nos comprometemos a ofrecer soluciones integrales e innovadoras, basadas en principios éticos y un trato 
-            humano excepcional, asegurando que cada persona se sienta respaldada y cuidada en todo momento.</p>
-        </div>
-        <div class="col seccion-vision">
-            <h2 class="titulo">Visión</h2>
-            <p class="texto">Ser reconocidos como una clínica de referencia en atención integral de vanguardia y de calidad, donde la innovación,
-            el profesionalismo y la empatía se fusionen para ofrecer un servicio excepcional. Queremos ser un referente de confianza 
-            para nuestros pacientes, impulsando el bienestar y la salud de nuestra comunidad, con un equipo comprometido y en constante evolución.</p>
-        </div>
-    </section>
+    <!--------------------carga Administracion ------------------------------------>
+    <main class="container-fluid">
+        <section class="mb-5">
+            <h2 class="h1 display-4 fw-bold">Alta Administracion</h2>
+            <form id="altaMedicoForm" class="border rounded p-4 bg-linght shadow-sm">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre y Apellido</label>
+                    <input type="text" class="form-control" id="nombre" required>
+                </div><div class="mb-3">
+                    <label for="especialidad" class="form-label">Especialidad</label>
+                    <input type="text" class="form-control" id="especialidad" required>
+                </div><div class="mb-3">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text" class="form-control" id="telefono" required>
+                </div><div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" class="form-control" id="email" required>
+                </div>
 
-    <section class="container-fluid py-5">
-        <h2 class="py-5">Autoridades</h2>
-        <div class="row align-items-stretch g-4 profesionales">
-            <div class="col-12 col-md-6 justify-content-center justify-content-lg-end d-flex">
-                    <div class="card" >
-                        <img src="img/img-institucional/director1.jpg" class="card-img-top">
-                        <div class="card-body">
-                            <article>
-                                <h5 class="card-title">Dr. Martin Baldi</h5>
-                                <h6 class="card-subtitle mb-2">Director Medico</h6>
-                            </article>
-                        </div>
-                    </div>
-            </div>
-            <div class="col-12 col-md-6 justify-content-center justify-content-lg-start d-flex">
-                <div class="card" >
-                    <img src="img/img-institucional/director2.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <article>
-                            <h5 class="card-title">Dr. Mariano Cardone</h5>
-                            <h6 class="card-subtitle mb-2">Gerente General</h6>
-                        </article>
-                    </div>
+                <!--subir foto de -->
+                <div class="mb-3">
+                    <label for="Foto" class="form-label">Foto</label>
+                    <input type="file" class="form-control"   id="Foto" required>
+                </div> 
+
+                <div class="mb-3">
+                    <label for="obrasocial" class="form-label">Obra Sociales</label>
+                    <input type="text" class="form-control" id="obrasocial" placeholder="PAMI, PIEVE, IPS, OSME" required>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="container-fluid py-5">
-        <h2 class="py-5">Administración</h2>
-        <div class="row align-items-stretch justify-content-lg-around justify-content-center g-4 profesionales">
-            <div class="col-12 col-sm-6 col-lg-3 d-flex justify-content-center ">
-                <div class="card h-100">
-                    <img src="img/img-institucional/administracion1.png" class="card-img-top">   
-                    <div class="card-body">
-                        <h5 class="card-title">Cr. Francisco Fernández</h5>
-                        <h6 class="card-subtitle mb-2">Coordinador General</h6>
-                    </div>                
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3 d-flex justify-content-center ">
-                <div class="card h-100">
-                    <img src="img/img-institucional/administracion2.jpg" class="card-img-top"/>   
-                    <div class="card-body">
-                        <h5 class="card-title">Lc. Maria Rodriguez</h5>
-                        <h6 class="card-subtitle mb-2">Jefe de Facturación</h6>   
-                    </div>
-                </div>             
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3 d-flex justify-content-center ">
-                <div class="card h-100" >
-                    <img src="img/img-institucional/administracion3.png" class="card-img-top"/>   
-                    <div class="card-body">
-                        <h5 class="card-title">Lc. Natalia Martinez</h5>
-                        <h6 class="card-subtitle mb-2">Responsable de RRHH</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3 d-flex justify-content-center ">
-                <div class="card h-100">
-                    <img src="img/img-institucional/administracion4.jpg" class="card-img-top"/>
-                    <div class="card-body">
-                        <h5 class="card-title">Lc. Mariano Cardone</h5>
-                        <h6 class="card-subtitle mb-2">Dirección de Enfermeria</h6>                
-                    </div>
-                </div>  
-            </div>
-        </div>
-    </section>
-    <section class="container-fluid py-5">
-        <h2 class="py-5">Profesionales</h2>
-        <div class="row align-items-stretch justify-content-center g-4 profesionales">
-            <div class="col-12 col-sm-6 col-lg-3 d-flex">
-                <div class="card h-100 w-100">
-                    <img src="img/img-institucional/doctor-1.jpg" class="card-img-top">   
-                    <div class="card-body">
-                        <h5 class="card-title">Dr. SANTIAGO STANLEY</h5>
-                        <h6 class="card-subtitle mb-2">Inmunología</h6>
-                    </div>                
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3 d-flex">
-                <div class="card h-100 w-100">
-                    <img src="img/img-institucional/doctora-2.jpg" class="card-img-top"/>   
-                    <div class="card-body">
-                        <h5 class="card-title">Dr. MICAELA LARA</h5>
-                        <h6 class="card-subtitle mb-2">Cardiología</h6>   
-                    </div>
-                </div>             
-            </div>
-            <div class="col-12 col-sm-6 col-lg-3 d-flex">
-                <div class="card h-100 w-100" >
-                    <img src="img/img-institucional/doctor-3.jpg" class="card-img-top"/>   
-                    <div class="card-body">
-                        <h5 class="card-title">Dr. VICTORIA BKAKE</h5>
-                        <h6 class="card-subtitle mb-2">Psicología</h6>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-</main>
+                <button type="submit" class="btn btn-primary">Registrar Medico</button>
+            </form>
+        </section>
+    </main>
     <footer class="container-fluid p-5 w-100">
         <div class="row p-5 rounded-4 footer_contenedor justify-content-between">
             <div class=" col-12 col-md-4 mb-3 text-center text-lg-start">
@@ -267,5 +152,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
+    <script src="altaMedicos.js"></script>
 </body>
 </html>

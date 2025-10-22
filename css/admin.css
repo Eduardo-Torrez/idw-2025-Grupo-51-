@@ -1,0 +1,147 @@
+/*HEADER*/
+.header{
+    transition: all 0.5s;
+    z-index: 997;
+    box-shadow: none;
+    background-color: var(--colorBlanco);
+    padding-left: 20px;
+}
+.logo{
+    max-width: 30%;
+}
+.header .toggle-sidebar-btn {
+    font-size: 32px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    z-index: 996;
+    transition: all 0.3s;
+    padding: 2rem;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #aab7cf transparent;
+    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+    background-color: var(--colorBlanco);
+}
+
+body.toggle-sidebar .sidebar {
+    margin-left: -300px;
+}
+
+/*MAIN*/
+.main{
+    margin-left: 300px;
+    margin-top: 60px;
+    padding: 4rem 2rem;
+    transition: all 0.3s;
+}
+
+
+
+/*tarjeta*/
+.tarjeta{
+    border-radius: 1.5rem;
+    border: 1px solid rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.tarjeta:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-color: var(--colorPrincipal);
+}
+.tarjeta a{
+    color: var(--colorBase);
+}
+.tarjeta-imagen{
+    max-width: 25%;
+}
+
+
+
+.btn-admin{
+    border-color: var(--colorTerciario);
+    background-color: var(--colorTerciario);
+    color: var(--colorBlanco);
+}
+.btn-admin:hover{
+    color: var(--colorTerciario);
+    background-color: transparent;
+    border-color: var(--colorTerciario);
+}
+
+/*Tabla*/
+.table{
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+.encabezado th{
+    color: var(--colorBlanco);
+    background-color: var(--colorBase);
+    align-items: center;
+}
+th, td{
+    border: 1px solid #ddd;
+}
+.table .btn{
+    background-color: transparent;
+    border: none;
+}
+.acciones i{
+    font-size: 1.2rem;
+}
+.acciones .bi-trash{
+    color: red;
+}
+.acciones .bi-pencil-square{
+    color: green;
+}
+.acciones .bi-eye{
+    color: darkblue;
+}
+
+
+
+
+
+
+/* Responsivo*/
+@media (max-width: 992px){
+    .header{
+        box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+    }
+    .sidebar {
+        margin-left: -100%;
+        width: 100%;
+        background-color: var(--colorPrincipal);
+    }
+    body.toggle-sidebar .sidebar {
+        margin-left: 0;
+    }
+    .nav-link{
+        color: var(--colorBlanco);
+        border-bottom: 2px solid var(--colorPrincipal);
+        font-size: .8rem;
+    }
+
+    /*MAIN*/
+    .main{
+        margin-left: 0;
+    }
+
+    .btn-lg.btn-admin{
+        font-size: 1rem;
+    }
+    .tabla-profesionales{
+        max-height: 400px;
+    }
+    
+    
+}
+
