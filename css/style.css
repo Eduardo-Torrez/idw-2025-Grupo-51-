@@ -67,6 +67,9 @@ img{
 .logo{
     max-width: 25%;
 }
+header{
+    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+}
 
 .nav-link{
     color: var(--colorTerciario);
