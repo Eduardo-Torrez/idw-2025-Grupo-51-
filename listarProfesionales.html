@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de control</title>
+    <!--favicon-->
+    <link rel="shortcut icon" href="img/favicon.png" type="icon">
+    <!--css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+    
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center py-2 py-lg-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="admin.html" class="logo d-flex align-items-center ps-lg-4">
+                <img src="img/logo.png" alt="logo" class="logo">
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn d-inline-block d-lg-none pe-2"></i>
+        </div>
+    </header>
+    <aside id="sidebar" class="sidebar py-lg-5">
+
+        <ul class="sidebar-nav py-2" id="sidebar-nav">
+            <li class="nav-item">
+                <a href="listarProfesionales.html" class="nav-link collapsed">
+                    <i class="bi bi-person"></i> <span>Profesionales</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link collapsed">
+                    <i class="bi bi-hospital"></i> <span>Especialidades</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link collapsed">
+                    <i class="bi bi-alarm"></i> <span>Turnos</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link collapsed">
+                    <i class="bi bi-envelope"></i> <span>Consultas</span></a>
+            </li>
+            <li class="nav-item collapsed border-top mt-4 py-4">
+                <button type="button" class="nav-link" onclick="">
+                    <i class="bi bi-door-open"></i> Cerrar sesión
+                </button>
+            </li>
+        </ul>
+
+    </aside>
+
+    <main class="main" id="main">
+        <section class="container-fluid">
+            <div class="d-flex flex-column align-items-center g-4 p-5">
+            <section class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-2 w-100 ">
+                <div>
+                    <h1 class="h1 display-4 fw-bold">Profesionales</h1>
+                    <p class="texto" id="totalProfesionales">Total 75 profesionales</p>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-lg btn-admin px-4 my-5">Agregar profesional</button>
+                </div>
+            </section>
+            <section class="d-flex overflow-y-scroll py-5 w-100 tabla-profesionales">
+                <table class="table">
+                    <thead class="encabezado">
+                        <tr class="text-center align-middle">
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre y apellido</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Matrícula</th>
+                            <th scope="col">Valor de consulta</th>
+                            <th scope="col">Obras sociales</th>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td scope="row" id="id-profesional">1</td>
+                            <td id="nombre-apellido-profesional">Dr. Julián Ammar</td>
+                            <td id="especialidad">Cardiologo</td>
+                            <td id="matricula">12345</td>
+                            <td id="valor-consulta">$40.000</td>
+                            <td id="obra-social-profesional">PAMI, OSDE, OSPIDA</td>
+                            <td>
+                                <div class="d-flex flex-column flex-lg-row gap-2 acciones">
+                                    <button type="button" class="btn btn-outline" onclick="">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline" onclick="">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline" onclick="">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="text-center">
+                            <td scope="row" id="id-profesional">1</td>
+                            <td id="nombre-apellido-profesional">Dr. Julián Ammar</td>
+                            <td id="especialidad">Cardiologo</td>
+                            <td id="matricula">12345</td>
+                            <td id="valor-consulta">$40.000</td>
+                            <td id="obra-social-profesional">PAMI, OSDE, OSPIDA, PAMI, OSDE, OSPIDA</td>
+                            <td>
+                                <div class="d-flex flex-column flex-lg-row gap-2 acciones">
+                                    <button type="button" class="btn btn-outline" onclick="">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline" onclick="">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline" onclick="">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        </section>
+
+    </main>
+
+    <!--Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+    <script src="js/panelDeControl.js"></script>
+</body>
+
+</body>
+</html>
