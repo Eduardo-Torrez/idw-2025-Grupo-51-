@@ -3,121 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Panel de control</title>
     <!--favicon-->
     <link rel="shortcut icon" href="img/favicon.png" type="icon">
     <!--css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/admin.css">
 </head>
-<body>
     
 <body>
-    <div class="d-flex" id="wrapper">
-        <!-- La barra lateral empieza aquí -->
-        <div class="bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
-                <img src="img/logo.png" style="width: 300px; height: auto; margin: 5px;">
-            </div>
-            <div class="list-group list-group-flush my-3">
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <span class="material-symbols-outlined me-2">Medicos</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <span class="material-symbols-outlined me-2">Especialidad</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <span class="material-symbols-outlined me-2">Turnos</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <span class="material-symbols-outlined me-2">Consultas</span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent fw-bold ">
-                    <span class="material-symbols-outlined me-2">Cerrar sesión</span>
-                </a>
-            </div>
+    <header id="header" class="header fixed-top d-flex align-items-center py-2 py-lg-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="admin.html" class="logo d-flex align-items-center ps-lg-4">
+                <img src="img/logo.png" alt="logo" class="logo">
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn d-inline-block d-lg-none pe-2"></i>
         </div>
-        <!-- La barra lateral termina aquí -->
-        <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
-                <div class="align-items-center">
-                    <h2 class="fs-2 m-0">Profecionales</h2>
-                    <h4 class="fs-6 m-0">Total Medicos</h4>
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+    </header>
+    <aside id="sidebar" class="sidebar py-lg-5">
+
+        <ul class="sidebar-nav py-2" id="sidebar-nav">
+            <li class="nav-item">
+                <a href="#" class="nav-link collapsed">
+                    <i class="bi bi-person"></i> <span>Profesionales</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link collapsed">
+                    <i class="bi bi-hospital"></i> <span>Especialidades</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link collapsed">
+                    <i class="bi bi-alarm"></i> <span>Turnos</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link collapsed">
+                    <i class="bi bi-envelope"></i> <span>Consultas</span></a>
+            </li>
+            <li class="nav-item collapsed border-top mt-4 py-4">
+                <button type="button" class="nav-link" onclick="">
+                    <i class="bi bi-door-open"></i> Cerrar sesión
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle second-text fw-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="img/carnet.png" style="width: 80px; height: auto; margin: 5px;"> ADMIN
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a href="#" class="dropdown-item">Perfil</a></li>
-                                <li><a href="#" class="dropdown-item">Ajustes</a></li>
-                                <li><a href="#" class="dropdown-item">Cerrar sesión</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="container fluid px-4">
-                <!-- Contenido del TABLERO inicia AQUÍ -->
-                <div class="row my-5">
-                    <div class="col">
-                        <table class="table bg-white rounded shadow-sm table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">1</th>
-                                    <th scope="col">2</th>
-                                    <th scope="col">3</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row"><span class="material-symbols-outlined up">arrow_upward</span>1<span class="material-symbols-outlined down">arrow_downward</span></th>
-                                    <td>area</td>
-                                    <td>asignado</td>
-                                    <td>estatus</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><span class="material-symbols-outlined up">arrow_upward</span>2<span class="material-symbols-outlined down">arrow_downward</span></th>
-                                    <td>area</td>
-                                    <td>asignado</td>
-                                    <td>estatus</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><span class="material-symbols-outlined up">arrow_upward</span>3<span class="material-symbols-outlined down">arrow_downward</span></th>
-                                    <td>area</td>
-                                    <td>asignado</td>
-                                    <td>estatus</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><span class="material-symbols-outlined up">arrow_upward</span>4<span class="material-symbols-outlined down">arrow_downward</span></th>
-                                    <td>area</td>
-                                    <td>asignado</td>
-                                    <td>estatus</td>
-                                </tr>
-                            </tbody>
-                        </table>
+            </li>
+        </ul>
+
+    </aside>
+
+    <main class="main" id="main">
+        <section class="container-fluid">
+            <div class="row p-5 g-4">
+                <div class="col-12 col-md-6 rounded-4">
+                    <div class="card tarjeta p-3">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <h2 class="card-title display-2 fw-bold" id="cantidad-profesionales">00</h2>
+                                <p class="card-subtitle" id="cantidad-profesionales-subtitulo">Profesionales</p>
+                            </div>
+                            <img class="tarjeta-imagen" src="img/hospitalista.png" alt="Profesional">
+                        </div>
                     </div>
                 </div>
-                <!-- Contenido del TABLERO termina AQUÍ -->
+                <div class="col-12 col-md-6 rounded-4">
+                    <div class="card tarjeta p-3">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <h2 class="card-title display-2 fw-bold" id="cantidad-especialidades">00</h2>
+                                <p class="card-subtitle" id="cantidad-especialidades-subtitulo">Especialidades</p>
+                            </div>
+                            <img class="tarjeta-imagen" src="img/humano.png" alt="Especialidad">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 rounded-4">
+                    <div class="card tarjeta p-3">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <h2 class="card-title display-2 fw-bold" id="cantidad-turnos">00</h2>
+                                <p class="card-subtitle" id="cantidad-turnos-subtitulo">Turnos</p>
+                            </div>
+                            <img class="tarjeta-imagen" src="img/calendario.png" alt="Calendario">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 rounded-4">
+                    <div class="card tarjeta p-3">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="card-body">
+                                <h2 class="card-title display-2 fw-bold" id="cantidad-consultas">00</h2>
+                                <p class="card-subtitle" id="cantidad-consultas-subtitulo">Consultas</p>
+                            </div>
+                            <img class="tarjeta-imagen" src="img/reporte-de-salud.png" alt="Consultas">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-</body>
+    </main>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    <!--Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
-<script type="text/javascript" src="script.js"></script>
+    <script src="js/panelDeControl.js"></script>
+</body>
 
 </body>
 </html>
