@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios | Clínica Integral</title> <link rel="shortcut icon" href="img/favicon.png" type="icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/servicio.css">
+    <title>Registro | Clínica Integral</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css"> 
+    <link rel="stylesheet" href="css/login.css"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
+    
     <header class="navbar navbar-expand-lg py-4 px-2">
         <div class="container-fluid justify-content-between">
-            <div class="col align-items-center z-3 col-6 col-md-4">
+            <div class="col align-items-center z-3 col-6">
                 <a href="index.html">
                     <img src="img/logo.png" alt="logo" class="logo">
                 </a>
@@ -33,7 +35,7 @@
                         <a href="institucional.html" class="nav-link">Institucional</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="#" class="nav-link active dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
+                        <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
                         <ul class="dropdown-menu">
                             <li class="menu_desplegable_item">
                                 <a href="servicio.html" class="dropdown-item">Especialidad</a>
@@ -49,119 +51,62 @@
                     <li class="nav-item">
                         <a href="login.html" class="nav-link">Login</a> 
                     </li>
-
-                    <div class="text-center">
-                        <button id="modoBtn" class="btn btn-outline-secondary">🌙 Modo oscuro</button>
-                    </div>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <main class="container">
-        <div class="contenedor_contenido">
-            <h1 class="titulo">Buscar servicio</h1>
-
-            <div class="servicios_opciones d-flex justify-content-center gap-4">
-                <div class="opcion text-center">
-                    <img src="img/hospitalista.png" alt="Profesional">
-                    <p>Por profesional</p>
-                </div>
-                <div class="opcion text-center">
-                    <img src="img/humano.png" alt="Especialidad">
-                    <p>Por especialidad</p>
-                </div>
-                <div class="opcion text-center">
-                    <img src="img/carnet.png" alt="Obra social">
-                    <p>Por obra social</p>
-                </div>
-            </div>
-        </div>
-
-        <section class="d-flex flex-column align-items-center justify-content-between rounded py-4 gap-4 filtrar">
-            <div class="row g-4 row-cols-1 row-cols-lg-3 w-100">
-                <div class="col">
-                    <div class="container-fluid p-0">
-                        <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                        <button class="btn btn-servicio" type="submit">Buscar</button>
-                        </form>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Filtrar por Especialidad</option>
-                        <option value="1">Cardioloía</option>
-                        <option value="2">Dermatología</option>
-                        <option value="3">Médico clínico</option>
-                        <option value="4">Odontología</option>
-                        <option value="5">Oftalmología</option>
-                        <option value="6">Psiquiatría</option>
-                        <option value="7">Kinesiología</option>
-                    </select>
-                </div>
-
-                <div class="col">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Filtrar por Obra social</option>
-                        <option value="1">IPS</option>
-                        <option value="2">OSME</option>
-                        <option value="3">PAMI</option>
-                        <option value="4">PIEVE</option>
-                    </select>
-                </div>
-            </div>
-            
-        </section>
-        
-
-        <div class="container my-5">
-            <h2 class="text-center text-md-start mb-4">Especialistas en <strong>Oftalmología:</strong></h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-4">
-                
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctora-servicio-2.jpg" class="card-img-top" alt="Profesional 1">
-                        <div class="card-body text-center ">
-                            <h5 class="card-title">María López</h5>
-                            <p class="card-text">Oftalmologa</p>
-                            <a href="registro.html" class="btn btn-servicio">Reservar turno</a>
+    
+    <main class="contenedor">
+        <div class="row justify-content-center w-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-lg p-4 p-md-5" style="border: none; background-color: var(--colorSecundario);">
+                    <h2 class="titulo text-center mb-4" style="font-size: 2.5rem; color: var(--colorPrincipal);">Crear Cuenta</h2>
+                    <p class="text-center texto mb-4">Regístrate para solicitar turnos y gestionar tus citas médicas.</p>
+                    
+                    <form action="procesar_registro.php" method="POST">
+                        
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre Completo</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Tu Nombre y Apellido" style="border-color: var(--colorTerciario);">
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctor-servicio-3.webp" class="card-img-top" alt="Profesional 2">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Carlos Gómez</h5>
-                            <p class="card-text">Oftalmologo</p>
-                            <a href="registro.html" class="btn btn-servicio">Reservar turno</a>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                <input type="email" class="form-control" id="email" name="email" required placeholder="ejemplo@correo.com" style="border-color: var(--colorTerciario);">
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctora-servicio-3.jpg" class="card-img-top" alt="Profesional 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Ana Torres</h5>
-                            <p class="card-text">Oftalmologa</p>
-                            <a href="registro.html" class="btn btn-servicio">Reservar turno</a>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                <input type="password" class="form-control" id="password" name="password" required placeholder="Mínimo 8 caracteres" style="border-color: var(--colorTerciario);">
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctor-servicio-1.jpg" class="card-img-top" alt="Profesional 4">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Sebastián Otero</h5>
-                            <p class="card-text">Oftalmologo</p>
-                            <a href="registro.html" class="btn btn-servicio">Reservar turno</a>
+                        <div class="mb-4">
+                            <label for="confirm_password" class="form-label">Confirmar Contraseña</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required placeholder="Repite la contraseña" style="border-color: var(--colorTerciario);">
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold" style="background-color: var(--colorPrincipal); border-color: var(--colorPrincipal);">
+                                Registrarse
+                            </button>
+                        </div>
+                    </form>
+
+                    <p class="mt-4 text-center">
+                        ¿Ya tienes una cuenta? <a href="login.html" style="color: var(--colorTerciario);">Inicia sesión aquí</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -170,9 +115,7 @@
     <footer class="container-fluid p-5 w-100">
         <div class="row p-5 rounded-4 footer_contenedor justify-content-between">
             <div class=" col-12 col-md-4 mb-3 text-center text-lg-start">
-                <a href="index.html"> 
-                    <img src="img/logo.png" alt="logo" class="img-fluid logo_footer py-2 px-0">
-                </a>
+                <img src="img/logo.png" alt="logo" class="img-fluid logo_footer py-2 px-0">
 
                 <ul class="d-flex flex-row w-100 gap-3 justify-content-center justify-content-lg-start align-items-center py-4 px-0">
                     <li>
@@ -228,50 +171,8 @@
         
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        // La lógica del modo oscuro funciona bien, la mantengo.
-        const btn = document.getElementById('modoBtn');
-        btn.addEventListener('click', () => {
-            document.body.classList.toggle('bg-dark');
-            document.body.classList.toggle('text-white');
-            document.querySelectorAll('.card').forEach(card => {
-                card.classList.toggle('bg-secondary');
-                card.classList.toggle('text-white');
-            });
-
-            document.querySelectorAll('.logo').forEach(logo => {
-                logo.classList.toggle('invertido');
-            });
-        });
-        
-        /*
-        ******************************************************
-        * LÓGICA DE REDIRECCIÓN A REGISTRO (SIN AUTENTICACIÓN)
-        ******************************************************
-        */
-
-        // 1. Obtener todos los botones de "Reservar turno"
-        const reservarBtns = document.querySelectorAll('.btn-servicio');
-
-        // 2. Definir la función de redirección
-        function redirigirARegistro(event) {
-            // Prevenir el comportamiento predeterminado del enlace (ir a #)
-            event.preventDefault(); 
-            
-            // Usar una alerta simple antes de redirigir
-            alert("Necesitas estar registrado para reservar un turno. Redirigiendo a la página de Registro.");
-            
-            // Redirigir al usuario a la página de registro
-            window.location.href = "registro.html";
-        }
-
-        // 3. Asignar la función a cada botón
-        reservarBtns.forEach(btn => {
-            btn.addEventListener('click', redirigirARegistro);
-        });
-
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
 </body>
 </html>
