@@ -51,15 +51,15 @@ function listarProfesionales(){
         botonEditar.classList.add("btn", "btn-outline");
         botonEditar.innerHTML = ' <i class="bi bi-pencil-square"></i>';
         botonEditar.addEventListener('click', function(){
-            editarProfesional(medico.id);
+            vistaDelFormulario.classList.remove('d-none');
+            // editarProfesional(medico.id);
         })
 
         let botonVisualizar = document.createElement('button');
         botonVisualizar.classList.add("btn", "btn-outline");
         botonVisualizar.innerHTML = '<i class="bi bi-eye"></i>';
         botonVisualizar.addEventListener('click', function(){
-            let idDelProfesionalAVisualizar = this.getAttribute('data-id');
-            eliminarProfesional(idDelProfesionalAVisualizar);
+            visualizarProfesional(medico.id);
         })
 
 
@@ -80,8 +80,13 @@ function listarProfesionales(){
 }listarProfesionales();
 
 
+/*se busca el profesional en la lista
+se crea una nueva lista excluyendo al profesional seleccionado
+se guarda la nueva lista en localstorage
+se actualiza la tabla
+y se actualiza localstorage
+*/
 function eliminarProfesional(idDelProfesionalAEliminar){
-    // console.log(idDelProfesionalAEliminar);
     profesionalSeleccionado = lista.find((p) => p.id === idDelProfesionalAEliminar);
     // console.log(profesionalSeleccionado);
 
@@ -93,23 +98,45 @@ function eliminarProfesional(idDelProfesionalAEliminar){
         location.reload();
 
     }
-    
 };
 
 
-//el formulario esta oculto y solo será visible cuandos sea seleccioando
-let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
+//Definir variables
+let profesionalActual = null;
 
-function editarProfesional(idDelProfesionalAEditar){
-    if(vistaDelFormulario.classList.contains('d-none')){
-        // vistaDelFormulario.classList.add('d-flex');
-        vistaDelFormulario.classList.remove('d-none');
+let vistaDeTarjetaProfesional = document.getElementById('card-vista');
+const matriculaVista= document.getElementById('vista-matricula');
+const nombreVista= document.getElementById('vista-nombre');
+const especialidadVista= document.getElementById('vista-especialidad');
+const descripcionVista= document.getElementById('vista-descripcion');
+const obrasSocialesVista= document.getElementById('vista-obrasocial');
+const fotografiaVista= document.getElementById('vista-foto');
+const valorConsultavista= document.getElementById('vista-valorconsulta');
 
-        //EN PROCESO
+function visualizarProfesional(idDelProfesionalAVisualizar){
+    profesionalSeleccionado = lista.find((p) => p.id === idDelProfesionalAVisualizar);
+    console.log(profesionalSeleccionado);
 
-    }else{
-        vistaDelFormulario.classList.add('d-none');
+    console.log('actual:'+profesionalActual);
+    console.log('selec:'+profesionalSeleccionado.id);
+
+    vistaDeTarjetaProfesional.classList.remove('d-none');
+    if(profesionalActual !== profesionalSeleccionado.id){
+        
+        profesionalActual = profesionalSeleccionado.id;
+        console.log('se cambio');
+        console.log(profesionalActual);
+
+        matriculaVista.innerHTML = profesionalSeleccionado.matricula;
+        nombreVista.innerHTML = profesionalSeleccionado.nombre + ' ' + profesionalSeleccionado.apellido;
+        especialidadVista.innerHTML = profesionalSeleccionado.especialidad;
+        obrasSocialesVista.innerHTML = profesionalSeleccionado.obraSociales;
+        valorConsultavista.innerHTML = profesionalSeleccionado.valorConsulta;
+        descripcionVista.innerHTML = profesionalSeleccionado.descripcion;
+        fotografiaVista.src = profesionalSeleccionado.fotografia
+
     }
+
 };
 
 
@@ -123,3 +150,12 @@ function contadorDeProfesioanles(){
         total.innerHTML = 'Total ' + lista.length + ' profesionales' ;
     }
 }contadorDeProfesioanles();
+
+function botonCerrar(elemento){
+    if(elemento.classList.contains('d-flex')){
+        elemento.classList.add('d-none');
+    }
+};
+
+//el formulario esta oculto y solo será visible cuandos sea seleccionado
+let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
