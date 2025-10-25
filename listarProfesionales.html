@@ -134,6 +134,7 @@
         </div>
         </section>
 
+        <!--modificar-->
         <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-modificar">
                 <div class="text-center">
                     <div class="text-lg-start mb-4">
@@ -145,43 +146,53 @@
                     <h3 class="h3 display-6 fw-bold">Modificar información</h3>
                 </div>
 
-                <form class="formulario w-100" action="#" method="post">
+                <form class="formulario w-100" action="#" method="post" id="formulario-modificar">
                     <div class="mb-3">
-                        <label for="apellido" class="form-label">Apellido*</label>
-                        <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" required>
+                        <label for="apellidoModificar" class="form-label">Apellido*</label>
+                        <input type="text" id="apellidoModificar" name="apellidoModificar" class="form-control" placeholder="Apellido">
                     </div>
 
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre*</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required>
+                        <label for="nombre" class="form-label ">Nombre*</label>
+                        <input type="text" id="nombreModificar" name="nombre" class="form-control" placeholder="Nombre">
                     </div>
 
                     <div class="mb-3">
-                        <label for="matricula profesional" class="form-label">Matrícula*</label>
-                        <input type="number" id="matricula" name="matricula" pattern="[0-9]{5,10}" min="0" max="9999999" class="form-control" placeholder="Ej: 1123456789" required>
+                        <label for="matriculaModificar" class="form-label">Matrícula*</label>
+                        <input type="number" id="matriculaModificar" name="matriculaModificar" pattern="[0-9]{5,10}" min="0"  class="form-control" placeholder="Ej: 1123456789">
                     </div>
 
                     <div class="mb-3">
-                        <label for="especialidad" class="form-label">Especialidad*</label>
-                        <input type="text" id="especialidad" name="especialidad" class="form-control" placeholder="Especialidad" required>
+                        <label for="especialidadModificar" class="form-label">Especialidad*</label>
+                        <input type="text" id="especialidadModificar" name="especialidadModificar" class="form-control" placeholder="Especialidad">
                     </div>
 
                     <div class="mb-3">
-                        <label for="obrasocial" class="form-label">Obra/s social/es*</label>
-                        <input type="text" id="obrasocial" name="obrasocial" class="form-control" placeholder="Obra/s social/es" required>
+                        <label for="obrasocialModificar" class="form-label">Obra/s social/es*</label>
+                        <input type="text" id="obrasocialModificar" name="obrasocialModificar" class="form-control" placeholder="Obra/s social/es">
                     </div>
 
                     <div class="mb-3">
                         <label for="fotografia" class="form-label">Subir imagen*</label>
-                        <input type="file" id="fotografia" name="fotografia" class="form-control" accept="image/png, image/jpg, image/jpeg" required>
+                        <input type="file" id="fotografiaModificar" name="fotografia" class="form-control" accept="image/png, image/jpg, image/jpeg">
                     </div>
 
                     <div class="mb-3">
-                        <label for="mensaje" class="form-label">Mensaje*</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" class="form-control" placeholder="Escriba su mensaje" required></textarea>
+                        <label for="valorConsultaModificar" class="form-label">Valor consulta*</label>
+                        <input type="text" id="valorConsultaModificar" name="valorConsultaModificar" class="form-control" placeholder="$0">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Mensaje*</label>
+                        <textarea id="descripcionModificar" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="texto text-danger" id="mensajeError"></p>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-custom">Guardar</button>
+
                 </form>
         </section>
 
