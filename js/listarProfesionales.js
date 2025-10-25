@@ -81,12 +81,6 @@ function listarProfesionales(){
 
 
 /*ELIMINAR DATOS DE UN PROFESIONAL*/
-/*se busca el profesional en la lista
-se crea una nueva lista excluyendo al profesional seleccionado
-se guarda la nueva lista en localstorage
-se actualiza la tabla
-y se actualiza localstorage
-*/
 function eliminarProfesional(idDelProfesionalAEliminar){
     profesionalSeleccionado = lista.find((p) => p.id === idDelProfesionalAEliminar);
     // console.log(profesionalSeleccionado);
@@ -222,6 +216,7 @@ document.getElementById('formulario-modificar').addEventListener('submit', event
     //actualizamos la lista
     listarProfesionales();
     alert('✅ Datos actualizados correctamente');
+    botonCerrar(vistaDelFormulario);
     
 });
 }
@@ -268,8 +263,7 @@ function visualizarProfesional(idDelProfesionalAVisualizar){
 };
 
 
-/*división de responsabilidades: separamos las acciones en funciones
-No es una buena pratica, que una función haga todo*/
+/*división de responsabilidades: separamos las acciones en funciones*/
 function contadorDeProfesioanles(){
     let total = document.getElementById('totalProfesionales');
     if (lista.length == 1){

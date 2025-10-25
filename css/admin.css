@@ -106,7 +106,16 @@ th, td{
     color: darkblue;
 }
 
+.card-profesional{
+    background-color: var(--colorSecundario);
+    color: var(--colorPrincipal);
+    /* background-color: var(--colorTerciario); */
 
+}
+.card-profesional p{
+    color: var(--colorTerciario);
+    /* color: var(--colorSecundario); */
+}
 
 
 
