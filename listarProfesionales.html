@@ -58,12 +58,13 @@
             <section class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-2 w-100 ">
                 <div class="text-center text-lg-start">
                     <h1 class="h1 display-6 fw-bold">Profesionales</h1>
-                    <p class="texto" id="totalProfesionales">Total 75 profesionales</p>
+                    <p class="texto" id="totalProfesionales"></p>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-xl btn-admin px-4 my-5">Agregar profesional</button>
+                    <button type="button" class="btn btn-lg btn-admin px-4 my-5">Agregar profesional</button>
                 </div>
             </section>
+            <!--tabla-->
             <section class="d-flex overflow-y-scroll py-5 w-100 tabla-profesionales">
                 <table class="table">
                     <thead class="encabezado">
@@ -82,53 +83,118 @@
                     </tbody>
                 </table>
             </section>
+
+            <!--visualizar-->
+            <section class="container d-flex flex-column align-items-center p-5 d-none" id="card-vista">
+                <div class="card mb-3 border-0">
+
+                    <div class="w-100 py-4 text-end">
+                        <button class="btn btn-admin" onclick="botonCerrar(vistaDeTarjetaProfesional);">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="row g-0 align-items-stretch border">
+                        <div class="col-12 col-md-4">
+                            <div class="card-img rounded-md-start h-100">
+                                <img class="object-fit-cover w-100 h-100 rounded-md-start" src="img/img-institucional/doctor-1.jpg" alt="foto profesional" id="vista-foto">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-8 d-flex flex-column">
+                            <div class="card-body d-flex flex-column justify-content-center p-5">
+                                <div class="d-flex flex-column mb-1">
+                                    <h5 class="texto pe-2">Matrícula:</h5>
+                                    <p class="texto text-body-secondary" id="vista-matricula"></p>
+                                </div>
+                                <div class="d-flex flex-column mb-1">
+                                    <h5 class="texto pe-2">Nombre y apellido:</h5>
+                                    <p class="texto text-body-secondary" id="vista-nombre"></p>
+                                </div>
+                                <div class="d-flex flex-column mb-1">
+                                    <h5 class="texto pe-2">Especialidad:</h5>
+                                    <p class="texto text-body-secondary" id="vista-especialidad"></p>
+                                </div>
+                                <div class="d-flex flex-column mb-1">
+                                    <h5 class="texto pe-2">Obras sociales:</h5>
+                                    <p class="texto text-body-secondary" id="vista-obrasocial"></p>
+                                </div>
+                                <div class="d-flex flex-column mb-1">
+                                    <h5 class="texto pe-2">Valor de consulta:</h5>
+                                    <p class="texto text-body-secondary" id="vista-valorconsulta"></p>
+                                </div>
+                                <div class="d-flex flex-column mb-1">
+                                    <h5 class="texto pe-2">Descripción:</h5>
+                                    <p class="texto text-body-secondary" id="vista-descripcion"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </section>
         </div>
         </section>
 
+        <!--modificar-->
         <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-modificar">
                 <div class="text-center">
+                    <div class="text-lg-start mb-4">
+                        <button class="btn btn-admin" onclick="botonCerrar(vistaDelFormulario);">
+                            <i class="bi bi-x-lg"></i>
+                            <span>Cerrar</span>
+                        </button>
+                    </div>
                     <h3 class="h3 display-6 fw-bold">Modificar información</h3>
                 </div>
 
-                <form class="formulario w-100" action="#" method="post">
+                <form class="formulario w-100" action="#" method="post" id="formulario-modificar">
                     <div class="mb-3">
-                        <label for="apellido" class="form-label">Apellido*</label>
-                        <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" required>
+                        <label for="apellidoModificar" class="form-label">Apellido*</label>
+                        <input type="text" id="apellidoModificar" name="apellidoModificar" class="form-control" placeholder="Apellido">
                     </div>
 
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre*</label>
-                        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required>
+                        <label for="nombre" class="form-label ">Nombre*</label>
+                        <input type="text" id="nombreModificar" name="nombre" class="form-control" placeholder="Nombre">
                     </div>
 
                     <div class="mb-3">
-                        <label for="matricula profesional" class="form-label">Matrícula*</label>
-                        <input type="number" id="matricula" name="matricula" pattern="[0-9]{5,10}" min="0" max="9999999" class="form-control" placeholder="Ej: 1123456789" required>
+                        <label for="matriculaModificar" class="form-label">Matrícula*</label>
+                        <input type="number" id="matriculaModificar" name="matriculaModificar" pattern="[0-9]{5,10}" min="0"  class="form-control" placeholder="Ej: 1123456789">
                     </div>
 
                     <div class="mb-3">
-                        <label for="especialidad" class="form-label">Especialidad*</label>
-                        <input type="text" id="especialidad" name="especialidad" class="form-control" placeholder="Especialidad" required>
+                        <label for="especialidadModificar" class="form-label">Especialidad*</label>
+                        <input type="text" id="especialidadModificar" name="especialidadModificar" class="form-control" placeholder="Especialidad">
                     </div>
 
                     <div class="mb-3">
-                        <label for="obrasocial" class="form-label">Obra/s social/es*</label>
-                        <input type="text" id="obrasocial" name="obrasocial" class="form-control" placeholder="Obra/s social/es" required>
+                        <label for="obrasocialModificar" class="form-label">Obra/s social/es*</label>
+                        <input type="text" id="obrasocialModificar" name="obrasocialModificar" class="form-control" placeholder="Obra/s social/es">
                     </div>
 
                     <div class="mb-3">
                         <label for="fotografia" class="form-label">Subir imagen*</label>
-                        <input type="file" id="fotografia" name="fotografia" class="form-control" accept="image/png, image/jpg, image/jpeg" required>
+                        <input type="file" id="fotografiaModificar" name="fotografia" class="form-control" accept="image/png, image/jpg, image/jpeg">
                     </div>
 
                     <div class="mb-3">
-                        <label for="mensaje" class="form-label">Mensaje*</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" class="form-control" placeholder="Escriba su mensaje" required></textarea>
+                        <label for="valorConsultaModificar" class="form-label">Valor consulta*</label>
+                        <input type="text" id="valorConsultaModificar" name="valorConsultaModificar" class="form-control" placeholder="$0">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Mensaje*</label>
+                        <textarea id="descripcionModificar" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="texto text-danger" id="mensajeError"></p>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-custom">Guardar</button>
+
                 </form>
-            </section>
+        </section>
 
     </main>
 
