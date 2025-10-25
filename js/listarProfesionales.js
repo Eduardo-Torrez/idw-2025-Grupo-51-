@@ -51,8 +51,8 @@ function listarProfesionales(){
         botonEditar.classList.add("btn", "btn-outline");
         botonEditar.innerHTML = ' <i class="bi bi-pencil-square"></i>';
         botonEditar.addEventListener('click', function(){
-            vistaDelFormulario.classList.remove('d-none');
-            // editarProfesional(medico.id);
+            editarProfesional(medico.id);
+
         })
 
         let botonVisualizar = document.createElement('button');
@@ -80,6 +80,7 @@ function listarProfesionales(){
 }listarProfesionales();
 
 
+/*ELIMINAR DATOS DE UN PROFESIONAL*/
 /*se busca el profesional en la lista
 se crea una nueva lista excluyendo al profesional seleccionado
 se guarda la nueva lista en localstorage
@@ -101,6 +102,133 @@ function eliminarProfesional(idDelProfesionalAEliminar){
 };
 
 
+/*MODIFICAR DATOS DE UN PROFESIONAL*/
+//Definir variables globales
+const matriculaModificar= document.getElementById('matriculaModificar');
+const apellidoModificar= document.getElementById('apellidoModificar');
+const nombreModificar= document.getElementById('nombreModificar');
+const especialidadModificar= document.getElementById('especialidadModificar');
+const descripcionModificar= document.getElementById('descripcionModificar');
+const obraSocialModificar= document.getElementById('obrasocialModificar');
+const fotografiaModificar= document.getElementById('fotografiaModificar');
+const valorConsultaModificar= document.getElementById('valorConsultaModificar');
+const mensajeError = document.getElementById('mensajeError');
+const labelNombre = document.querySelector('label[for="nombre"]');
+let profesionalSeleccionadoModificar = null;
+
+function editarProfesional(idDelProfesionalAEditar){
+    //buscar el profesional en la lista
+    profesionalSeleccionadoModificar = lista.find((p) => p.id === idDelProfesionalAEditar);
+    console.log(profesionalSeleccionadoModificar);
+
+    document.getElementById('vista-formulario-modificar').classList.remove('d-none');
+    console.log('esl formulaio se ve');
+
+    //se traen los datos del medico
+    matriculaModificar.value = profesionalSeleccionadoModificar.matricula;
+    apellidoModificar.value = profesionalSeleccionadoModificar.apellido;
+    nombreModificar.value = profesionalSeleccionadoModificar.nombre;
+    especialidadModificar.value = profesionalSeleccionadoModificar.especialidad;
+    descripcionModificar.value= profesionalSeleccionadoModificar.descripcion;
+    obraSocialModificar.value = profesionalSeleccionadoModificar.obraSociales;
+    valorConsultaModificar.value = profesionalSeleccionadoModificar.valorConsulta;
+
+
+    //Base64
+    fotografiaModificar.addEventListener('change', (e)=>{
+        // const file = e.inputFile.files[0]
+        const file = e.target.files[0]
+        const reader = new FileReader();
+        reader.onload = ()=>{
+            profesionalSeleccionadoModificar.fotografia = reader.result;
+            localStorage.setItem("lista", JSON.stringify(lista));
+        };
+        reader.readAsDataURL(file);
+    })
+
+};
+if(document.getElementById('formulario-modificar')){
+
+document.getElementById('formulario-modificar').style.backgroundColor = '#EFF5F8';
+document.getElementById('formulario-modificar').addEventListener('submit', evento =>{
+    evento.preventDefault();
+
+    //si hay cambios se verifican si son correctos
+    let warning = "";
+    let erroresEncontrados = false;
+    // console.log('Error al enviar formulario:');
+
+    //limpiar mensaje error
+    mensajeError.innerHTML = "";
+
+    if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(nombreModificar.value)){
+        warning+='*Nombre inválido<br>';
+        console.log('nombre error');
+        erroresEncontrados = true;
+    }
+    if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(apellidoModificar.value)){
+        warning+= '*apellido inválido<br>';
+        console.log('Apellido inválido');
+        erroresEncontrados = true;
+    }
+    if(!/^[0-9]{5,10}$/.test(matriculaModificar.value)){
+        warning+= '*matrícula inválida<br>';
+        console.log('Matricula inválida');
+        erroresEncontrados = true;
+    }
+    if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(especialidadModificar.value)){
+        warning+= '*especialidad inválida<br>';
+        console.log('Especialidad inválida');
+        erroresEncontrados = true;
+    }
+    if(!/^[a-zA-ZÀ-ÿ ,]*$/.test(obraSocialModificar.value)){
+        warning+= '*obra social inválida<br>';
+        console.log('obra social inválido');
+        erroresEncontrados = true;
+    }
+    if(!/^[\w.,%$ ]/.test(valorConsultaModificar.value)){
+        warning+= '*valor consulta inválido<br>';
+        console.log('valor de consulta inválido');
+        erroresEncontrados = true;
+    }
+    if(!descripcionModificar.value){
+        warning+= '*agregue una descripción';
+        console.log('descripcion inválida');
+        erroresEncontrados = true;
+    }
+
+    if(erroresEncontrados){
+        mensajeError.innerHTML=warning;
+        return;
+    }
+    
+
+    profesionalSeleccionadoModificar.matricula = matriculaModificar.value;
+    profesionalSeleccionadoModificar.apellido = apellidoModificar.value;
+    profesionalSeleccionadoModificar.nombre = nombreModificar.value;
+    profesionalSeleccionadoModificar.especialidad = especialidadModificar.value;
+    profesionalSeleccionadoModificar.descripcion = descripcionModificar.value;
+    profesionalSeleccionadoModificar.obraSociales = obraSocialModificar.value;
+    profesionalSeleccionadoModificar.valorConsulta = valorConsultaModificar.value;
+
+    localStorage.setItem("lista", JSON.stringify(lista));
+
+    console.clear();
+    // console.log('Datos actualizados');
+
+    //reseteamos el formulario
+    document.getElementById('formulario-modificar').reset();
+
+    //actualizamos la lista
+    listarProfesionales();
+    alert('✅ Datos actualizados correctamente');
+    
+});
+}
+
+
+
+/*VISUALIZAR DATOS DE UN PROFESIONAL*/
 //Definir variables
 let profesionalActual = null;
 
