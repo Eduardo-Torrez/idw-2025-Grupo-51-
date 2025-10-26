@@ -3,56 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Registrarce</title>
     <!--favicon-->
     <link rel="shortcut icon" href="img/favicon.png" type="icon">
     <!--css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/registrarce.css">
 </head>
 <body>
-    <div class="container py-4">
-        <!--Imagen de login-->
-        <div class="row ">
-            <div class="col">
-                <div class="tex-end img-fluid w-100 ">
-                    <img src="img/login.jpg">
-                </div>
-            </div>
-            <div class="col bg-luz">
-                <div class="tex-end">
-                    <img src="img/logo.png" width="200" alt="">
-                </div>
-                <h2 class="Bienbenido fw-bold text-center pt-5 mb-5">Bienbenidos</h2>
-                <!--LOGIN-->
-                <form accept="#">
-                    <div class="mb-4">
-                        <label for="email" class="form-label">Correo electronico</label>
-                        <input type="email" class="form-control" name="email">
-                    </div>
-                    <div class="mb-4">
-                        <label for="posware" class="form-label">Posword</label>
-                        <input type="posware" class="form-control" name="poswore">
-                    </div>
-                    <div class="mb-4 form-check" >
-                        <input type="checkbox" name="connected" class="form-check-input">
-                        <label for="connected" class="form-check-label">Mantenerme conectado</label>
-                    </div>
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
-                    <div class="my-3"> <!--MArgin de ariba y abajo -->
-                        <span> No tiene cuenta? <a href="registrarce.html">Registrate</a></span> <br>
-                        <span><a href="#">Recuperar Contraseña</a></span>
-                    </div>
-                    </div>
-                </form>
-            </div>
+    <section id="formRegistro" class="form-contacto container d-flex flex-column align-items-center  gap-4 py-5">
+        <div class="text-center">
+            <h1 class="h1 display-4 fw-bold">Registrarce</h1>
+            <p></p>
         </div>
-    </div>
 
-    <footer class="container-fluid p-5 w-100">
+
+        <form class="formulario w-100" action="#" method="post">
+                <div class="mb-3">
+            <label for="nombre" class="form-label">Apellido</label>
+            <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico*</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="ejemplo@gmail.com" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono*</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10,15}" class="form-control" placeholder="Ej: 1123456789" required>
+        </div>
+        <!-----------------------------------------------contraceña-->
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Contraseña</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10,15}" class="form-control" placeholder="Ej: 1123456789" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Repetir Contraseña</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10,15}" class="form-control" placeholder="Ej: 1123456789" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-custom">Aceptar</button>
+    </form>
+    </section>
+
+<footer class="container-fluid p-5 w-100">
         <div class="row p-5 rounded-4 footer_contenedor justify-content-between">
             <div class=" col-12 col-md-4 mb-3 text-center text-lg-start">
                 <img src="img/logo.png" alt="logo" class="img-fluid logo_footer py-2 px-0">
@@ -108,10 +111,10 @@
         <div class="d-flex justify-content-center border-top mt-4 text-center">
             <small class="p-2 text-body-secondary fs-6">&copy;Clínica Integral. Todos los derechos reservados</small>
         </div>
+        
     </footer>
-</body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/registrarce.js"></script>
 </body>
 </html>
