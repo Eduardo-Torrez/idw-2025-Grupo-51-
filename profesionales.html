@@ -11,8 +11,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contacto.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/profesionales.css">
 </head>
     
 <body>
@@ -28,19 +27,19 @@
 
         <ul class="sidebar-nav py-2" id="sidebar-nav">
             <li class="nav-item">
-                <a href="listarProfesionales.html" class="nav-link collapsed">
+                <a href="profesionales.html" class="nav-link collapsed">
                     <i class="bi bi-person"></i> <span>Profesionales</span></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link collapsed">
+                <a href="especialidades.html" class="nav-link collapsed">
                     <i class="bi bi-hospital"></i> <span>Especialidades</span></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link collapsed">
+                <a href="turnos.html" class="nav-link collapsed">
                     <i class="bi bi-alarm"></i> <span>Turnos</span></a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link collapsed">
+                <a href="consultas.html" class="nav-link collapsed">
                     <i class="bi bi-envelope"></i> <span>Consultas</span></a>
             </li>
             <li class="nav-item collapsed border-top mt-4 py-4">
@@ -86,7 +85,7 @@
 
             <!--visualizar-->
             <section class="container d-flex flex-column align-items-center p-5 d-none" id="card-vista">
-                <div class="card mb-3 border-0">
+                <div class="card mb-3 border-0 bg-transparent">
 
                     <div class="w-100 py-4 text-end">
                         <button class="btn btn-admin" onclick="botonCerrar(vistaDeTarjetaProfesional);">
@@ -94,17 +93,17 @@
                         </button>
                     </div>
                     
-                    <div class="row g-0 align-items-stretch border card-profesional">
-                        <div class="col-12 col-lg-4">
-                            <div class="card-img rounded-md-start h-100">
+                    <div class="align-items-stretch card-profesional shadow rounded-2">
+                        <div class="col-12 col-lg-6 p-0 p-lg-5 pb-lg-2">
+                            <div class="card-img rounded-md-start bg-light">
                                 <img class="object-fit-cover w-100 h-100 rounded-md-start" src="" alt="foto profesional" id="vista-foto">
                             </div>
                         </div>
-                        <div class="col-12 col-lg-8 d-flex flex-column">
+                        <div class="col-12 d-flex flex-column">
                             <div class="card-body d-flex flex-column justify-content-center p-5">
                                 <div class="d-flex flex-column mb-1">
                                     <h5 class="texto pe-2">Matrícula:</h5>
-                                    <p class="texto" id="vista-matricula"></p>
+                                    <p class="" id="vista-matricula"></p>
                                 </div>
                                 <div class="d-flex flex-column mb-1">
                                     <h5 class="texto pe-2">Nombre y apellido:</h5>
@@ -125,6 +124,9 @@
                                 <div class="d-flex flex-column mb-1">
                                     <h5 class="texto pe-2">Descripción:</h5>
                                     <p class="texto" id="vista-descripcion"></p>
+                                </div>
+                                <div class="d-flex flex-column mb-1 align-items-center align-items-md-end">
+                                    <img src="img/logo.png" class="w-25 opacity-25" alt="logo">
                                 </div>
                             </div>
                         </div>
@@ -153,12 +155,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="nombre" class="form-label ">Nombre*</label>
-                    <input type="text" id="nombreModificar" name="nombre" class="form-control" placeholder="Nombre">
+                    <label for="nombreModificar" class="form-label">Nombre*</label>
+                    <input type="text" id="nombreModificar" name="nombreModificar" class="form-control" placeholder="Nombre">
                 </div>
 
                 <div class="mb-3">
-                    <label for="matriculaModificar" class="form-label">Matrícula*</label>
+                    <label for="matriculaModificar" class="form-label">Matrícula profesional*</label>
                     <input type="number" id="matriculaModificar" name="matriculaModificar" pattern="[0-9]{5,10}" min="0"  class="form-control" placeholder="Ej: 1123456789">
                 </div>
 
@@ -168,7 +170,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="obrasocialModificar" class="form-label">Obra/s social/es*</label>
+                    <label for="obrasocialModificar" class="form-label">Obras sociales*</label>
                     <input type="text" id="obrasocialModificar" name="obrasocialModificar" class="form-control" placeholder="Obra/s social/es">
                 </div>
 
@@ -183,7 +185,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="descripcion" class="form-label">Mensaje*</label>
+                    <label for="descripcion" class="form-label">Descripción*</label>
                     <textarea id="descripcionModificar" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
                 </div>
 
@@ -203,7 +205,7 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
     <script src="js/panelDeControl.js"></script>
-    <script src="js/listarProfesionales.js"></script>
+    <script src="js/profesionales.js"></script>
 </body>
 
 </body>

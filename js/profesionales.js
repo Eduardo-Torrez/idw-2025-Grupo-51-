@@ -38,7 +38,7 @@ function listarProfesionales(){
 
         //crear los botones de borrar, editar y visualizar
         let div = document.createElement('div');
-        div.classList.add("d-flex", "flex-column", "flex-lg-row", "gap-2", "acciones");
+        div.classList.add("d-flex", "flex-column", "flex-lg-row","justify-content-center", "gap-2", "acciones");
         
         let botonEliminar = document.createElement('button');
         botonEliminar.classList.add("btn", "btn-outline");
@@ -107,7 +107,7 @@ const obraSocialModificar= document.getElementById('obrasocialModificar');
 const fotografiaModificar= document.getElementById('fotografiaModificar');
 const valorConsultaModificar= document.getElementById('valorConsultaModificar');
 const mensajeError = document.getElementById('mensajeError');
-const labelNombre = document.querySelector('label[for="nombre"]');
+const labelError = document.querySelector('label[for="nombreModificar"]');
 let profesionalSeleccionadoModificar = null;
 
 function editarProfesional(idDelProfesionalAEditar){
@@ -116,7 +116,6 @@ function editarProfesional(idDelProfesionalAEditar){
     console.log(profesionalSeleccionadoModificar);
 
     document.getElementById('vista-formulario-modificar').classList.remove('d-none');
-    console.log('esl formulaio se ve');
 
     //se traen los datos del medico
     matriculaModificar.value = profesionalSeleccionadoModificar.matricula;
@@ -143,7 +142,7 @@ function editarProfesional(idDelProfesionalAEditar){
 };
 if(document.getElementById('formulario-modificar')){
 
-document.getElementById('formulario-modificar').style.backgroundColor = '#EFF5F8';
+// document.getElementById('formulario-modificar').style.backgroundColor = '#EFF5F8';
 document.getElementById('formulario-modificar').addEventListener('submit', evento =>{
     evento.preventDefault();
 
@@ -151,6 +150,7 @@ document.getElementById('formulario-modificar').addEventListener('submit', event
     let warning = "";
     let erroresEncontrados = false;
     // console.log('Error al enviar formulario:');
+    labelError.classList.remove('text-danger');
 
     //limpiar mensaje error
     mensajeError.innerHTML = "";
@@ -180,7 +180,7 @@ document.getElementById('formulario-modificar').addEventListener('submit', event
         console.log('obra social inválido');
         erroresEncontrados = true;
     }
-    if(!/^[\w.,%$ ]/.test(valorConsultaModificar.value)){
+    if(!/^(\d+([.,]\d+)?|[.,]\d+)$/.test(valorConsultaModificar.value)){
         warning+= '*valor consulta inválido<br>';
         console.log('valor de consulta inválido');
         erroresEncontrados = true;
@@ -193,6 +193,7 @@ document.getElementById('formulario-modificar').addEventListener('submit', event
 
     if(erroresEncontrados){
         mensajeError.innerHTML=warning;
+        labelError.classList.add('text-danger');
         return;
     }
     
@@ -240,15 +241,14 @@ function visualizarProfesional(idDelProfesionalAVisualizar){
     profesionalSeleccionado = lista.find((p) => p.id === idDelProfesionalAVisualizar);
     console.log(profesionalSeleccionado);
 
-    console.log('actual:'+profesionalActual);
-    console.log('selec:'+profesionalSeleccionado.id);
+    // console.log('actual:'+profesionalActual);
+    // console.log('selec:'+profesionalSeleccionado.id);
 
     vistaDeTarjetaProfesional.classList.remove('d-none');
     if(profesionalActual !== profesionalSeleccionado.id){
         
         profesionalActual = profesionalSeleccionado.id;
-        console.log('se cambio');
-        console.log(profesionalActual);
+        // console.log(profesionalActual);
 
         matriculaVista.innerHTML = profesionalSeleccionado.matricula;
         nombreVista.innerHTML = profesionalSeleccionado.nombre + ' ' + profesionalSeleccionado.apellido;
