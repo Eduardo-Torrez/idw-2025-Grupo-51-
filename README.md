@@ -60,6 +60,27 @@ sitio, que incluya:
 #
 
 
+## Tercera Etapa
+
+### OBJETIVOS:
+-  Ponga en práctica los conocimientos adquiridos sobre JavaScript, DOM y Formularios HTML.
+-  Convierta el sitio web en una aplicación web interactiva que captura los datos ingresados por el usuario, los persiste y posteriormente recupera.
+
+### CONSIGNA:
+-  Implementar funcionalidades de administración de la aplicación web que permitan:
+    -  Para Médicos: Listar, Crear, Visualizar, Modificar y Eliminar.
+    -  Definir en un archivo JavaScript una constante que sea exportada y utilizada dentro de la 
+aplicación para inicializar el LocalStorage cuando el sitio se visita por primera vez.
+    -  Hacer uso de la API JavaScript LocalStorage para persistir de manera permanente la 
+información de los Médicos.
+    -  Desplegar los datos de los profesionales de manera tabulada utilizando tablas HTML.
+    -  Utilizar los elementos de formulario HTML apropiados para cada tipo de dato.
+-  Modificar el catálogo de profesionales de la medicina o staff médico de forma que los datos que allí se muestran sean consumidos desde el LocalStorage.
+- **Opcional:**  Implementar funcionalidades para Listar, Crear, Visualizar, Modificar y Eliminar para las estructuras de:  Especialidades y Turnos 
+
+##
+#
+
 
 
 
