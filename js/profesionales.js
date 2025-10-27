@@ -1,5 +1,7 @@
 
 let lista = JSON.parse(localStorage.getItem("lista")) || [];
+let especialidades = JSON.parse(localStorage.getItem("especialidades")) || [];
+let listaObraSociales = JSON.parse(localStorage.getItem("listaObraSociales")) || [];
 
 //LISTAR PROFESIONALES
 function listarProfesionales(){
@@ -23,7 +25,8 @@ function listarProfesionales(){
         nombreyapellido.innerHTML = medico.nombre + ' ' + medico.apellido;
 
         let especialidad = document.createElement('td');
-        especialidad.textContent= medico.especialidad;
+        // especialidad.textContent= medico.especialidad;
+        especialidad.textContent=  especialidades.find((esp)=> esp.id === medico.especialidad).nombre;
 
         let matricula = document.createElement('td');
         matricula.textContent= medico.matricula;
@@ -32,7 +35,8 @@ function listarProfesionales(){
         valorConsulta.textContent= medico.valorConsulta;
 
         let obrasSociales = document.createElement('td');
-        obrasSociales.textContent=medico.obraSociales;
+        obrasSociales.textContent=formatearObraSocial(medico);
+
 
         let botones = document.createElement('td');
 
@@ -107,7 +111,7 @@ const obraSocialModificar= document.getElementById('obrasocialModificar');
 const fotografiaModificar= document.getElementById('fotografiaModificar');
 const valorConsultaModificar= document.getElementById('valorConsultaModificar');
 const mensajeError = document.getElementById('mensajeError');
-const labelError = document.querySelector('label[for="nombreModificar"]');
+
 let profesionalSeleccionadoModificar = null;
 
 function editarProfesional(idDelProfesionalAEditar){
@@ -121,7 +125,8 @@ function editarProfesional(idDelProfesionalAEditar){
     matriculaModificar.value = profesionalSeleccionadoModificar.matricula;
     apellidoModificar.value = profesionalSeleccionadoModificar.apellido;
     nombreModificar.value = profesionalSeleccionadoModificar.nombre;
-    especialidadModificar.value = profesionalSeleccionadoModificar.especialidad;
+    // especialidadModificar.value = profesionalSeleccionadoModificar.especialidad;
+    especialidadModificar.value = especialidades.find((esp)=> esp.id === profesionalSeleccionadoModificar.especialidad).nombre;
     descripcionModificar.value= profesionalSeleccionadoModificar.descripcion;
     obraSocialModificar.value = profesionalSeleccionadoModificar.obraSociales;
     valorConsultaModificar.value = profesionalSeleccionadoModificar.valorConsulta;
@@ -150,7 +155,6 @@ document.getElementById('formulario-modificar').addEventListener('submit', event
     let warning = "";
     let erroresEncontrados = false;
     // console.log('Error al enviar formulario:');
-    labelError.classList.remove('text-danger');
 
     //limpiar mensaje error
     mensajeError.innerHTML = "";
@@ -193,7 +197,6 @@ document.getElementById('formulario-modificar').addEventListener('submit', event
 
     if(erroresEncontrados){
         mensajeError.innerHTML=warning;
-        labelError.classList.add('text-danger');
         return;
     }
     
@@ -241,8 +244,9 @@ function visualizarProfesional(idDelProfesionalAVisualizar){
     profesionalSeleccionado = lista.find((p) => p.id === idDelProfesionalAVisualizar);
     console.log(profesionalSeleccionado);
 
-    // console.log('actual:'+profesionalActual);
-    // console.log('selec:'+profesionalSeleccionado.id);
+    
+    // especiali = especialidades.find((esp)=> esp.id === profesionalSeleccionado.especialidad).nombre;
+    // console.log(especiali);
 
     vistaDeTarjetaProfesional.classList.remove('d-none');
     if(profesionalActual !== profesionalSeleccionado.id){
@@ -252,8 +256,8 @@ function visualizarProfesional(idDelProfesionalAVisualizar){
 
         matriculaVista.innerHTML = profesionalSeleccionado.matricula;
         nombreVista.innerHTML = profesionalSeleccionado.nombre + ' ' + profesionalSeleccionado.apellido;
-        especialidadVista.innerHTML = profesionalSeleccionado.especialidad;
-        obrasSocialesVista.innerHTML = profesionalSeleccionado.obraSociales;
+        especialidadVista.innerHTML = especialidades.find((esp)=> esp.id === profesionalSeleccionado.especialidad).nombre;
+        obrasSocialesVista.innerHTML = formatearObraSocial(profesionalSeleccionado);
         valorConsultavista.innerHTML = profesionalSeleccionado.valorConsulta;
         descripcionVista.innerHTML = profesionalSeleccionado.descripcion;
         fotografiaVista.src = profesionalSeleccionado.fotografia
@@ -278,6 +282,17 @@ function botonCerrar(elemento){
         elemento.classList.add('d-none');
     }
 };
+
+function formatearObraSocial(medico){
+
+    const obrasocialformateada = medico.obraSociales.map(objeto => 
+       listaObraSociales.find((buscarObraSocial)=> buscarObraSocial.id === objeto.id).nombre
+    )
+    console.log(obrasocialformateada);
+
+    return obrasocialformateada.toString();
+
+}
 
 //el formulario esta oculto y solo será visible cuandos sea seleccionado
 let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
