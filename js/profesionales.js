@@ -35,7 +35,7 @@ function listarProfesionales(){
         valorConsulta.textContent= medico.valorConsulta;
 
         let obrasSociales = document.createElement('td');
-        obrasSociales.textContent=formatearObraSocial(medico);
+        obrasSociales.textContent=mapearObraSocial(medico);
 
 
         let botones = document.createElement('td');
@@ -107,7 +107,7 @@ const apellidoModificar= document.getElementById('apellidoModificar');
 const nombreModificar= document.getElementById('nombreModificar');
 const especialidadModificar= document.getElementById('especialidadModificar');
 const descripcionModificar= document.getElementById('descripcionModificar');
-const obraSocialModificar= document.getElementById('obrasocialModificar');
+// const obraSocialModificar= document.getElementById('obrasocialModificar');
 const fotografiaModificar= document.getElementById('fotografiaModificar');
 const valorConsultaModificar= document.getElementById('valorConsultaModificar');
 const mensajeError = document.getElementById('mensajeError');
@@ -125,12 +125,15 @@ function editarProfesional(idDelProfesionalAEditar){
     matriculaModificar.value = profesionalSeleccionadoModificar.matricula;
     apellidoModificar.value = profesionalSeleccionadoModificar.apellido;
     nombreModificar.value = profesionalSeleccionadoModificar.nombre;
-    // especialidadModificar.value = profesionalSeleccionadoModificar.especialidad;
-    especialidadModificar.value = especialidades.find((esp)=> esp.id === profesionalSeleccionadoModificar.especialidad).nombre;
+    especialidadModificar.value = profesionalSeleccionadoModificar.especialidad;
     descripcionModificar.value= profesionalSeleccionadoModificar.descripcion;
-    obraSocialModificar.value = profesionalSeleccionadoModificar.obraSociales;
+    // obraSocialModificar.value = profesionalSeleccionadoModificar.obraSociales;
     valorConsultaModificar.value = profesionalSeleccionadoModificar.valorConsulta;
 
+    
+    //crear las opciones de especialidades y seleccionar la que coincida con el profesional
+    crearOpcionesEspecialidad(profesionalSeleccionadoModificar);
+    crearOpcionesObraSocial(profesionalSeleccionadoModificar);
 
     //Base64
     fotografiaModificar.addEventListener('change', (e)=>{
@@ -146,83 +149,83 @@ function editarProfesional(idDelProfesionalAEditar){
 
 };
 if(document.getElementById('formulario-modificar')){
+    document.getElementById('formulario-modificar').addEventListener('submit', evento =>{
+        evento.preventDefault();
 
-// document.getElementById('formulario-modificar').style.backgroundColor = '#EFF5F8';
-document.getElementById('formulario-modificar').addEventListener('submit', evento =>{
-    evento.preventDefault();
+        const obraSocialModificar = Array.from(document.querySelectorAll('input:checked'));
 
-    //si hay cambios se verifican si son correctos
-    let warning = "";
-    let erroresEncontrados = false;
-    // console.log('Error al enviar formulario:');
+        //si hay cambios se verifican si son correctos
+        let warning = "";
+        let erroresEncontrados = false;
+        // console.log('Error al enviar formulario:');
 
-    //limpiar mensaje error
-    mensajeError.innerHTML = "";
+        //limpiar mensaje error
+        mensajeError.innerHTML = "";
 
-    if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(nombreModificar.value)){
-        warning+='*Nombre inválido<br>';
-        console.log('nombre error');
-        erroresEncontrados = true;
-    }
-    if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(apellidoModificar.value)){
-        warning+= '*apellido inválido<br>';
-        console.log('Apellido inválido');
-        erroresEncontrados = true;
-    }
-    if(!/^[0-9]{5,10}$/.test(matriculaModificar.value)){
-        warning+= '*matrícula inválida<br>';
-        console.log('Matricula inválida');
-        erroresEncontrados = true;
-    }
-    if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(especialidadModificar.value)){
-        warning+= '*especialidad inválida<br>';
-        console.log('Especialidad inválida');
-        erroresEncontrados = true;
-    }
-    if(!/^[a-zA-ZÀ-ÿ ,]*$/.test(obraSocialModificar.value)){
-        warning+= '*obra social inválida<br>';
-        console.log('obra social inválido');
-        erroresEncontrados = true;
-    }
-    if(!/^(\d+([.,]\d+)?|[.,]\d+)$/.test(valorConsultaModificar.value)){
-        warning+= '*valor consulta inválido<br>';
-        console.log('valor de consulta inválido');
-        erroresEncontrados = true;
-    }
-    if(!descripcionModificar.value){
-        warning+= '*agregue una descripción';
-        console.log('descripcion inválida');
-        erroresEncontrados = true;
-    }
+        if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(nombreModificar.value)){
+            warning+='*Nombre inválido<br>';
+            console.log('nombre error');
+            erroresEncontrados = true;
+        }
+        if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(apellidoModificar.value)){
+            warning+= '*apellido inválido<br>';
+            console.log('Apellido inválido');
+            erroresEncontrados = true;
+        }
+        if(!/^[0-9]{5,10}$/.test(matriculaModificar.value)){
+            warning+= '*matrícula inválida<br>';
+            console.log('Matricula inválida');
+            erroresEncontrados = true;
+        }
+        if(!/^(\d)$/.test(especialidadModificar.value)){
+            warning+= '*especialidad inválida<br>';
+            console.log('Especialidad inválida');
+            erroresEncontrados = true;
+        }
+        if(0=== obraSocialModificar.length){
+            warning+= '*obra social inválida<br>';
+            console.log('obra social inválido');
+            erroresEncontrados = true;
+        }
+        if(!/^(\d+([.,]\d+)?|[.,]\d+)$/.test(valorConsultaModificar.value)){
+            warning+= '*valor consulta inválido<br>';
+            console.log('valor de consulta inválido');
+            erroresEncontrados = true;
+        }
+        if(!descripcionModificar.value){
+            warning+= '*agregue una descripción';
+            console.log('descripcion inválida');
+            erroresEncontrados = true;
+        }
 
-    if(erroresEncontrados){
-        mensajeError.innerHTML=warning;
-        return;
-    }
-    
+        if(erroresEncontrados){
+            mensajeError.innerHTML=warning;
+            return;
+        }
+        
 
-    profesionalSeleccionadoModificar.matricula = matriculaModificar.value;
-    profesionalSeleccionadoModificar.apellido = apellidoModificar.value;
-    profesionalSeleccionadoModificar.nombre = nombreModificar.value;
-    profesionalSeleccionadoModificar.especialidad = especialidadModificar.value;
-    profesionalSeleccionadoModificar.descripcion = descripcionModificar.value;
-    profesionalSeleccionadoModificar.obraSociales = obraSocialModificar.value;
-    profesionalSeleccionadoModificar.valorConsulta = valorConsultaModificar.value;
+        profesionalSeleccionadoModificar.matricula = matriculaModificar.value;
+        profesionalSeleccionadoModificar.apellido = apellidoModificar.value;
+        profesionalSeleccionadoModificar.nombre = nombreModificar.value;
+        profesionalSeleccionadoModificar.especialidad = especialidadModificar.value;
+        profesionalSeleccionadoModificar.descripcion = descripcionModificar.value;
+        profesionalSeleccionadoModificar.obraSociales = obraSocialModificar.map(i=>listaObraSociales.find((obso)=> obso.id === i.value));
+        profesionalSeleccionadoModificar.valorConsulta = valorConsultaModificar.value;
 
-    localStorage.setItem("lista", JSON.stringify(lista));
+        localStorage.setItem("lista", JSON.stringify(lista));
 
-    console.clear();
-    // console.log('Datos actualizados');
+        console.clear();
+        // console.log('Datos actualizados');
 
-    //reseteamos el formulario
-    document.getElementById('formulario-modificar').reset();
+        //reseteamos el formulario
+        document.getElementById('formulario-modificar').reset();
 
-    //actualizamos la lista
-    listarProfesionales();
-    alert('✅ Datos actualizados correctamente');
-    botonCerrar(vistaDelFormulario);
-    
-});
+        //actualizamos la lista
+        listarProfesionales();
+        alert('✅ Datos actualizados correctamente');
+        botonCerrar(vistaDelFormulario);
+        
+    });
 }
 
 
@@ -257,7 +260,7 @@ function visualizarProfesional(idDelProfesionalAVisualizar){
         matriculaVista.innerHTML = profesionalSeleccionado.matricula;
         nombreVista.innerHTML = profesionalSeleccionado.nombre + ' ' + profesionalSeleccionado.apellido;
         especialidadVista.innerHTML = especialidades.find((esp)=> esp.id === profesionalSeleccionado.especialidad).nombre;
-        obrasSocialesVista.innerHTML = formatearObraSocial(profesionalSeleccionado);
+        obrasSocialesVista.innerHTML = mapearObraSocial(profesionalSeleccionado);
         valorConsultavista.innerHTML = profesionalSeleccionado.valorConsulta;
         descripcionVista.innerHTML = profesionalSeleccionado.descripcion;
         fotografiaVista.src = profesionalSeleccionado.fotografia
@@ -283,16 +286,71 @@ function botonCerrar(elemento){
     }
 };
 
-function formatearObraSocial(medico){
+function mapearObraSocial(medico){
 
     const obrasocialformateada = medico.obraSociales.map(objeto => 
        listaObraSociales.find((buscarObraSocial)=> buscarObraSocial.id === objeto.id).nombre
     )
-    console.log(obrasocialformateada);
-
-    return obrasocialformateada.toString();
+    // console.log(obrasocialformateada);
+    return obrasocialformateada.join(", ");
 
 }
+
+function crearOpcionesEspecialidad(profesional){
+    let select = document.getElementById('especialidadModificar');
+    select.innerHTML ='';
+
+    especialidades.forEach((item)=>{
+        let opcion = document.createElement('option');
+        opcion.value = item.id;
+        opcion.innerHTML= item.nombre;
+
+        if(item.id === profesional.especialidad){
+            opcion.selected = true;
+        }
+        select.appendChild(opcion);
+    })
+}
+
+function crearOpcionesObraSocial(profesional){
+    let contenedor = document.getElementById('contenedorObrasociales');
+    contenedor.innerHTML='';
+
+    listaObraSociales.forEach((item)=>{
+        let casilla = document.createElement('div');
+        casilla.classList.add("form-check", "col-6");
+
+        let input = document.createElement('input');
+        input.type = "checkbox";
+        input.classList.add("form-check-label", "me-2");
+        input.style.width = "auto";
+
+        let label = document.createElement('label');
+        label.classList.add = 'form-label';
+
+        input.id= item.nombre ;
+        input.value= item.id ;
+        label.for = item.nombre ;
+        label.innerHTML= item.nombre;
+
+        for(itemObraSocial of profesional.obraSociales){
+            if(itemObraSocial.id===item.id){
+                // console.log(itemObraSocial.id);
+                // console.log(item.id);
+
+                input.checked = true;
+                casilla.appendChild(input);
+                casilla.appendChild(label);
+                contenedor.appendChild(casilla);
+            }
+        
+        }
+        casilla.appendChild(input);
+        casilla.appendChild(label);
+        contenedor.appendChild(casilla);
+    })
+};
+
 
 //el formulario esta oculto y solo será visible cuandos sea seleccionado
 let vistaDelFormulario = document.getElementById('vista-formulario-modificar');

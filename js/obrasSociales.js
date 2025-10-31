@@ -1,23 +1,23 @@
-let especialidades = JSON.parse(localStorage.getItem("especialidades")) || [];
+let listaObraSociales = JSON.parse(localStorage.getItem("listaObraSociales")) || [];
 
-//LIstar especialidades
-function listarEspecialidades(){
-    contadorDeEspecialidades();
+//Listar obras sociales
+function listarObraSocial(){
+    contadorDeObraSocial();
 
-    let tablaEspecialidades = document.getElementById('tablaEspecialidades');
-    tablaEspecialidades.innerHTML = "";
+    let tablaObrasSociales = document.getElementById('tablaObrasSociales');
+    tablaObrasSociales.innerHTML = "";
 
-    especialidades.forEach((especialidad) => {
+    listaObraSociales.forEach((obrasocial) => {
         //Para cada especialidad se creará una nueva fila
         let fila = document.createElement('tr');
         fila.style.textAlign = "center"; 
 
         //para cada fila se creará su contenido
         let idfila = document.createElement('td');
-        idfila.textContent = especialidad.id;
+        idfila.textContent = obrasocial.id;
 
         let nombrefila = document.createElement('td');
-       nombrefila.innerHTML = especialidad.nombre;
+       nombrefila.innerHTML = obrasocial.nombre;
 
         //los botones de borrar, editar y visualizar
         let botones = document.createElement('td');
@@ -29,14 +29,14 @@ function listarEspecialidades(){
         botonEliminar.classList.add("btn", "btn-outline");
         botonEliminar.innerHTML = '<i class="bi bi-trash"></i>';
         botonEliminar.addEventListener('click', function(){
-            eliminarEspecialidad(especialidad.id);
+            eliminarObrasocial(obrasocial.id);
         })
 
         let botonEditar = document.createElement('button');
         botonEditar.classList.add("btn", "btn-outline");
         botonEditar.innerHTML = ' <i class="bi bi-pencil-square"></i>';
         botonEditar.addEventListener('click', function(){
-            editarEspecialidad(especialidad.id);
+            editarObraSocial(obrasocial.id);
 
         })
 
@@ -44,7 +44,7 @@ function listarEspecialidades(){
         botonVisualizar.classList.add("btn", "btn-outline");
         botonVisualizar.innerHTML = '<i class="bi bi-eye"></i>';
         botonVisualizar.addEventListener('click', function(){
-            visualizarEspecialidad(especialidad.id);
+            visualizarObraSocial(obrasocial.id);
         })
 
         div.appendChild(botonEliminar);
@@ -54,25 +54,23 @@ function listarEspecialidades(){
         fila.appendChild(nombrefila);
         botones.appendChild(div);
         fila.appendChild(botones);
-        tablaEspecialidades.appendChild(fila);
+        tablaObrasSociales.appendChild(fila);
 
         
     });
     
-}listarEspecialidades();
+}listarObraSocial();
 
 /*ELIMINAR ESPECIALIDAD*/
-function eliminarEspecialidad(idEspecialidadAEliminar){
-    especialidadSeleccionada = especialidades.find((p) => p.id === idEspecialidadAEliminar);
-
+function eliminarObrasocial(idEspecialidadAEliminar){
+    especialidadSeleccionada = listaObraSociales.find((p) => p.id === idEspecialidadAEliminar);
 
     if(confirm(`¿Esta seguro que quiere eliminar ${especialidadSeleccionada.nombre} de la lista especialidades?`)){
-        especialidades = especialidades.filter(especialidad => especialidad.id !== especialidadSeleccionada.id);
+        especialidades = listaObraSociales.filter(especialidad => especialidad.id !== especialidadSeleccionada.id);
 
         localStorage.setItem("especialidades", JSON.stringify(especialidades));
-        listarEspecialidades();
+        listarObraSocial();
         location.reload();
-
     }
 };
 
@@ -81,16 +79,19 @@ function eliminarEspecialidad(idEspecialidadAEliminar){
 //Definir variables
 const nombreModificar= document.getElementById('nombreModificar');
 const mensajeError = document.getElementById('mensajeError');
-let especialidadSeleccionadaModificar = null;
+const descripcionModificar= document.getElementById('descripcionModificar');
+let obraSocialSeleccionadaModificar = null;
+let obraSocialModificarActual = null;
 
-function editarEspecialidad(idEspecialidadAEditar){
+function editarObraSocial(idObraSocialAEditar){
     //buscar la especialidad en la lista
-    especialidadSeleccionadaModificar = especialidades.find((p) => p.id === idEspecialidadAEditar);
-    console.log(especialidadSeleccionadaModificar);
+    obraSocialSeleccionadaModificar = listaObraSociales.find((p) => p.id === idObraSocialAEditar);
+    console.log(obraSocialSeleccionadaModificar);
 
     document.getElementById('vista-formulario-modificar').classList.remove('d-none');
 
-    nombreModificar.value = especialidadSeleccionadaModificar.nombre;
+    nombreModificar.value = obraSocialSeleccionadaModificar.nombre;
+    descripcionModificar.value= obraSocialSeleccionadaModificar.descripcion;
 
 };
 if(document.getElementById('formulario-modificar')){
@@ -111,6 +112,11 @@ if(document.getElementById('formulario-modificar')){
             console.log('nombre error');
             erroresEncontrados = true;
         }
+        if(!descripcionModificar.value){
+            warning+= '*agregue una descripción';
+            console.log('descripcion inválida');
+            erroresEncontrados = true;
+        }
 
         if(erroresEncontrados){
             mensajeError.innerHTML=warning;
@@ -118,9 +124,10 @@ if(document.getElementById('formulario-modificar')){
         }
         
 
-        especialidadSeleccionadaModificar.nombre = nombreModificar.value;
+        obraSocialSeleccionadaModificar.nombre = nombreModificar.value;
+        obraSocialSeleccionadaModificar.descripcion = descripcionModificar.value;
 
-        localStorage.setItem("especialidades", JSON.stringify(especialidades));
+        localStorage.setItem("listaObraSociales", JSON.stringify(listaObraSociales));
 
         console.clear();
         // console.log('Datos actualizados');
@@ -129,7 +136,7 @@ if(document.getElementById('formulario-modificar')){
         document.getElementById('formulario-modificar').reset();
 
         //actualizamos la lista
-        listarEspecialidades();
+        listarObraSocial();
         alert('✅ Datos actualizados correctamente');
         botonCerrar(vistaDelFormulario);
         
@@ -141,31 +148,34 @@ if(document.getElementById('formulario-modificar')){
 /*VISUALIZAR ESPECIALIDAD*/
 //Definir variables
 let especialidadActual = null;
+
 let vistaDeTarjetaProfesional = document.getElementById('card-vista');
 const nombreVista= document.getElementById('vista-nombre');
+const descripcionVista= document.getElementById('vista-descripcion');
 
-function visualizarEspecialidad(idEspecialidadAVisualizar){
-    especialidadSeleccionado = especialidades.find((p) => p.id === idEspecialidadAVisualizar);
-    console.log(especialidadSeleccionado);
+function visualizarObraSocial(idEspecialidadAVisualizar){
+    obraSocialSeleccionada = listaObraSociales.find((p) => p.id === idEspecialidadAVisualizar);
+    console.log(obraSocialSeleccionada);
 
     vistaDeTarjetaProfesional.classList.remove('d-none');
-    if(especialidadActual !== especialidadSeleccionado.id){
+    if(especialidadActual !== obraSocialSeleccionada.id){
         
-        especialidadActual = especialidadSeleccionado.id;
+        especialidadActual = obraSocialSeleccionada.id;
         // console.log(especialidadActual);
 
-        nombreVista.innerHTML =especialidadSeleccionado.nombre;
+        nombreVista.innerHTML =obraSocialSeleccionada.nombre;
+        descripcionVista.innerHTML = obraSocialSeleccionada.descripcion;
     }
 
 };
 
 
-function contadorDeEspecialidades(){
-    let total = document.getElementById('totalEspecialidades');
-    if (especialidades.length == 1){
-        total.innerHTML = 'Total ' + especialidades.length + ' especialidad';
+function contadorDeObraSocial(){
+    let total = document.getElementById('totalObraSocial');
+    if (listaObraSociales.length == 1){
+        total.innerHTML = 'Total ' + listaObraSociales.length + ' obra social';
     } else{
-        total.innerHTML = 'Total ' + especialidades.length + ' especialidades' ;
+        total.innerHTML = 'Total ' + listaObraSociales.length + ' obras sociales' ;
     }
 }
 

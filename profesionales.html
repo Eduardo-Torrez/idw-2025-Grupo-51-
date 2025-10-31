@@ -35,6 +35,10 @@
                     <i class="bi bi-hospital"></i> <span>Especialidades</span></a>
             </li>
             <li class="nav-item">
+                <a href="obrasSociales.html" class="nav-link collapsed">
+                    <i class="bi bi-person-badge"></i> <span>Obras sociales</span></a>
+            </li>
+            <li class="nav-item">
                 <a href="turnos.html" class="nav-link collapsed">
                     <i class="bi bi-alarm"></i> <span>Turnos</span></a>
             </li>
@@ -166,12 +170,14 @@
 
                 <div class="mb-3">
                     <label for="especialidadModificar" class="form-label">Especialidad*</label>
-                    <input type="text" id="especialidadModificar" name="especialidadModificar" class="form-control" placeholder="Especialidad">
+                    <select class="form-select" id="especialidadModificar" required="">
+                    </select>
                 </div>
 
                 <div class="mb-3">
                     <label for="obrasocialModificar" class="form-label">Obras sociales*</label>
-                    <input type="text" id="obrasocialModificar" name="obrasocialModificar" class="form-control" placeholder="Obra/s social/es">
+                    <div class="row pb-2" id="contenedorObrasociales">
+                    </div>
                 </div>
 
                 <div class="mb-3">
