@@ -88,7 +88,8 @@ th, td{
 
 
 .formulario input,
-.formulario textarea {
+.formulario textarea, 
+.form-select {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1.25rem;
@@ -100,17 +101,30 @@ th, td{
 }
 
 .formulario input:focus,
-.formulario textarea:focus {
+.formulario textarea:focus, 
+.form-select:focus{
     border-color: var(--colorTerciario);
     outline: none;
 }
 
 
 .formulario input::placeholder,
-.formulario textarea::placeholder {
+.formulario textarea::placeholder,
+.form-select::placeholder {
     color: var(--colorTerciario); 
     opacity: 0.6; 
     font-style: italic; 
+}
+
+.form-check input{
+    margin-right: .5rem;
+}
+.form-check label{
+    color: #636363;
+}
+.form-check input:checked + label{
+    color: var(--colorPrincipal);
+    font-weight: 600;
 }
 
 
