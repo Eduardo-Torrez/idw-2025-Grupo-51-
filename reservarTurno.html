@@ -61,7 +61,7 @@
         </div>
 
 
-        <form class="formulario w-100" action="#" method="post">
+        <form id = "formReserva" class="formulario w-100" action="#" method="post">
                 <div class="mb-3">
             <label for="nombre" class="form-label">Nombre y Apellido*</label>
             <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre y Apellido" required>
@@ -170,18 +170,7 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
-    <script>
-    // Obtener los parámetros de la URL
-    const params = new URLSearchParams(window.location.search);
+    <script src="js/reservarTurno.js"></script>
 
-    // Leer el nombre del médico
-    const medico = params.get("medico"); // ahora la variable se llama 'medico'
-
-    // Si existe, mostrarlo en el formulario
-    if (medico) {
-        const contenedor = document.getElementById("medico-info");
-        contenedor.textContent = `Estás reservando turno con ${decodeURIComponent(medico)}`;
-    }
-</script>
 </body>
 </html>

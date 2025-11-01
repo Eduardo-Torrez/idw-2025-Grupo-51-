@@ -127,7 +127,7 @@
                         <div class="card-body text-center ">
                             <h5 class="card-title">María López</h5>
                             <p class="card-text">Oftalmologa</p>
-                            <a href="registro.html" class="btn btn-servicio">Reservar turno</a>
+                            <a href="reservarTurno.html?nombre=María%20López&especialidad=Oftalmóloga" class="btn btn-servicio">Reservar turno</a>
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Carlos Gómez</h5>
                             <p class="card-text">Oftalmologo</p>
-                            <a href="registro.html" class="btn btn-servicio">Reservar turno</a>
+                            <a href="reservarTurno.html" class="btn btn-servicio">Reservar turno</a>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Ana Torres</h5>
                             <p class="card-text">Oftalmologa</p>
-                            <a href="registro.html" class="btn btn-servicio">Reservar turno</a>
+                            <a href="reservarTurno.html" class="btn btn-servicio">Reservar turno</a>
                         </div>
                     </div>
                 </div>
@@ -160,7 +160,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Sebastián Otero</h5>
                             <p class="card-text">Oftalmologo</p>
-                            <a href="registro.html" class="btn btn-servicio">Reservar turno</a>
+                            <a href="reservarTurno.html" class="btn btn-servicio">Reservar turno</a>
                         </div>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
         ******************************************************
         * LÓGICA DE REDIRECCIÓN A REGISTRO (SIN AUTENTICACIÓN)
         ******************************************************
-        */
+        
 
         // 1. Obtener todos los botones de "Reservar turno"
         const reservarBtns = document.querySelectorAll('.btn-servicio');
@@ -272,7 +272,7 @@
         reservarBtns.forEach(btn => {
             btn.addEventListener('click', redirigirARegistro);
         });
-
+        */
     </script>
 </body>
 </html>
