@@ -1,4 +1,6 @@
-let listaObraSociales = JSON.parse(localStorage.getItem("listaObraSociales")) || [];
+import { guardarDatos, obtenerDatos } from "./localstorage.js";
+import { botonCerrar } from "./utils.js";
+let listaObraSociales = obtenerDatos("listaObraSociales");
 
 //Listar obras sociales
 function listarObraSocial(){
@@ -6,7 +8,6 @@ function listarObraSocial(){
 
     let tablaObrasSociales = document.getElementById('tablaObrasSociales');
     tablaObrasSociales.innerHTML = "";
-
     listaObraSociales.forEach((obrasocial) => {
         //Para cada especialidad se creará una nueva fila
         let fila = document.createElement('tr');
@@ -18,6 +19,9 @@ function listarObraSocial(){
 
         let nombrefila = document.createElement('td');
        nombrefila.innerHTML = obrasocial.nombre;
+
+        let porcentajefila = document.createElement('td');
+       porcentajefila.innerHTML = obrasocial.porcentajeDescuento;
 
         //los botones de borrar, editar y visualizar
         let botones = document.createElement('td');
@@ -52,45 +56,44 @@ function listarObraSocial(){
         div.appendChild(botonVisualizar);
         fila.appendChild(idfila);
         fila.appendChild(nombrefila);
+        fila.appendChild(porcentajefila);
         botones.appendChild(div);
         fila.appendChild(botones);
         tablaObrasSociales.appendChild(fila);
-
-        
     });
     
 }listarObraSocial();
 
-/*ELIMINAR ESPECIALIDAD*/
-function eliminarObrasocial(idEspecialidadAEliminar){
-    especialidadSeleccionada = listaObraSociales.find((p) => p.id === idEspecialidadAEliminar);
+/*ELIMINAR OBRA SOCIAL*/
+function eliminarObrasocial(idAEliminar){
 
-    if(confirm(`¿Esta seguro que quiere eliminar ${especialidadSeleccionada.nombre} de la lista especialidades?`)){
-        especialidades = listaObraSociales.filter(especialidad => especialidad.id !== especialidadSeleccionada.id);
+    let obrasocialSelecionada = listaObraSociales.find((obso) => obso.id === idAEliminar);
 
-        localStorage.setItem("especialidades", JSON.stringify(especialidades));
+    if(confirm(`¿Esta seguro que quiere eliminar ${obrasocialSelecionada.nombre} de la lista obras sociales?`)){
+        listaObraSociales = listaObraSociales.filter(obrasocial => obrasocial.id !== obrasocialSelecionada.id);
+        guardarDatos("listaObraSociales", listaObraSociales);
         listarObraSocial();
         location.reload();
     }
 };
 
 
-/*MODIFICAR DATOS DE UNA ESPECIALIDAD*/
+/*MODIFICAR DATOS DE UNA OBRA SOCIAL*/
 //Definir variables
 const nombreModificar= document.getElementById('nombreModificar');
-const mensajeError = document.getElementById('mensajeError');
 const descripcionModificar= document.getElementById('descripcionModificar');
+const porcentajeModificar = document.getElementById('porcentajeModificar');
+const mensajeError = document.getElementById('mensajeError');
 let obraSocialSeleccionadaModificar = null;
-let obraSocialModificarActual = null;
+let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
 
 function editarObraSocial(idObraSocialAEditar){
-    //buscar la especialidad en la lista
     obraSocialSeleccionadaModificar = listaObraSociales.find((p) => p.id === idObraSocialAEditar);
     console.log(obraSocialSeleccionadaModificar);
 
-    document.getElementById('vista-formulario-modificar').classList.remove('d-none');
-
+    vistaDelFormulario.classList.remove('d-none');
     nombreModificar.value = obraSocialSeleccionadaModificar.nombre;
+    porcentajeModificar.value = obraSocialSeleccionadaModificar.porcentajeDescuento;
     descripcionModificar.value= obraSocialSeleccionadaModificar.descripcion;
 
 };
@@ -102,13 +105,15 @@ if(document.getElementById('formulario-modificar')){
         //si hay cambios se verifican si son correctos
         let warning = "";
         let erroresEncontrados = false;
-        // console.log('Error al enviar formulario:');
-
-        //limpiar mensaje error
         mensajeError.innerHTML = "";
 
         if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(nombreModificar.value)){
             warning+='*Nombre inválido<br>';
+            console.log('nombre error');
+            erroresEncontrados = true;
+        }
+        if(!/^(\d{1,3}(\.\d{1,2})?|0)?$/.test(porcentajeModificar.value)){
+            warning+='*Porcentaje inválido<br>';
             console.log('nombre error');
             erroresEncontrados = true;
         }
@@ -123,50 +128,47 @@ if(document.getElementById('formulario-modificar')){
             return;
         }
         
-
         obraSocialSeleccionadaModificar.nombre = nombreModificar.value;
+        obraSocialSeleccionadaModificar.porcentajeDescuento = porcentajeModificar.value;
         obraSocialSeleccionadaModificar.descripcion = descripcionModificar.value;
-
-        localStorage.setItem("listaObraSociales", JSON.stringify(listaObraSociales));
+        guardarDatos("listaObraSociales", listaObraSociales);
 
         console.clear();
         // console.log('Datos actualizados');
 
-        //reseteamos el formulario
+        //reseteamos el formulario y actualizamos la lista
         document.getElementById('formulario-modificar').reset();
-
-        //actualizamos la lista
         listarObraSocial();
         alert('✅ Datos actualizados correctamente');
-        botonCerrar(vistaDelFormulario);
+        botonCerrar('vista-formulario-modificar');
         
     });
 }
 
 
 
-/*VISUALIZAR ESPECIALIDAD*/
+/*VISUALIZAR OBRA SOCIAL*/
 //Definir variables
-let especialidadActual = null;
-
+let obraSocialActual = null;
 let vistaDeTarjetaProfesional = document.getElementById('card-vista');
 const nombreVista= document.getElementById('vista-nombre');
 const descripcionVista= document.getElementById('vista-descripcion');
+const porcentajeVista= document.getElementById('vista-descuento');
 
 function visualizarObraSocial(idEspecialidadAVisualizar){
-    obraSocialSeleccionada = listaObraSociales.find((p) => p.id === idEspecialidadAVisualizar);
+    let obraSocialSeleccionada = listaObraSociales.find((p) => p.id === idEspecialidadAVisualizar);
     console.log(obraSocialSeleccionada);
 
     vistaDeTarjetaProfesional.classList.remove('d-none');
-    if(especialidadActual !== obraSocialSeleccionada.id){
+    if(obraSocialActual !== obraSocialSeleccionada.id){
         
-        especialidadActual = obraSocialSeleccionada.id;
-        // console.log(especialidadActual);
+        obraSocialActual = obraSocialSeleccionada.id;
+        // console.log(obraSocialActual);
 
         nombreVista.innerHTML =obraSocialSeleccionada.nombre;
         descripcionVista.innerHTML = obraSocialSeleccionada.descripcion;
+        porcentajeVista.innerHTML = obraSocialSeleccionada.porcentajeDescuento;
     }
-
 };
 
 
@@ -179,11 +181,10 @@ function contadorDeObraSocial(){
     }
 }
 
-function botonCerrar(elemento){
-    if(elemento.classList.contains('d-flex')){
-        elemento.classList.add('d-none');
-    }
-};
+document.querySelectorAll('.botonCerrar').forEach(boton=>{
+    boton.addEventListener('click', ()=>{
+        const targetId = boton.dataset.target;
+        botonCerrar(targetId);
+    })
+})
 
-//el formulario esta oculto y solo será visible cuandos sea seleccionado
-let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
