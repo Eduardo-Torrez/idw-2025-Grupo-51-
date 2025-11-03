@@ -88,7 +88,7 @@
                 <div class="card mb-3 border-0 bg-transparent w-100">
 
                     <div class="w-100 py-4 text-end">
-                        <button class="btn btn-admin" onclick="botonCerrar(vistaDeTarjetaProfesional);">
+                        <button class="btn btn-admin botonCerrar" data-target="card-vista">
                             <i class="bi bi-x-lg"></i>
                         </button>
                     </div>
@@ -107,7 +107,7 @@
         <!--modificar-->
         <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-modificar">
             <div class="text-end mb-4 w-75">
-                    <button class="btn btn-admin" onclick="botonCerrar(vistaDelFormulario);">
+                    <button class="btn btn-admin botonCerrar" data-target="vista-formulario-modificar">
                         <i class="bi bi-x-lg"></i>
                         <span>Cerrar</span>
                     </button>
@@ -139,7 +139,7 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
     <script src="js/panelDeControl.js"></script>
-    <script src="js/especialidades.js"></script>
+    <script type="module" src="js/especialidades.js"></script>
     
 </body>
 

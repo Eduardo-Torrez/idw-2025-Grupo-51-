@@ -74,6 +74,7 @@
                         <tr class="text-center align-middle">
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Descuento</td>
                             <th scope="col">Acción</th>
                         </tr>
                     </thead>
@@ -88,7 +89,7 @@
                 <div class="card mb-3 border-0 bg-transparent">
 
                     <div class="w-100 py-4 text-end">
-                        <button class="btn btn-admin" onclick="botonCerrar(vistaDeTarjetaProfesional);">
+                        <button class="btn btn-admin botonCerrar" data-target="card-vista">
                             <i class="bi bi-x-lg"></i>
                         </button>
                     </div>
@@ -104,6 +105,10 @@
                                 <h5 class="texto pe-2">Descripción:</h5>
                                 <p class="texto" id="vista-descripcion"></p>
                             </div>
+                            <div class="d-flex flex-column mb-1">
+                                <h5 class="texto pe-2">Descuento (%):</h5>
+                                <p class="texto" id="vista-descuento"></p>
+                            </div>
                             <div class="d-flex flex-column mb-1 align-items-center align-items-md-end">
                                 <img src="img/logo.png" class="w-25 opacity-25" alt="logo">
                             </div>
@@ -118,7 +123,7 @@
         <!--modificar-->
         <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-modificar">
             <div class="text-end mb-4 w-75">
-                    <button class="btn btn-admin" onclick="botonCerrar(vistaDelFormulario);">
+                    <button class="btn btn-admin botonCerrar" data-target="vista-formulario-modificar">
                         <i class="bi bi-x-lg"></i>
                         <span>Cerrar</span>
                     </button>
@@ -133,12 +138,14 @@
                     <label for="nombre" class="form-label ">Nombre*</label>
                     <input type="text" id="nombreModificar" name="nombre" class="form-control" placeholder="Nombre">
                 </div>
-
+                <div class="mb-3">
+                    <label for="porcentaje" class="form-label ">Descuento (%)*</label>
+                    <input type="text" id="porcentajeModificar" name="porcentaje" class="form-control" placeholder="0.00">
+                </div>
                 <div class="mb-3">
                     <label for="descripcion" class="form-label">Descripción*</label>
                     <textarea id="descripcionModificar" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
                 </div>
-
                 <div class="mb-3">
                     <p class="texto text-danger" id="mensajeError"></p>
                 </div>
@@ -155,7 +162,7 @@
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
     <script src="js/panelDeControl.js"></script>
-    <script src="js/obrasSociales.js"></script>
+    <script type="module" src="js/obrasSociales.js"></script>
     
 </body>
 

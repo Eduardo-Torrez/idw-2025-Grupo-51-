@@ -1,7 +1,8 @@
-
-let lista = JSON.parse(localStorage.getItem("lista")) || [];
-let especialidades = JSON.parse(localStorage.getItem("especialidades")) || [];
-let listaObraSociales = JSON.parse(localStorage.getItem("listaObraSociales")) || [];
+import { guardarDatos, obtenerDatos } from "./localstorage.js";
+import { botonCerrar } from "./utils.js";
+let medicos = obtenerDatos("medicos");
+let especialidades = obtenerDatos("especialidades");
+let listaObraSociales = obtenerDatos("listaObraSociales");
 
 //LISTAR PROFESIONALES
 function listarProfesionales(){
@@ -12,7 +13,7 @@ function listarProfesionales(){
     //Limpiar contenido previo de la tabla
     tablaProfesionales.innerHTML = '';
 
-    lista.forEach((medico) => {
+    medicos.forEach((medico) => {
         //Para cada médico se creará una nueva fila
         let fila = document.createElement('tr');
         fila.style.textAlign = "center"; 
@@ -25,8 +26,13 @@ function listarProfesionales(){
         nombreyapellido.innerHTML = medico.nombre + ' ' + medico.apellido;
 
         let especialidad = document.createElement('td');
-        // especialidad.textContent= medico.especialidad;
-        especialidad.textContent=  especialidades.find((esp)=> esp.id === medico.especialidad).nombre;
+        const buscarEspecialidad = especialidades.find((esp)=> esp.id === medico.especialidad);
+        if(buscarEspecialidad=== undefined){
+            medico.especialidad = [];
+            especialidad.textContent= "Sin especialidad";
+        }else{
+            especialidad.textContent= buscarEspecialidad.nombre;
+        }
 
         let matricula = document.createElement('td');
         matricula.textContent= medico.matricula;
@@ -35,6 +41,9 @@ function listarProfesionales(){
         valorConsulta.textContent= medico.valorConsulta;
 
         let obrasSociales = document.createElement('td');
+        medico.obraSociales = medico.obraSociales.filter(buscarObraSocial =>
+            listaObraSociales.some((obrasocial)=> obrasocial.id === buscarObraSocial.id)
+        )
         obrasSociales.textContent=mapearObraSocial(medico);
 
 
@@ -86,13 +95,13 @@ function listarProfesionales(){
 
 /*ELIMINAR DATOS DE UN PROFESIONAL*/
 function eliminarProfesional(idDelProfesionalAEliminar){
-    profesionalSeleccionado = lista.find((p) => p.id === idDelProfesionalAEliminar);
+    let profesionalSeleccionado = medicos.find((p) => p.id === idDelProfesionalAEliminar);
     // console.log(profesionalSeleccionado);
 
     if(confirm(`¿Esta seguro que quiere eliminar a ${profesionalSeleccionado.nombre} ${profesionalSeleccionado.apellido} de la lista de profesionales?`)){
-        lista = lista.filter(profesional => profesional.id !== profesionalSeleccionado.id);
+        medicos = medicos.filter(profesional => profesional.id !== profesionalSeleccionado.id);
 
-        localStorage.setItem("lista", JSON.stringify(lista));
+        guardarDatos("medicos", medicos);
         listarProfesionales();
         location.reload();
 
@@ -107,19 +116,18 @@ const apellidoModificar= document.getElementById('apellidoModificar');
 const nombreModificar= document.getElementById('nombreModificar');
 const especialidadModificar= document.getElementById('especialidadModificar');
 const descripcionModificar= document.getElementById('descripcionModificar');
-// const obraSocialModificar= document.getElementById('obrasocialModificar');
 const fotografiaModificar= document.getElementById('fotografiaModificar');
 const valorConsultaModificar= document.getElementById('valorConsultaModificar');
 const mensajeError = document.getElementById('mensajeError');
-
+let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
 let profesionalSeleccionadoModificar = null;
 
 function editarProfesional(idDelProfesionalAEditar){
     //buscar el profesional en la lista
-    profesionalSeleccionadoModificar = lista.find((p) => p.id === idDelProfesionalAEditar);
+    profesionalSeleccionadoModificar = medicos.find((p) => p.id === idDelProfesionalAEditar);
     console.log(profesionalSeleccionadoModificar);
 
-    document.getElementById('vista-formulario-modificar').classList.remove('d-none');
+    vistaDelFormulario.classList.remove('d-none');
 
     //se traen los datos del medico
     matriculaModificar.value = profesionalSeleccionadoModificar.matricula;
@@ -127,22 +135,20 @@ function editarProfesional(idDelProfesionalAEditar){
     nombreModificar.value = profesionalSeleccionadoModificar.nombre;
     especialidadModificar.value = profesionalSeleccionadoModificar.especialidad;
     descripcionModificar.value= profesionalSeleccionadoModificar.descripcion;
-    // obraSocialModificar.value = profesionalSeleccionadoModificar.obraSociales;
     valorConsultaModificar.value = profesionalSeleccionadoModificar.valorConsulta;
 
     
-    //crear las opciones de especialidades y seleccionar la que coincida con el profesional
+    //crear las opciones de especialidades y obras sociales y seleccionar las que coincidan con el profesional
     crearOpcionesEspecialidad(profesionalSeleccionadoModificar);
     crearOpcionesObraSocial(profesionalSeleccionadoModificar);
 
     //Base64
     fotografiaModificar.addEventListener('change', (e)=>{
-        // const file = e.inputFile.files[0]
         const file = e.target.files[0]
         const reader = new FileReader();
         reader.onload = ()=>{
             profesionalSeleccionadoModificar.fotografia = reader.result;
-            localStorage.setItem("lista", JSON.stringify(lista));
+            guardarDatos("medicos", medicos);
         };
         reader.readAsDataURL(file);
     })
@@ -157,9 +163,6 @@ if(document.getElementById('formulario-modificar')){
         //si hay cambios se verifican si son correctos
         let warning = "";
         let erroresEncontrados = false;
-        // console.log('Error al enviar formulario:');
-
-        //limpiar mensaje error
         mensajeError.innerHTML = "";
 
         if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(nombreModificar.value)){
@@ -212,7 +215,7 @@ if(document.getElementById('formulario-modificar')){
         profesionalSeleccionadoModificar.obraSociales = obraSocialModificar.map(i=>listaObraSociales.find((obso)=> obso.id === i.value));
         profesionalSeleccionadoModificar.valorConsulta = valorConsultaModificar.value;
 
-        localStorage.setItem("lista", JSON.stringify(lista));
+        guardarDatos("medicos", medicos);
 
         console.clear();
         // console.log('Datos actualizados');
@@ -223,7 +226,7 @@ if(document.getElementById('formulario-modificar')){
         //actualizamos la lista
         listarProfesionales();
         alert('✅ Datos actualizados correctamente');
-        botonCerrar(vistaDelFormulario);
+        botonCerrar('vista-formulario-modificar');
         
     });
 }
@@ -244,12 +247,8 @@ const fotografiaVista= document.getElementById('vista-foto');
 const valorConsultavista= document.getElementById('vista-valorconsulta');
 
 function visualizarProfesional(idDelProfesionalAVisualizar){
-    profesionalSeleccionado = lista.find((p) => p.id === idDelProfesionalAVisualizar);
-    console.log(profesionalSeleccionado);
-
-    
-    // especiali = especialidades.find((esp)=> esp.id === profesionalSeleccionado.especialidad).nombre;
-    // console.log(especiali);
+    let profesionalSeleccionado = medicos.find((p) => p.id === idDelProfesionalAVisualizar);
+    // console.log(profesionalSeleccionado);
 
     vistaDeTarjetaProfesional.classList.remove('d-none');
     if(profesionalActual !== profesionalSeleccionado.id){
@@ -270,28 +269,21 @@ function visualizarProfesional(idDelProfesionalAVisualizar){
 };
 
 
-/*división de responsabilidades: separamos las acciones en funciones*/
 function contadorDeProfesioanles(){
     let total = document.getElementById('totalProfesionales');
-    if (lista.length == 1){
-        total.innerHTML = 'Total ' + lista.length + ' profesional';
+    if (medicos.length == 1){
+        total.innerHTML = 'Total ' + medicos.length + ' profesional';
     } else{
-        total.innerHTML = 'Total ' + lista.length + ' profesionales' ;
+        total.innerHTML = 'Total ' + medicos.length + ' profesionales' ;
     }
 }contadorDeProfesioanles();
 
-function botonCerrar(elemento){
-    if(elemento.classList.contains('d-flex')){
-        elemento.classList.add('d-none');
-    }
-};
 
-function mapearObraSocial(medico){
+function mapearObraSocial(profesional){
 
-    const obrasocialformateada = medico.obraSociales.map(objeto => 
+    const obrasocialformateada = profesional.obraSociales.map(objeto => 
        listaObraSociales.find((buscarObraSocial)=> buscarObraSocial.id === objeto.id).nombre
     )
-    // console.log(obrasocialformateada);
     return obrasocialformateada.join(", ");
 
 }
@@ -310,6 +302,14 @@ function crearOpcionesEspecialidad(profesional){
         }
         select.appendChild(opcion);
     })
+
+    if(profesional.especialidad.length === 0){
+        let opcion = document.createElement('option');
+        opcion.value = "";
+        opcion.selected = true;
+        
+        select.appendChild(opcion);
+    }
 }
 
 function crearOpcionesObraSocial(profesional){
@@ -333,17 +333,14 @@ function crearOpcionesObraSocial(profesional){
         label.for = item.nombre ;
         label.innerHTML= item.nombre;
 
-        for(itemObraSocial of profesional.obraSociales){
-            if(itemObraSocial.id===item.id){
-                // console.log(itemObraSocial.id);
-                // console.log(item.id);
+        for(let itemObraSocial = 0; profesional.obraSociales[itemObraSocial]; ++itemObraSocial){
+            if(profesional.obraSociales[itemObraSocial].id===item.id){
 
                 input.checked = true;
                 casilla.appendChild(input);
                 casilla.appendChild(label);
                 contenedor.appendChild(casilla);
             }
-        
         }
         casilla.appendChild(input);
         casilla.appendChild(label);
@@ -352,5 +349,10 @@ function crearOpcionesObraSocial(profesional){
 };
 
 
-//el formulario esta oculto y solo será visible cuandos sea seleccionado
-let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
+document.querySelectorAll('.botonCerrar').forEach(boton=>{
+    boton.addEventListener('click', ()=>{
+        const targetId = boton.dataset.target;
+        botonCerrar(targetId);
+        
+    })
+});

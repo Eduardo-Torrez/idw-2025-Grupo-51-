@@ -1,4 +1,6 @@
-let especialidades = JSON.parse(localStorage.getItem("especialidades")) || [];
+import { guardarDatos, obtenerDatos } from "./localstorage.js";
+import { botonCerrar } from "./utils.js";
+let especialidades = obtenerDatos("especialidades");
 
 //LIstar especialidades
 function listarEspecialidades(){
@@ -63,13 +65,11 @@ function listarEspecialidades(){
 
 /*ELIMINAR ESPECIALIDAD*/
 function eliminarEspecialidad(idEspecialidadAEliminar){
-    especialidadSeleccionada = especialidades.find((p) => p.id === idEspecialidadAEliminar);
-
+    let especialidadSeleccionada = especialidades.find((p) => p.id === idEspecialidadAEliminar);
 
     if(confirm(`¿Esta seguro que quiere eliminar ${especialidadSeleccionada.nombre} de la lista especialidades?`)){
         especialidades = especialidades.filter(especialidad => especialidad.id !== especialidadSeleccionada.id);
-
-        localStorage.setItem("especialidades", JSON.stringify(especialidades));
+        guardarDatos("especialidades", especialidades);
         listarEspecialidades();
         location.reload();
 
@@ -82,14 +82,14 @@ function eliminarEspecialidad(idEspecialidadAEliminar){
 const nombreModificar= document.getElementById('nombreModificar');
 const mensajeError = document.getElementById('mensajeError');
 let especialidadSeleccionadaModificar = null;
+let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
 
 function editarEspecialidad(idEspecialidadAEditar){
-    //buscar la especialidad en la lista
+    //buscar la especialidad
     especialidadSeleccionadaModificar = especialidades.find((p) => p.id === idEspecialidadAEditar);
     console.log(especialidadSeleccionadaModificar);
 
-    document.getElementById('vista-formulario-modificar').classList.remove('d-none');
-
+    vistaDelFormulario.classList.remove('d-none');
     nombreModificar.value = especialidadSeleccionadaModificar.nombre;
 
 };
@@ -101,9 +101,6 @@ if(document.getElementById('formulario-modificar')){
         //si hay cambios se verifican si son correctos
         let warning = "";
         let erroresEncontrados = false;
-        // console.log('Error al enviar formulario:');
-
-        //limpiar mensaje error
         mensajeError.innerHTML = "";
 
         if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(nombreModificar.value)){
@@ -119,19 +116,15 @@ if(document.getElementById('formulario-modificar')){
         
 
         especialidadSeleccionadaModificar.nombre = nombreModificar.value;
-
-        localStorage.setItem("especialidades", JSON.stringify(especialidades));
-
+        guardarDatos("especialidades", especialidades);
         console.clear();
         // console.log('Datos actualizados');
 
-        //reseteamos el formulario
+        //reseteamos el formulario y actualizamos la lista
         document.getElementById('formulario-modificar').reset();
-
-        //actualizamos la lista
         listarEspecialidades();
         alert('✅ Datos actualizados correctamente');
-        botonCerrar(vistaDelFormulario);
+        botonCerrar('vista-formulario-modificar');
         
     });
 }
@@ -145,18 +138,15 @@ let vistaDeTarjetaProfesional = document.getElementById('card-vista');
 const nombreVista= document.getElementById('vista-nombre');
 
 function visualizarEspecialidad(idEspecialidadAVisualizar){
-    especialidadSeleccionado = especialidades.find((p) => p.id === idEspecialidadAVisualizar);
+    let especialidadSeleccionado = especialidades.find((p) => p.id === idEspecialidadAVisualizar);
     console.log(especialidadSeleccionado);
 
     vistaDeTarjetaProfesional.classList.remove('d-none');
     if(especialidadActual !== especialidadSeleccionado.id){
         
         especialidadActual = especialidadSeleccionado.id;
-        // console.log(especialidadActual);
-
         nombreVista.innerHTML =especialidadSeleccionado.nombre;
     }
-
 };
 
 
@@ -169,11 +159,11 @@ function contadorDeEspecialidades(){
     }
 }
 
-function botonCerrar(elemento){
-    if(elemento.classList.contains('d-flex')){
-        elemento.classList.add('d-none');
-    }
-};
+document.querySelectorAll('.botonCerrar').forEach(boton=>{
+    boton.addEventListener('click', ()=>{
+        const targetId = boton.dataset.target;
+        botonCerrar(targetId);
+        
+    })
+});
 
-//el formulario esta oculto y solo será visible cuandos sea seleccionado
-let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
