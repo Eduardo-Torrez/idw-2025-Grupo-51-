@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de control</title>
+    <!--favicon-->
+    <link rel="shortcut icon" href="img/favicon.png" type="icon">
+    <!--css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profesionales.css">
+</head>
+    
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center py-2 py-lg-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="admin.html" class="logo d-flex align-items-center ps-lg-4">
+                <img src="img/logo.png" alt="logo" class="logo">
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn d-inline-block d-lg-none pe-2"></i>
+        </div>
+    </header>
+    <aside id="sidebar" class="sidebar py-lg-5">
+
+        <ul class="sidebar-nav py-2" id="sidebar-nav">
+            <li class="nav-item">
+                <a href="reservas.html" class="nav-link collapsed">
+                    <i class="bi bi-file-earmark-medical"></i> <span>Reservas</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="profesionales.html" class="nav-link collapsed">
+                    <i class="bi bi-person"></i> <span>Profesionales</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="especialidades.html" class="nav-link collapsed">
+                    <i class="bi bi-hospital"></i> <span>Especialidades</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="obrasSociales.html" class="nav-link collapsed">
+                    <i class="bi bi-person-badge"></i> <span>Obras sociales</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="turnos.html" class="nav-link collapsed">
+                    <i class="bi bi-alarm"></i> <span>Turnos</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="consultas.html" class="nav-link collapsed">
+                    <i class="bi bi-envelope"></i> <span>Consultas</span></a>
+            </li>
+            <li class="nav-item collapsed border-top mt-4 py-4">
+                <button type="button" class="nav-link" onclick="">
+                    <i class="bi bi-door-open"></i> Cerrar sesión
+                </button>
+            </li>
+        </ul>
+
+    </aside>
+
+    <main class="main" id="main">
+        <section class="container-fluid">
+            <div class="d-flex flex-column align-items-center g-4 p-5">
+            <section class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-2 w-100 ">
+                <div class="text-center text-lg-start">
+                    <h1 class="h1 display-6 fw-bold">Obras sociales</h1>
+                    <p class="texto" id="totalObraSocial"></p>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-lg btn-admin px-4 my-5" onclick="">Agregar obra social</button>
+                </div>
+            </section>
+            <!--tabla-->
+            <section class="d-flex overflow-y-scroll py-5 w-100 tabla-profesionales">
+                <table class="table">
+                    <thead class="encabezado">
+                        <tr class="text-center align-middle">
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descuento</td>
+                            <th scope="col">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaObrasSociales">
+                
+                    </tbody>
+                </table>
+            </section>
+
+            <!--visualizar-->
+            <section class="container d-flex flex-column align-items-center p-5 d-none" id="card-vista">
+                <div class="card mb-3 border-0 bg-transparent">
+
+                    <div class="w-100 py-4 text-end">
+                        <button class="btn btn-admin botonCerrar" data-target="card-vista">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="align-items-stretch card-profesional shadow rounded-2">
+
+                        <div class="card-body d-flex flex-column justify-content-center p-5">
+                            <div class="d-flex flex-column mb-1">
+                                <h5 class="texto pe-2">Nombre:</h5>
+                                <p class="texto" id="vista-nombre"></p>
+                            </div>
+                            <div class="d-flex flex-column mb-1">
+                                <h5 class="texto pe-2">Descripción:</h5>
+                                <p class="texto" id="vista-descripcion"></p>
+                            </div>
+                            <div class="d-flex flex-column mb-1">
+                                <h5 class="texto pe-2">Descuento (%):</h5>
+                                <p class="texto" id="vista-descuento"></p>
+                            </div>
+                            <div class="d-flex flex-column mb-1 align-items-center align-items-md-end">
+                                <img src="img/logo.png" class="w-25 opacity-25" alt="logo">
+                            </div>
+                        </div>
+
+                    </div>
+                </div> 
+            </section>
+        </div>
+        </section>
+
+        <!--modificar-->
+        <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-modificar">
+            <div class="text-end mb-4 w-75">
+                    <button class="btn btn-admin botonCerrar" data-target="vista-formulario-modificar">
+                        <i class="bi bi-x-lg"></i>
+                        <span>Cerrar</span>
+                    </button>
+                </div>
+            <div class="text-center">
+                <h3 class="h3 display-6 fw-bold">Modificar información</h3>
+            </div>
+
+            <form class="formulario w-100" action="#" method="post" id="formulario-modificar">
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label ">Nombre*</label>
+                    <input type="text" id="nombreModificar" name="nombre" class="form-control" placeholder="Nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="porcentaje" class="form-label ">Descuento (%)*</label>
+                    <input type="text" id="porcentajeModificar" name="porcentaje" class="form-control" placeholder="0.00">
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción*</label>
+                    <textarea id="descripcionModificar" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
+                </div>
+                <div class="mb-3">
+                    <p class="texto text-danger" id="mensajeError"></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-custom">Guardar</button>
+
+            </form>
+        </section>
+
+    </main>
+
+    <!--Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+    <script src="js/panelDeControl.js"></script>
+    <script type="module" src="js/obrasSociales.js"></script>
+    
+</body>
+
+</body>
+</html>

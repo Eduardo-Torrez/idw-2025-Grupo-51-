@@ -67,6 +67,9 @@ img{
 .logo{
     max-width: 25%;
 }
+.invertido {
+    filter: brightness(0) invert(1);
+}
 header{
     box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
 }
@@ -104,7 +107,16 @@ header{
 }
 
 
-
+.btn-primary{
+    background-color: var(--colorPrincipal);
+    border-color: var(--colorPrincipal);
+}
+.btn-primary:hover, .btn-primary.active,.btn-primary:active, .btn-primary.focus{
+    background-color: var(--colorTerciario);
+    border-color: var(--colorTerciario);
+    --bs-btn-active-bg: var(--colorTerciario);
+    --bs-btn-active-border-color:  var(--colorTerciario);
+}
 
 
 /*FOOTER*/
@@ -115,6 +127,10 @@ header{
 .logo_footer{
     max-width: 50%;
     filter: brightness(0) invert(1);
+}
+.logo_footer_invertido{
+    max-width: 50%;
+    filter: none;
 }
 
 .social-link{
@@ -141,6 +157,9 @@ a.footer_contenido_item:hover{
 /* Responsivo*/
 @media (max-width: 950px){
     /*HEADER*/
+    .logo{
+        max-width: 50%;
+    }
     .navbar-nav, .dropdown-menu{
         padding: 5%;
         background-color: var(--colorSecundario);
