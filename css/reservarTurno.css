@@ -95,6 +95,13 @@
     color: var(--colorSecundario);
 }
 
+#mensaje {
+    color: var(--colorTerciario);
+}
+
+#medico {
+    font-size: 2rem;
+}
 
 
 /* Responsivo */
