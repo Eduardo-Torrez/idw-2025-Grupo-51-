@@ -69,7 +69,7 @@ function eliminarObrasocial(idAEliminar){
 
     let obrasocialSelecionada = listaObraSociales.find((obso) => obso.id === idAEliminar);
 
-    if(confirm(`¿Esta seguro que quiere eliminar ${obrasocialSelecionada.nombre} de la lista obras sociales?`)){
+    if(confirm(`❌ ¿Esta seguro que quiere eliminar ${obrasocialSelecionada.nombre} de la lista obras sociales?`)){
         listaObraSociales = listaObraSociales.filter(obrasocial => obrasocial.id !== obrasocialSelecionada.id);
         guardarDatos("listaObraSociales", listaObraSociales);
         listarObraSocial();

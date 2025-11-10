@@ -140,6 +140,10 @@ th, td{
 }
 
 
+.formulario-turno{
+    background-color: var(--colorSecundario);
+}
+
 
 
 /* Responsivo*/
