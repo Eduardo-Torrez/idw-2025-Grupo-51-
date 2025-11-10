@@ -167,3 +167,45 @@ document.querySelectorAll('.botonCerrar').forEach(boton=>{
     })
 });
 
+const btnAgregar = document.getElementById('btnAgregarEspecialidad');
+const vistaFormularioAgregar = document.getElementById('vista-formulario-agregar');
+const formularioAgregar = document.getElementById('formulario-agregar');
+
+
+btnAgregar.addEventListener('click', () => {
+    formularioAgregar.reset(); 
+    vistaFormularioAgregar.classList.remove('d-none'); 
+});
+
+
+formularioAgregar.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    
+    const nombre = document.getElementById('nombreAgregar').value;
+    const mensajeErrorAgregar = document.getElementById('mensajeErrorAgregar');
+
+    
+    if (!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(nombre)) {
+        mensajeErrorAgregar.innerHTML = '*Nombre inválido<br>';
+        return;
+    }
+    mensajeErrorAgregar.innerHTML = ""; 
+
+    
+    const nuevaEspecialidad = {
+        id: Date.now().toString(), 
+        nombre: nombre
+    };
+
+    
+    especialidades.push(nuevaEspecialidad);
+    guardarDatos("especialidades", especialidades);
+    
+    
+    listarEspecialidades(); 
+    
+    alert('✅ ¡Especialidad agregada correctamente!');
+    formularioAgregar.reset();
+    vistaFormularioAgregar.classList.add('d-none'); 
+});

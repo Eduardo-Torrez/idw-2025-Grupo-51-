@@ -188,3 +188,43 @@ document.querySelectorAll('.botonCerrar').forEach(boton=>{
     })
 })
 
+
+
+const btnAgregar = document.getElementById('btnAgregarObraSocial');
+const vistaFormularioAgregar = document.getElementById('vista-formulario-agregar');
+const formularioAgregar = document.getElementById('formulario-agregar');
+
+
+btnAgregar.addEventListener('click', () => {
+    formularioAgregar.reset(); 
+    vistaFormularioAgregar.classList.remove('d-none'); 
+});
+
+
+formularioAgregar.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    
+    const nombre = document.getElementById('nombreAgregar').value;
+    const porcentaje = document.getElementById('porcentajeAgregar').value;
+    const descripcion = document.getElementById('descripcionAgregar').value;
+    const mensajeErrorAgregar = document.getElementById('mensajeErrorAgregar');
+
+    
+    const nuevaObraSocial = {
+        id: Date.now().toString(), 
+        nombre: nombre,
+        porcentajeDescuento: porcentaje,
+        descripcion: descripcion
+    };
+
+    
+    listaObraSociales.push(nuevaObraSocial);
+    guardarDatos("listaObraSociales", listaObraSociales);
+    
+    listarObraSocial(); 
+    
+    alert('✅ ¡Obra social agregada correctamente!');
+    formularioAgregar.reset();
+    vistaFormularioAgregar.classList.add('d-none'); 
+});

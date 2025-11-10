@@ -68,8 +68,7 @@
                     <p class="texto" id="totalEspecialidades"></p>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-lg btn-admin px-4 my-5" onclick="">Agregar especialidad</button>
-                </div>
+                   <button type="button" class="btn btn-lg btn-admin px-4 my-5" id="btnAgregarEspecialidad">Agregar especialidad</button>
             </section>
             <!--tabla-->
             <section class="d-flex overflow-y-scroll py-5 w-100 tabla-profesionales">
@@ -129,6 +128,32 @@
 
                 <div class="mb-3">
                     <p class="texto text-danger" id="mensajeError"></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-custom">Guardar</button>
+
+            </form>
+        </section>
+        <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-agregar">
+            <div class="text-end mb-4 w-75">
+                <button class="btn btn-admin botonCerrar" data-target="vista-formulario-agregar">
+                    <i class="bi bi-x-lg"></i>
+                    <span>Cerrar</span>
+                </button>
+            </div>
+            <div class="text-center">
+                 <h3 class="h3 display-6 fw-bold">Agregar Nueva Especialidad</h3>
+            </div>
+
+            <form class="formulario w-100" action="#" method="post" id="formulario-agregar">
+
+                <div class="mb-3">
+                    <label for="nombreAgregar" class="form-label ">Nombre*</label>
+                    <input type="text" id="nombreAgregar" name="nombre" class="form-control" placeholder="Nombre">
+                </div>
+
+                <div class="mb-3">
+                    <p class="texto text-danger" id="mensajeErrorAgregar"></p>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-custom">Guardar</button>
