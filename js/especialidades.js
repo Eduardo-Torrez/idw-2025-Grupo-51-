@@ -1,6 +1,7 @@
 import { guardarDatos, obtenerDatos } from "./localstorage.js";
 import { botonCerrar } from "./utils.js";
 let especialidades = obtenerDatos("especialidades");
+let medicos = obtenerDatos("medicos");
 
 //LIstar especialidades
 function listarEspecialidades(){
@@ -66,13 +67,19 @@ function listarEspecialidades(){
 /*ELIMINAR ESPECIALIDAD*/
 function eliminarEspecialidad(idEspecialidadAEliminar){
     let especialidadSeleccionada = especialidades.find((p) => p.id === idEspecialidadAEliminar);
+    let existenMedicos = medicos.filter(medico => medico.especialidad === especialidadSeleccionada.id);
 
-    if(confirm(`¿Esta seguro que quiere eliminar ${especialidadSeleccionada.nombre} de la lista especialidades?`)){
-        especialidades = especialidades.filter(especialidad => especialidad.id !== especialidadSeleccionada.id);
-        guardarDatos("especialidades", especialidades);
-        listarEspecialidades();
-        location.reload();
-
+    if(existenMedicos.length===0){
+        if(confirm(`❌ ¿Esta seguro que quiere eliminar ${especialidadSeleccionada.nombre} de la lista especialidades?`)){
+            especialidades = especialidades.filter(especialidad => especialidad.id !== especialidadSeleccionada.id);
+            guardarDatos("especialidades", especialidades);
+            listarEspecialidades();
+            location.reload();
+        }
+    }
+    else{
+        alert(`🚫 No es posible eliminar ${especialidadSeleccionada.nombre} porque hay ${existenMedicos.length} medico(s) con esa especialidad.`);
+        
     }
 };
 
