@@ -72,15 +72,20 @@
                 </div>
                 
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example">
+                    <select id="filtro-especialidad" class="form-select" aria-label="Default select example">
                         <option selected>Filtrar por Especialidad</option>
-                        <option value="1">Cardioloía</option>
-                        <option value="2">Dermatología</option>
-                        <option value="3">Médico clínico</option>
-                        <option value="4">Odontología</option>
-                        <option value="5">Oftalmología</option>
-                        <option value="6">Psiquiatría</option>
-                        <option value="7">Kinesiología</option>
+                        <option value="1">Medicina General</option>
+                        <option value="2">Cardiología</option>
+                        <option value="3">Nefrología</option>
+                        <option value="4">Reumatología</option>
+                        <option value="5">Psicología</option>
+                        <option value="6">Endocrinología</option>
+                        <option value="7">Pediatría</option>
+                        <option value="8">Neurología</option>
+                        <option value="9">Nutrición</option>
+                        <option value="10">Dermatología</option>
+                        <option value="11">Hematología</option>
+                        <option value="12">Traumatología</option>
                     </select>
                 </div>
 
@@ -99,52 +104,10 @@
         
 
         <div class="container my-5">
-            <h2 class="text-center text-md-start mb-4">Especialistas en <strong>Oftalmología:</strong></h2>
+            <h2 id="titulo-especialidad" class="text-center text-md-start mb-4">Especialistas</h2>
             <p id="medico-info" class="text-primary fw-semibold mb-4 text-center"></p>
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-4" id="lista-medicos-container">                
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctora-servicio-2.jpg" class="card-img-top" alt="Profesional 1">
-                        <div class="card-body text-center ">
-                            <h5 id="nombreMedico" class="card-title">María López</h5>
-                            <p class="card-text">Oftalmologa</p>
-                            <a href="reservarTurno.html?nombre=María%20López&especialidad=Oftalmología" class="btn btn-servicio">Reservar turno</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctor-servicio-3.webp" class="card-img-top" alt="Profesional 2">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Carlos Gómez</h5>
-                            <p class="card-text">Oftalmologo</p>
-                            <a href="reservarTurno.html?nombre=Carlos%20Gómez&especialidad=Oftalmología" class="btn btn-servicio">Reservar turno</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctora-servicio-3.jpg" class="card-img-top" alt="Profesional 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Ana Torres</h5>
-                            <p class="card-text">Oftalmologa</p>
-                            <a href="reservarTurno.html?nombre=Ana%20Torres&especialidad=Oftalmología" class="btn btn-servicio">Reservar turno</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctor-servicio-1.jpg" class="card-img-top" alt="Profesional 4">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Sebastián Otero</h5>
-                            <p class="card-text">Oftalmologo</p>
-                            <a href="reservarTurno.html?nombre=Sebastián%20Otero&especialidad=Oftalmología" class="btn btn-servicio">Reservar turno</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-4" id="lista-medicos-container">
+                <!-- Las cards de los médicos se generan dinámicamente con JS -->
             </div>
         </div>
     </main>
@@ -213,10 +176,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script type="module">
-        
         import { obtenerDatos } from './js/localstorage.js'; 
 
-        
         const btn = document.getElementById('modoBtn');
         btn.addEventListener('click', () => {
             document.body.classList.toggle('bg-dark');
@@ -225,56 +186,71 @@
                 card.classList.toggle('bg-secondary');
                 card.classList.toggle('text-white');
             });
-
             document.querySelectorAll('.logo').forEach(logo => {
                 logo.classList.toggle('invertido');
             });
         });
 
-        
-
-        
         document.addEventListener('DOMContentLoaded', () => {
-            cargarMedicos();
+            mostrarMedicosAleatorios(); // mostrar catálogo aleatorio al entrar
+            inicializarFiltroEspecialidad();
         });
 
-        function cargarMedicos() {
-            
+        // función para mostrar médicos al azar al entrar
+        function mostrarMedicosAleatorios() {
             const medicos = obtenerDatos("medicos");
+            if (!medicos || medicos.length === 0) return;
+
+            const medicosAleatorios = medicos
+                .map(m => ({ m, sort: Math.random() })) 
+                .sort((a, b) => a.sort - b.sort)
+                .map(a => a.m);
+
+            cargarMedicos(null, medicosAleatorios); // paso lista aleatoria
+        }
+
+        function inicializarFiltroEspecialidad() {
+            const selectEspecialidad = document.getElementById('filtro-especialidad');
+            const titulo = document.getElementById('titulo-especialidad');
+
+            selectEspecialidad.addEventListener('change', (e) => {
+                const especialidades = obtenerDatos("especialidades");
+                const seleccionado = e.target.value;
+
+                const espObj = especialidades.find(esp => esp.id === seleccionado);
+                const nombreEspecialidad = espObj ? espObj.nombre : "Todos los profesionales";
+
+                titulo.innerHTML = `Especialistas en <strong>${nombreEspecialidad}</strong>:`;
+
+                cargarMedicos(seleccionado); 
+            });
+        }
+
+        
+        function cargarMedicos(filtroEspecialidad = null, medicosLista = null) {
+            const medicos = medicosLista || obtenerDatos("medicos"); 
             const especialidades = obtenerDatos("especialidades");
             const container = document.getElementById('lista-medicos-container');
 
-            if (!container) {
-                console.error("No se encontró el contenedor 'lista-medicos-container'");
-                return;
-            }
-            
-            
+            if (!container) return;
             container.innerHTML = '';
 
-            
-            if (medicos.length === 0) {
+            const medicosFiltrados = filtroEspecialidad 
+                ? medicos.filter(m => m.especialidad === filtroEspecialidad)
+                : medicos;
+
+            if (medicosFiltrados.length === 0) {
                 container.innerHTML = '<p class="text-center col-12">No hay médicos registrados por el momento.</p>';
                 return;
             }
 
-            
-            medicos.forEach(medico => {
-                
+            medicosFiltrados.forEach(medico => {
                 const especialidadObj = especialidades.find(esp => esp.id === medico.especialidad);
                 const nombreEspecialidad = especialidadObj ? especialidadObj.nombre : "Sin especialidad";
-                
                 const nombreCompleto = `${medico.nombre} ${medico.apellido}`;
-                
-                
-                const imagenSrc = medico.fotografia ? medico.fotografia : 'img/default-doctor.png'; 
-                
-                
-                const urlNombre = encodeURIComponent(nombreCompleto);
-                const urlEspecialidad = encodeURIComponent(nombreEspecialidad);
-                const linkReserva = `reservarTurno.html?nombre=${urlNombre}&especialidad=${urlEspecialidad}`;
+                const imagenSrc = medico.fotografia ? medico.fotografia : 'img/default-doctor.png';
+                const linkReserva = `reservarTurno.html?id=${medico.id}`;
 
-                
                 const cardHTML = `
                     <div class="col d-flex">
                         <div class="card shadow-sm h-100 w-100">
@@ -287,47 +263,31 @@
                         </div>
                     </div>
                 `;
-                
-                
                 container.innerHTML += cardHTML;
             });
 
-            
-            asignarListenersRedireccion();
+            //asignarListenersRedireccion();
         }
 
-        
-       
-        
-        function asignarListenersRedireccion() {
-            
+        /*function asignarListenersRedireccion() {
             const reservarBtns = document.querySelectorAll('.btn-servicio');
 
-            
             function redirigirARegistro(event) {
-                
-                event.preventDefault(); 
-                
-                
+                event.preventDefault();
                 const usuarioLogueado = false; 
 
                 if (!usuarioLogueado) {
                     alert("Necesitas estar registrado para reservar un turno. Redirigiendo a la página de Registro.");
-                    
-                    
                     window.location.href = "registro.html"; 
                 } else {
-                    
                     window.location.href = event.currentTarget.href;
                 }
             }
 
-            
             reservarBtns.forEach(btn => {
                 btn.addEventListener('click', redirigirARegistro);
             });
-        }
-
+        }*/
     </script>
 </body>
 </html>

@@ -99,9 +99,17 @@
     color: var(--colorTerciario);
 }
 
-#medico {
-    font-size: 2rem;
+#medico p {
+  margin-bottom: 4px; 
+  font-size: 0.9rem; 
+  line-height: 1.4; 
 }
+
+#medico h2 {
+  font-size: 1.2rem; 
+  margin-bottom: 10px; 
+}
+
 
 
 /* Responsivo */

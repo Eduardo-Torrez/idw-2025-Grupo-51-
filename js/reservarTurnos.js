@@ -1,26 +1,39 @@
 import { guardarDatos, obtenerDatos } from "./localstorage.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // --- 1) Mostrar el profesional pasado por la URL (si existe) ---
+  // --- 1) Mostrar el profesional pasado por la URL (ahora usamos id) --- // CAMBIO
   const params = new URLSearchParams(window.location.search);
-  const nombreProfesional = params.get("nombre");
-  const especialidadProfesional = params.get("especialidad");
+  const idMedico = params.get("id"); // CAMBIO
 
-  if (nombreProfesional || especialidadProfesional) {
-    const medicoInfo = document.getElementById("medico");
+  if (idMedico) { // CAMBIO
+    const medicos = obtenerDatos("medicos") || []; // CAMBIO
+    const especialidades = obtenerDatos("especialidades") || []; // CAMBIO
+    const medico = medicos.find(m => m.id === idMedico); // CAMBIO
 
-    if (medicoInfo) {
-      const partes = [];
-      if (nombreProfesional) partes.push(nombreProfesional);
-      if (especialidadProfesional) partes.push(`especialista en ${especialidadProfesional}`);
-      medicoInfo.textContent = `Estás reservando un turno con ${partes.join(", ")}.`;
-    }
+    if (medico) { // CAMBIO
+      const especialidadObj = especialidades.find(e => e.id === medico.especialidad); // CAMBIO
+      const nombreEspecialidad = especialidadObj ? especialidadObj.nombre : "Sin especialidad"; // CAMBIO
 
-    const mensajeElem = document.getElementById("mensaje");
-    if (mensajeElem && nombreProfesional) {
-      if (mensajeElem.value.trim() === "") {
-        mensajeElem.value = `Consulta con ${nombreProfesional}${especialidadProfesional ? `, ${especialidadProfesional}` : ""}.`;
+      const medicoInfo = document.getElementById("medico");
+      if (medicoInfo) {
+
+        const infoHTML = `
+          <h2>Reservar turno con:</h2>
+          <p><strong>Profesional:</strong> ${medico.nombre} ${medico.apellido}</p>
+          <p><strong>Especialidad:</strong> ${nombreEspecialidad}</p>
+          <p><strong>Matrícula:</strong> ${medico.matricula}</p>
+          <p><strong>Valor de consulta:</strong> $${medico.valorConsulta}</p>
+          
+        `;
+        medicoInfo.innerHTML = infoHTML; 
       }
+
+      const mensajeElem = document.getElementById("mensaje");
+      if (mensajeElem && mensajeElem.value.trim() === "") {
+        mensajeElem.value = `Consulta con ${medico.nombre} ${medico.apellido}, especialista en ${nombreEspecialidad}.`;
+      }
+
+
     }
   }
 
@@ -46,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const reserva = { nombre, email, telefono, obra, dni, fecha, hora, mensaje };
 
-      const reservas = obtenerDatos("reservas"); // devuelve [] si no hay nada
+      const reservas = obtenerDatos("reservas");
       reservas.push(reserva);
       guardarDatos("reservas", reservas);
 
@@ -56,40 +69,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- 3) Mostrar las reservas en una tabla si existe ---
-  const tablaReservas = document.getElementById("tablaReservas");
-  if (tablaReservas) {
-    listarReservas();
-  }
+  // --- 3) Eliminado código innecesario de listado de reservas --- // CAMBIO
 });
-
-// --- Función para listar reservas ---
-function listarReservas() {
-  const tabla = document.getElementById("tablaReservas");
-  if (!tabla) return;
-
-  const reservas = obtenerDatos("reservas") || [];
-
-  tabla.innerHTML = "";
-
-  if (reservas.length === 0) {
-    tabla.innerHTML = `<tr><td colspan="8" class="text-center">No hay reservas cargadas</td></tr>`;
-    return;
-  }
-
-  reservas.forEach((r, index) => {
-    const fila = document.createElement("tr");
-    fila.classList.add("text-center", "align-middle");
-    fila.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${r.nombre}</td>
-      <td>${r.email}</td>
-      <td>${r.telefono}</td>
-      <td>${r.obra}</td>
-      <td>${r.fecha}</td>
-      <td>${r.hora}</td>
-      <td>${r.mensaje}</td>
-    `;
-    tabla.appendChild(fila);
-  });
-}
