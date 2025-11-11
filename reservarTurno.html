@@ -58,6 +58,7 @@
         <div class="text-center">
             <h1 class="h1 display-4 fw-bold">Reservar turno</h1>
             <p>Agilizá tu atención reservando tu turno online.</p>
+            <p id="medico" class="text-center mt-3"></p>
         </div>
 
 
@@ -78,6 +79,18 @@
         </div>
 
         <div class="mb-3">
+        <label for="obraSocial" class="form-label">Obra social</label>
+        <select id="obraSocial" name="obraSocial" class="form-select" required>
+            <option value="">Seleccioná una obra social</option>
+            <option value="PAMI">PAMI</option>
+            <option value="IPS">IPS</option>
+            <option value="OSME">OSME</option>
+            <option value="OBRA_PRIVADA">Obra privada</option>
+            <option value="SIN_OBRA">Sin obra social</option>
+        </select>
+        </div>
+
+        <div class="mb-3">
             <label for="dni" class="form-label">DNI*</label>
             <input type="dni" id="dni" name="dni" pattern="[0-9]{8,11}" class="form-control" placeholder="Ej: 12-345-678" required>
         </div>
@@ -89,7 +102,7 @@
 
         <div class="mb-3">
             <label for="hora" class="form-label">Horario disponible*</label>
-            <select id="hora" name="hora" class="form-select" required>
+            <select id="time" name="hora" class="form-select" required>
                 <option value="">Seleccioná un horario</option>
                 <option value="09:00">09:00</option>
                 <option value="10:00">10:00</option>
@@ -101,7 +114,7 @@
 
         <div class="mb-3">
             <label for="mensaje" class="form-label">Motivo de la consulta*</label>
-            <textarea id="mensaje" name="mensaje" rows="4" class="form-control" placeholder="Escriba su mensaje" required></textarea>
+            <textarea id="mensaje" name="mensaje" rows="4" class="form-control"  required></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary btn-custom">Reservar</button>
@@ -170,7 +183,7 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     
-    <script src="js/reservarTurno.js"></script>
+    <script type="module"  src="js/reservarTurnos.js"></script>
 
 </body>
 </html>

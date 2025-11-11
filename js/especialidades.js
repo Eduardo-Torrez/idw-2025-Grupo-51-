@@ -1,6 +1,7 @@
 import { guardarDatos, obtenerDatos } from "./localstorage.js";
 import { botonCerrar } from "./utils.js";
 let especialidades = obtenerDatos("especialidades");
+let medicos = obtenerDatos("medicos");
 
 //LIstar especialidades
 function listarEspecialidades(){
@@ -66,13 +67,19 @@ function listarEspecialidades(){
 /*ELIMINAR ESPECIALIDAD*/
 function eliminarEspecialidad(idEspecialidadAEliminar){
     let especialidadSeleccionada = especialidades.find((p) => p.id === idEspecialidadAEliminar);
+    let existenMedicos = medicos.filter(medico => medico.especialidad === especialidadSeleccionada.id);
 
-    if(confirm(`¿Esta seguro que quiere eliminar ${especialidadSeleccionada.nombre} de la lista especialidades?`)){
-        especialidades = especialidades.filter(especialidad => especialidad.id !== especialidadSeleccionada.id);
-        guardarDatos("especialidades", especialidades);
-        listarEspecialidades();
-        location.reload();
-
+    if(existenMedicos.length===0){
+        if(confirm(`❌ ¿Esta seguro que quiere eliminar ${especialidadSeleccionada.nombre} de la lista especialidades?`)){
+            especialidades = especialidades.filter(especialidad => especialidad.id !== especialidadSeleccionada.id);
+            guardarDatos("especialidades", especialidades);
+            listarEspecialidades();
+            location.reload();
+        }
+    }
+    else{
+        alert(`🚫 No es posible eliminar ${especialidadSeleccionada.nombre} porque hay ${existenMedicos.length} medico(s) con esa especialidad.`);
+        
     }
 };
 
@@ -167,3 +174,45 @@ document.querySelectorAll('.botonCerrar').forEach(boton=>{
     })
 });
 
+const btnAgregar = document.getElementById('btnAgregarEspecialidad');
+const vistaFormularioAgregar = document.getElementById('vista-formulario-agregar');
+const formularioAgregar = document.getElementById('formulario-agregar');
+
+
+btnAgregar.addEventListener('click', () => {
+    formularioAgregar.reset(); 
+    vistaFormularioAgregar.classList.remove('d-none'); 
+});
+
+
+formularioAgregar.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    
+    const nombre = document.getElementById('nombreAgregar').value;
+    const mensajeErrorAgregar = document.getElementById('mensajeErrorAgregar');
+
+    
+    if (!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(nombre)) {
+        mensajeErrorAgregar.innerHTML = '*Nombre inválido<br>';
+        return;
+    }
+    mensajeErrorAgregar.innerHTML = ""; 
+
+    
+    const nuevaEspecialidad = {
+        id: Date.now().toString(), 
+        nombre: nombre
+    };
+
+    
+    especialidades.push(nuevaEspecialidad);
+    guardarDatos("especialidades", especialidades);
+    
+    
+    listarEspecialidades(); 
+    
+    alert('✅ ¡Especialidad agregada correctamente!');
+    formularioAgregar.reset();
+    vistaFormularioAgregar.classList.add('d-none'); 
+});

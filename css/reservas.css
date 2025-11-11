@@ -1,77 +1,81 @@
 @import url(admin.css);
 
-
-/*Tabla*/
-.table{
+/* Tabla */
+.table {
     border-collapse: collapse;
     border: 1px solid #ddd;
 }
-.encabezado th{
+
+.encabezado th {
     color: var(--colorBlanco);
     background-color: var(--colorBase);
     align-items: center;
 }
-th, td{
+
+th, td {
     border: 1px solid #ddd;
 }
-.table .btn{
+
+.table .btn {
     background-color: transparent;
     border: none;
 }
-.acciones i{
+
+.acciones i {
     font-size: 1.2rem;
 }
-.acciones .bi-trash{
+
+.acciones .bi-trash {
     color: red;
 }
-.acciones .bi-pencil-square{
+
+.acciones .bi-pencil-square {
     color: green;
 }
-.acciones .bi-eye{
+
+.acciones .bi-eye {
     color: darkblue;
 }
 
-
-.card-profesional{
+/* Cards */
+.card-profesional {
     background-color: var(--colorBlanco);
     color: var(--colorPrincipal);
     border: 1px solid var(--colorTerciario);
-
 }
-.card-profesional h5{
+
+.card-profesional h5 {
     font-weight: 600;
     color: var(--colorTerciario);
 }
-.card-img{
+
+.card-img {
     max-width: 100%;
     max-height: 100%;
     height: 10rem;
     width: 10rem;
     overflow: hidden;
 }
-.card-img img{
+
+.card-img img {
     object-position: top;
 }
 
-/*formulario*/
+/* Formulario */
 .form-contacto {
     color: var(--colorBase);
 }
 
-
 .form-contacto h1 {
     margin-bottom: 2rem;
     color: var(--colorPrincipal);
-    
 }
 
 .form-contacto p {
     max-width: 600px;
     color: var(--colorTerciario);
-    margin-bottom: 3rem; 
-
+    margin-bottom: 3rem;
 }
-
 
 .formulario {
     max-width: 600px;
@@ -80,15 +84,13 @@ th, td{
     border-radius: 1rem;
 }
 
-
 .formulario .form-label {
     font-weight: 600;
     color: var(--colorTerciario);
 }
 
-
 .formulario input,
-.formulario textarea, 
+.formulario textarea,
 .form-select {
     width: 100%;
     padding: 0.75rem;
@@ -98,31 +100,39 @@ th, td{
     font-family: var(--fuentePrincipal);
     font-size: 1rem;
     transition: border-color 0.3s ease;
+    color: var(--colorTerciario);
+    font-style: italic;
 }
 
 .formulario input:focus,
-.formulario textarea:focus, 
-.form-select:focus{
+.formulario textarea:focus,
+.form-select:focus {
     border-color: var(--colorTerciario);
     outline: none;
 }
 
-
 .formulario input::placeholder,
-.formulario textarea::placeholder,
-.form-select::placeholder {
-    color: var(--colorTerciario); 
-    opacity: 0.6; 
-    font-style: italic; 
+.formulario textarea::placeholder {
+    color: var(--colorTerciario);
+    opacity: 1;
 }
 
-.form-check input{
+
+.form-select {
+    color: var(--colorTerciario);
+    font-style: italic;
+}
+
+
+.form-check input {
     margin-right: .5rem;
 }
-.form-check label{
+
+.form-check label {
     color: #636363;
 }
-.form-check input:checked + label{
+
+.form-check input:checked + label {
     color: var(--colorPrincipal);
     font-weight: 600;
 }
@@ -140,29 +150,18 @@ th, td{
 }
 
 
-.formulario-turno{
-    background-color: var(--colorSecundario);
-}
-
-
-
-/* Responsivo*/
-@media (max-width: 992px){
-
-    /*MAIN*/
-    .btn-lg.btn-admin{
+@media (max-width: 992px) {
+    .btn-lg.btn-admin {
         font-size: 1rem;
     }
-    .tabla-profesionales{
+    .tabla-profesionales {
         max-height: 400px;
     }
-    .card-img{
+    .card-img {
         width: 100%;
         height: 50%;
     }
-    
 }
-
 
 @media (max-width: 768px) {
     .form-contacto {
@@ -173,4 +172,3 @@ th, td{
         padding: 1.5rem;
     }
 }
-

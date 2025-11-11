@@ -27,12 +27,7 @@ function listarProfesionales(){
 
         let especialidad = document.createElement('td');
         const buscarEspecialidad = especialidades.find((esp)=> esp.id === medico.especialidad);
-        if(buscarEspecialidad=== undefined){
-            medico.especialidad = [];
-            especialidad.textContent= "Sin especialidad";
-        }else{
-            especialidad.textContent= buscarEspecialidad.nombre;
-        }
+        especialidad.textContent= buscarEspecialidad.nombre;
 
         let matricula = document.createElement('td');
         matricula.textContent= medico.matricula;
@@ -98,7 +93,7 @@ function eliminarProfesional(idDelProfesionalAEliminar){
     let profesionalSeleccionado = medicos.find((p) => p.id === idDelProfesionalAEliminar);
     // console.log(profesionalSeleccionado);
 
-    if(confirm(`¿Esta seguro que quiere eliminar a ${profesionalSeleccionado.nombre} ${profesionalSeleccionado.apellido} de la lista de profesionales?`)){
+    if(confirm(`❌ ¿Esta seguro que quiere eliminar a ${profesionalSeleccionado.nombre} ${profesionalSeleccionado.apellido} de la lista de profesionales?`)){
         medicos = medicos.filter(profesional => profesional.id !== profesionalSeleccionado.id);
 
         guardarDatos("medicos", medicos);
@@ -110,7 +105,7 @@ function eliminarProfesional(idDelProfesionalAEliminar){
 
 
 /*MODIFICAR DATOS DE UN PROFESIONAL*/
-//Definir variables globales
+//Definir variables
 const matriculaModificar= document.getElementById('matriculaModificar');
 const apellidoModificar= document.getElementById('apellidoModificar');
 const nombreModificar= document.getElementById('nombreModificar');
@@ -175,7 +170,7 @@ if(document.getElementById('formulario-modificar')){
             console.log('Apellido inválido');
             erroresEncontrados = true;
         }
-        if(!/^[0-9]{5,10}$/.test(matriculaModificar.value)){
+        if(!/^[0-9]{5}$/.test(matriculaModificar.value)){
             warning+= '*matrícula inválida<br>';
             console.log('Matricula inválida');
             erroresEncontrados = true;
@@ -185,11 +180,11 @@ if(document.getElementById('formulario-modificar')){
             console.log('Especialidad inválida');
             erroresEncontrados = true;
         }
-        if(0=== obraSocialModificar.length){
-            warning+= '*obra social inválida<br>';
-            console.log('obra social inválido');
-            erroresEncontrados = true;
-        }
+        // if(0=== obraSocialModificar.length){
+        //     warning+= '*obra social inválida<br>';
+        //     console.log('obra social inválido');
+        //     erroresEncontrados = true;
+        // }
         if(!/^(\d+([.,]\d+)?|[.,]\d+)$/.test(valorConsultaModificar.value)){
             warning+= '*valor consulta inválido<br>';
             console.log('valor de consulta inválido');
@@ -302,14 +297,6 @@ function crearOpcionesEspecialidad(profesional){
         }
         select.appendChild(opcion);
     })
-
-    if(profesional.especialidad.length === 0){
-        let opcion = document.createElement('option');
-        opcion.value = "";
-        opcion.selected = true;
-        
-        select.appendChild(opcion);
-    }
 }
 
 function crearOpcionesObraSocial(profesional){
@@ -345,6 +332,13 @@ function crearOpcionesObraSocial(profesional){
         casilla.appendChild(input);
         casilla.appendChild(label);
         contenedor.appendChild(casilla);
+
+        if(profesional.obraSociales.length === 0){
+            input.checked = false;
+            casilla.appendChild(input);
+            casilla.appendChild(label);
+            contenedor.appendChild(casilla);
+        }
     })
 };
 
@@ -356,3 +350,126 @@ document.querySelectorAll('.botonCerrar').forEach(boton=>{
         
     })
 });
+
+
+
+const btnAgregar = document.getElementById('btnAgregar');
+const vistaFormularioAgregar = document.getElementById('vista-formulario-agregar');
+const formularioAgregar = document.getElementById('formulario-agregar');
+
+
+btnAgregar.addEventListener('click', () => {
+    
+    formularioAgregar.reset();
+    
+    
+    vistaFormularioAgregar.classList.remove('d-none');
+    
+    
+    crearOpcionesEspecialidadAgregar();
+    crearOpcionesObraSocialAgregar();
+});
+
+
+formularioAgregar.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    
+    const nombre = document.getElementById('nombreAgregar').value;
+    const apellido = document.getElementById('apellidoAgregar').value;
+    const matricula = document.getElementById('matriculaAgregar').value;
+    const especialidad = document.getElementById('especialidadAgregar').value;
+    const valorConsulta = document.getElementById('valorConsultaAgregar').value;
+    const descripcion = document.getElementById('descripcionAgregar').value;
+    const fotografiaInput = document.getElementById('fotografiaAgregar');
+    
+    
+    const obraSocialesChecks = document.querySelectorAll('#contenedorObrasocialesAgregar input:checked');
+    const obrasSocialesSeleccionadas = Array.from(obraSocialesChecks).map(check => {
+        
+        return listaObraSociales.find(os => os.id === check.value);
+    });
+
+  
+    
+    const file = fotografiaInput.files[0];
+
+    const procesarFormulario = (fotografiaBase64 = "") => { 
+        
+        const nuevoMedico = {
+            id: Date.now().toString(), 
+            nombre: nombre,
+            apellido: apellido,
+            matricula: matricula,
+            especialidad: especialidad, 
+            valorConsulta: valorConsulta,
+            descripcion: descripcion,
+            fotografia: fotografiaBase64, 
+            obraSociales: obrasSocialesSeleccionadas 
+        };
+
+        
+        medicos.push(nuevoMedico);
+        guardarDatos("medicos", medicos);
+        
+        listarProfesionales(); 
+        
+        alert('✅ ¡Profesional agregado correctamente!');
+        formularioAgregar.reset();
+        vistaFormularioAgregar.classList.add('d-none'); 
+    };
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            procesarFormulario(reader.result); 
+        };
+        reader.readAsDataURL(file);
+    } else {
+        
+        procesarFormulario(); 
+    }
+});
+
+
+
+
+function crearOpcionesEspecialidadAgregar() {
+    let select = document.getElementById('especialidadAgregar'); // ID del nuevo select
+    select.innerHTML = '<option selected disabled value="">Seleccionar especialidad...</option>';
+
+    especialidades.forEach((item) => {
+        let opcion = document.createElement('option');
+        opcion.value = item.id;
+        opcion.innerHTML = item.nombre;
+        select.appendChild(opcion);
+    });
+}
+
+function crearOpcionesObraSocialAgregar() {
+    
+    let contenedor = document.getElementById('contenedorObrasocialesAgregar'); 
+    contenedor.innerHTML = '';
+
+    listaObraSociales.forEach((item) => {
+        let casilla = document.createElement('div');
+        casilla.classList.add("form-check", "col-6");
+
+        let input = document.createElement('input');
+        input.type = "checkbox";
+        input.classList.add("form-check-label", "me-2");
+        input.style.width = "auto";
+
+        let label = document.createElement('label');
+        label.classList.add('form-label');
+
+        input.id = `agregar-${item.id}`; 
+        input.value = item.id;
+        label.setAttribute('for', `agregar-${item.id}`); 
+        label.innerHTML = item.nombre;
+
+        casilla.appendChild(input);
+        casilla.appendChild(label);
+        contenedor.appendChild(casilla);
+    });
+}
