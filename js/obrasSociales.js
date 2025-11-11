@@ -1,5 +1,5 @@
 import { guardarDatos, obtenerDatos } from "./localstorage.js";
-import { botonCerrar } from "./utils.js";
+import { botonCerrar, visualizarForm, generarId } from "./utils.js";
 let listaObraSociales = obtenerDatos("listaObraSociales");
 
 //Listar obras sociales
@@ -78,28 +78,48 @@ function eliminarObrasocial(idAEliminar){
 };
 
 
-/*MODIFICAR DATOS DE UNA OBRA SOCIAL*/
+
 //Definir variables
-const nombreModificar= document.getElementById('nombreModificar');
-const descripcionModificar= document.getElementById('descripcionModificar');
-const porcentajeModificar = document.getElementById('porcentajeModificar');
+const crearObraSocial = document.getElementById('crearObraSocial');
+const nombreModificar= document.getElementById('nombre');
+const descripcionModificar= document.getElementById('descripcion');
+const porcentajeModificar = document.getElementById('porcentaje');
 const mensajeError = document.getElementById('mensajeError');
-let obraSocialSeleccionadaModificar = null;
-let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
+let obraSocialSeleccionada = null;
+let vistaDelFormulario = document.getElementById('vista-formulario');
 
+
+/*CREAR OBRA SOCIAL*/
+crearObraSocial.addEventListener('click', ()=>{
+    let nuevaObraSocial = {}
+    let id = generarId(listaObraSociales);
+    nuevaObraSocial = {
+        'id':id, 
+        'nombre': nombreModificar.value,
+        'porcentajeDescuento': porcentajeModificar.value,
+        'descripcion': descripcionModificar.value
+    };
+    // console.log(nuevaObraSocial);
+    obraSocialSeleccionada = nuevaObraSocial;
+
+    visualizarForm('Crear obra social', vistaDelFormulario, formulario, mensajeError);
+})
+
+
+/*MODIFICAR DATOS DE UNA OBRA SOCIAL*/
 function editarObraSocial(idObraSocialAEditar){
-    obraSocialSeleccionadaModificar = listaObraSociales.find((p) => p.id === idObraSocialAEditar);
-    console.log(obraSocialSeleccionadaModificar);
+    obraSocialSeleccionada= listaObraSociales.find((p) => p.id === idObraSocialAEditar);
+    console.log(obraSocialSeleccionada);
 
-    vistaDelFormulario.classList.remove('d-none');
-    nombreModificar.value = obraSocialSeleccionadaModificar.nombre;
-    porcentajeModificar.value = obraSocialSeleccionadaModificar.porcentajeDescuento;
-    descripcionModificar.value= obraSocialSeleccionadaModificar.descripcion;
+    visualizarForm('Modificar información', vistaDelFormulario, formulario, mensajeError);
+    nombreModificar.value = obraSocialSeleccionada.nombre;
+    porcentajeModificar.value = obraSocialSeleccionada.porcentajeDescuento;
+    descripcionModificar.value= obraSocialSeleccionada.descripcion;
 
 };
-if(document.getElementById('formulario-modificar')){
+if(document.getElementById('formulario')){
 
-    document.getElementById('formulario-modificar').addEventListener('submit', evento =>{
+    document.getElementById('formulario').addEventListener('submit', evento =>{
         evento.preventDefault();
 
         //si hay cambios se verifican si son correctos
@@ -128,19 +148,24 @@ if(document.getElementById('formulario-modificar')){
             return;
         }
         
-        obraSocialSeleccionadaModificar.nombre = nombreModificar.value;
-        obraSocialSeleccionadaModificar.porcentajeDescuento = porcentajeModificar.value;
-        obraSocialSeleccionadaModificar.descripcion = descripcionModificar.value;
-        guardarDatos("listaObraSociales", listaObraSociales);
+        obraSocialSeleccionada.nombre = nombreModificar.value;
+        obraSocialSeleccionada.porcentajeDescuento = porcentajeModificar.value;
+        obraSocialSeleccionada.descripcion = descripcionModificar.value;
+        if(listaObraSociales.some((buscarOS)=> buscarOS.id === obraSocialSeleccionada.id)){
+            guardarDatos("listaObraSociales", listaObraSociales);
+        }else{
+            listaObraSociales.push(obraSocialSeleccionada);
+            guardarDatos("listaObraSociales", listaObraSociales);
+        }
 
         console.clear();
         // console.log('Datos actualizados');
 
         //reseteamos el formulario y actualizamos la lista
-        document.getElementById('formulario-modificar').reset();
+        document.getElementById('formulario').reset();
         listarObraSocial();
         alert('✅ Datos actualizados correctamente');
-        botonCerrar('vista-formulario-modificar');
+        botonCerrar('vista-formulario');
         
     });
 }
@@ -155,8 +180,8 @@ const nombreVista= document.getElementById('vista-nombre');
 const descripcionVista= document.getElementById('vista-descripcion');
 const porcentajeVista= document.getElementById('vista-descuento');
 
-function visualizarObraSocial(idEspecialidadAVisualizar){
-    let obraSocialSeleccionada = listaObraSociales.find((p) => p.id === idEspecialidadAVisualizar);
+function visualizarObraSocial(obrasocialAVisualizar){
+    let obraSocialSeleccionada = listaObraSociales.find((p) => p.id === obrasocialAVisualizar);
     console.log(obraSocialSeleccionada);
 
     vistaDeTarjetaProfesional.classList.remove('d-none');

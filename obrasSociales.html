@@ -68,7 +68,7 @@
                     <p class="texto" id="totalObraSocial"></p>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-lg btn-admin px-4 my-5" onclick="">Agregar obra social</button>
+                    <button type="button" class="btn btn-lg btn-admin px-4 my-5" id="crearObraSocial">Agregar obra social</button>
                 </div>
             </section>
             <!--tabla-->
@@ -125,30 +125,30 @@
         </section>
 
         <!--modificar-->
-        <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-modificar">
+        <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario">
             <div class="text-end mb-4 w-75">
-                    <button class="btn btn-admin botonCerrar" data-target="vista-formulario-modificar">
+                    <button class="btn btn-admin botonCerrar" data-target="vista-formulario">
                         <i class="bi bi-x-lg"></i>
                         <span>Cerrar</span>
                     </button>
                 </div>
             <div class="text-center">
-                <h3 class="h3 display-6 fw-bold">Modificar información</h3>
+                <h3 class="h3 display-6 fw-bold" id="tituloFormulario"></h3>
             </div>
 
-            <form class="formulario w-100" action="#" method="post" id="formulario-modificar">
+            <form class="formulario w-100" id="formulario">
 
                 <div class="mb-3">
                     <label for="nombre" class="form-label ">Nombre*</label>
-                    <input type="text" id="nombreModificar" name="nombre" class="form-control" placeholder="Nombre">
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre">
                 </div>
                 <div class="mb-3">
                     <label for="porcentaje" class="form-label ">Descuento (%)*</label>
-                    <input type="text" id="porcentajeModificar" name="porcentaje" class="form-control" placeholder="0.00">
+                    <input type="text" id="porcentaje" name="porcentaje" class="form-control" placeholder="0.00">
                 </div>
                 <div class="mb-3">
                     <label for="descripcion" class="form-label">Descripción*</label>
-                    <textarea id="descripcionModificar" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
+                    <textarea id="descripcion" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
                 </div>
                 <div class="mb-3">
                     <p class="texto text-danger" id="mensajeError"></p>
