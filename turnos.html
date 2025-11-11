@@ -120,7 +120,7 @@
         </div>
         </section>
 
-        <!--modificar-->
+        <!--Crear y editar-->
         <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario">
             <div class="text-end mb-4 w-75">
                 <button class="btn btn-admin botonCerrar" data-target="vista-formulario">
@@ -133,7 +133,7 @@
             </div>
 
             <form class="formulario w-100" action="#" method="post" id="formularioTurnoMedico" novalidate>
-                <div class="mb-3">
+                <div class="mb-3" id="select-medico">
                     <label for="seleccionarMedico" class="form-label ">Seleccionar Médico*</label>
                     <select class="form-select" id="seleccionarMedico" required="">
                     </select>
@@ -143,20 +143,35 @@
                     <div class="mb-3">
                         <label for="seleccionarDia" class="form-label ">Día*</label>
                         <select class="form-select" id="seleccionarDia" required="">
-
                         </select>
                     </div>
 
+                    <p class="form-label my-4 pt-4 border-top">Mañana</p>
                     <div class="mb-3 row row-cols-1 row-cols-md-2" id="contenedorCrearTurno">
                         <div class="mb-3 col">
                             <label for="seleccionarHoraInicio" class="form-label ">Horario de inicio*</label>
-                            <select class="form-select" id="seleccionarHoraInicio" required="">
+                            <select class="form-select" id="seleccionarHoraInicioManana" required="">
                             </select>
                         </div>
 
                         <div class="mb-3 col">
                             <label for="seleccionarHoraFin" class="form-label ">Horario de Finalización*</label>
-                            <select class="form-select" id="seleccionarHoraFin" required="">
+                            <select class="form-select" id="seleccionarHoraFinManana" required="">
+                            </select>
+                        </div>
+                    </div>
+
+                    <p class="form-label mb-2 pt-4 border-top">Tarde</p>
+                    <div class="mb-3 row row-cols-1 row-cols-md-2" id="contenedorCrearTurno">
+                        <div class="mb-3 col">
+                            <label for="seleccionarHoraInicio" class="form-label ">Horario de inicio*</label>
+                            <select class="form-select" id="seleccionarHoraInicioTarde" required="">
+                            </select>
+                        </div>
+
+                        <div class="mb-3 col">
+                            <label for="seleccionarHoraFin" class="form-label ">Horario de Finalización*</label>
+                            <select class="form-select" id="seleccionarHoraFinTarde" required="">
                             </select>
                         </div>
                     </div>
@@ -167,7 +182,7 @@
                 </div>
 
                 <div class="row row-cols-1 row-cols-md-2 gap-4 gap-md-0">
-                    <div class="col text-center text-md-start">
+                    <div class="col text-center text-md-start" >
                         <button type="button" class="btn btn-admin" id="nuevoTurno">Nuevo turno</button>
                     </div>
                     <div class="col text-center text-md-end">
