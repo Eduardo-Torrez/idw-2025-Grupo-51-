@@ -19,7 +19,7 @@ function listarEspecialidades(){
         idfila.textContent = especialidad.id;
 
         let nombrefila = document.createElement('td');
-       nombrefila.innerHTML = especialidad.nombre;
+        nombrefila.innerHTML = especialidad.nombre;
 
         //los botones de borrar, editar y visualizar
         let botones = document.createElement('td');
