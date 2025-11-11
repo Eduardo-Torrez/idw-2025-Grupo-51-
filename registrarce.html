@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Integral</title>
+    <title>Registrarce</title>
     <!--favicon-->
     <link rel="shortcut icon" href="img/favicon.png" type="icon">
     <!--css-->
@@ -11,84 +11,51 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/registrarce.css">
 </head>
 <body>
-  <!--  <header class="navbar navbar-expand-lg py-4 px-2">
-        <div class="container-fluid justify-content-between">
-            <div class="col align-items-center z-3 col-6">
-                <a href="index.html">
-                    <img src="img/logo.png" alt="logo" class="logo">
-                </a>
-            </div>
-            Menu hamburguesa
-            <button class="navbar-toggler border-0 text-decoration-none p-0" 
-                    type="button" data-bs-toggle="collapse" 
-                    data-bs-target="#nav" aria-controls="nav" 
-                    aria-expanded="false">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <nav class="collapse navbar-collapse" id="nav">
-                <ul class="navbar-nav ms-auto gap-2 g-xl-4 align-items-start">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="institucional.html" class="nav-link">Institucional</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Servicios</a>
-                        <ul class="dropdown-menu">
-                            <li class="menu_desplegable_item">
-                                <a href="servicio.html" class="dropdown-item">Especialidad</a>
-                            </li>
-                            <li class="menu_desplegable_item">
-                                <a href="servicio.html" class="dropdown-item">Obra social</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="contacto.html" class="nav-link">Contacto</a>
-                    </li>
-                </ul>
-            </nav>
+    <section id="formRegistro" class="form-contacto container d-flex flex-column align-items-center  gap-4 py-5">
+        <div class="text-center">
+            <h1 class="h1 display-4 fw-bold">Registrarce</h1>
+            <p></p>
         </div>
-    </header>-->
 
 
-    <!--------------------carga de medicos ------------------------------------>
-    <main class="container-fluid">
-        <section class="mb-5">
-            <h2 class="mb-3">Alta Medico</h2>
-            <form id="altaMedicoForm" class="border rounded p-4 bg-linght shadow-sm">
+        <form class="formulario w-100" action="#" method="post">
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre y Apellido</label>
-                    <input type="text" class="form-control" id="nombre" required>
-                </div><div class="mb-3">
-                    <label for="especialidad" class="form-label">Especialidad</label>
-                    <input type="text" class="form-control" id="especialidad" required>
-                </div><div class="mb-3">
-                    <label for="telefono" class="form-label">Telefono</label>
-                    <input type="text" class="form-control" id="telefono" required>
-                </div><div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" required>
-                </div>
+            <label for="nombre" class="form-label">Apellido</label>
+            <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido" required>
+        </div>
 
-                <!--subir foto de -->
-                <div class="mb-3">
-                    <label for="Foto" class="form-label">Subir</label>
-                    <input type="file" class="form-control"   id="Foto" required>
-                </div> 
+        <div class="mb-3">
+            <label for="email" class="form-label">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required>
+        </div>
 
-                <div class="mb-3">
-                    <label for="obrasocial" class="form-label">Obra Sociales</label>
-                    <input type="text" class="form-control" id="obrasocial" placeholder="PAMI, PIEVE, IPS, OSME" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Registrar Medico</button>
-            </form>
-        </section>
-    </main>
-    <footer class="container-fluid p-5 w-100">
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico*</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="ejemplo@gmail.com" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono*</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10,15}" class="form-control" placeholder="Ej: 1123456789" required>
+        </div>
+        <!-----------------------------------------------contraceña-->
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Contraseña</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10,15}" class="form-control" placeholder="Ej: 1123456789" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Repetir Contraseña</label>
+            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10,15}" class="form-control" placeholder="Ej: 1123456789" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-custom">Aceptar</button>
+    </form>
+    </section>
+
+<footer class="container-fluid p-5 w-100">
         <div class="row p-5 rounded-4 footer_contenedor justify-content-between">
             <div class=" col-12 col-md-4 mb-3 text-center text-lg-start">
                 <img src="img/logo.png" alt="logo" class="img-fluid logo_footer py-2 px-0">
@@ -147,10 +114,7 @@
         
     </footer>
 
-    <!--Bootstrap-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-    <script src="altaMedicos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/registrarce.js"></script>
 </body>
 </html>
