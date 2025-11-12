@@ -277,7 +277,7 @@ function contadorDeProfesioanles(){
 function mapearObraSocial(profesional){
 
     const obrasocialformateada = profesional.obraSociales.map(objeto => 
-       listaObraSociales.find((buscarObraSocial)=> buscarObraSocial.id === objeto.id).nombre
+        listaObraSociales.find((buscarObraSocial)=> buscarObraSocial.id === objeto.id).nombre
     )
     return obrasocialformateada.join(", ");
 
@@ -390,7 +390,7 @@ formularioAgregar.addEventListener('submit', (e) => {
         return listaObraSociales.find(os => os.id === check.value);
     });
 
-  
+
     
     const file = fotografiaInput.files[0];
 
