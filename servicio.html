@@ -58,54 +58,20 @@
     <main class="container">
         <div class="contenedor_contenido">
             <h1 class="titulo">Buscar servicio</h1>
-
-            <div class="servicios_opciones d-flex justify-content-center gap-4">
-                <div class="opcion text-center">
-                    <img src="img/hospitalista.png" alt="Profesional">
-                    <p>Por profesional</p>
-                </div>
-                <div class="opcion text-center">
-                    <img src="img/humano.png" alt="Especialidad">
-                    <p>Por especialidad</p>
-                </div>
-                <div class="opcion text-center">
-                    <img src="img/carnet.png" alt="Obra social">
-                    <p>Por obra social</p>
-                </div>
-            </div>
         </div>
 
         <section class="d-flex flex-column align-items-center justify-content-between rounded py-4 gap-4 filtrar">
-            <div class="row g-4 row-cols-1 row-cols-lg-3 w-100">
-                <div class="col">
-                    <div class="container-fluid p-0">
-                        <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                        <button class="btn btn-servicio" type="submit">Buscar</button>
-                        </form>
-                    </div>
-                </div>
+            <div class="row g-4 row-cols-1 row-cols-lg-2 w-100">
                 
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Filtrar por Especialidad</option>
-                        <option value="1">Cardioloía</option>
-                        <option value="2">Dermatología</option>
-                        <option value="3">Médico clínico</option>
-                        <option value="4">Odontología</option>
-                        <option value="5">Oftalmología</option>
-                        <option value="6">Psiquiatría</option>
-                        <option value="7">Kinesiología</option>
+                    <select id="filtro-especialidad" class="form-select" aria-label="Filtro por especialidad">
+                        <option value="">Filtrar por Especialidad</option>
                     </select>
                 </div>
 
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example">
+                    <select id="filtro-obra" class="form-select" aria-label="Filtrar por Obra social">
                         <option selected>Filtrar por Obra social</option>
-                        <option value="1">IPS</option>
-                        <option value="2">OSME</option>
-                        <option value="3">PAMI</option>
-                        <option value="4">PIEVE</option>
                     </select>
                 </div>
             </div>
@@ -114,53 +80,9 @@
         
 
         <div class="container my-5">
-            <h2 class="text-center text-md-start mb-4">Especialistas en <strong>Oftalmología:</strong></h2>
+            <h2 id="titulo-especialidad" class="text-center text-md-start mb-4">Especialistas</h2>
             <p id="medico-info" class="text-primary fw-semibold mb-4 text-center"></p>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-4">
-                
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctora-servicio-2.jpg" class="card-img-top" alt="Profesional 1">
-                        <div class="card-body text-center ">
-                            <h5 class="card-title">María López</h5>
-                            <p class="card-text">Oftalmologa</p>
-                            <a href="reservarTurno.html?nombre=María%20López&especialidad=Oftalmóloga" class="btn btn-servicio">Reservar turno</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctor-servicio-3.webp" class="card-img-top" alt="Profesional 2">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Carlos Gómez</h5>
-                            <p class="card-text">Oftalmologo</p>
-                            <a href="reservarTurno.html" class="btn btn-servicio">Reservar turno</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctora-servicio-3.jpg" class="card-img-top" alt="Profesional 3">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Ana Torres</h5>
-                            <p class="card-text">Oftalmologa</p>
-                            <a href="reservarTurno.html" class="btn btn-servicio">Reservar turno</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col d-flex">
-                    <div class="card shadow-sm h-100 w-100">
-                        <img src="img/doctor-servicio-1.jpg" class="card-img-top" alt="Profesional 4">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Sebastián Otero</h5>
-                            <p class="card-text">Oftalmologo</p>
-                            <a href="reservarTurno.html" class="btn btn-servicio">Reservar turno</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-4" id="lista-medicos-container">
             </div>
         </div>
     </main>
@@ -227,49 +149,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        // La lógica del modo oscuro funciona bien, la mantengo.
-        const btn = document.getElementById('modoBtn');
-        btn.addEventListener('click', () => {
-            document.body.classList.toggle('bg-dark');
-            document.body.classList.toggle('text-white');
-            document.querySelectorAll('.card').forEach(card => {
-                card.classList.toggle('bg-secondary');
-                card.classList.toggle('text-white');
-            });
-
-            document.querySelectorAll('.logo').forEach(logo => {
-                logo.classList.toggle('invertido');
-            });
-        });
-        
-        /*
-        ******************************************************
-        * LÓGICA DE REDIRECCIÓN A REGISTRO (SIN AUTENTICACIÓN)
-        ******************************************************
-        
-
-        // 1. Obtener todos los botones de "Reservar turno"
-        const reservarBtns = document.querySelectorAll('.btn-servicio');
-
-        // 2. Definir la función de redirección
-        function redirigirARegistro(event) {
-            // Prevenir el comportamiento predeterminado del enlace (ir a #)
-            event.preventDefault(); 
-            
-            // Usar una alerta simple antes de redirigir
-            alert("Necesitas estar registrado para reservar un turno. Redirigiendo a la página de Registro.");
-            
-            // Redirigir al usuario a la página de registro
-            window.location.href = "registro.html";
-        }
-
-        // 3. Asignar la función a cada botón
-        reservarBtns.forEach(btn => {
-            btn.addEventListener('click', redirigirARegistro);
-        });
-        */
-    </script>
+    <script type="module" src="js/servicio.js"></script>
 </body>
 </html>

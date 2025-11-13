@@ -1,15 +1,20 @@
-.form-reservar {
+section{
+    overflow-x: hidden;
+    background: var(--colorPrincipal);
+    background-image: radial-gradient(circle,var(--colorSecundario) 10%,var(--colorTerciario) 33%, var(--colorBlanco) 66%);
+}
+.form-contacto {
     color: var(--colorBase);
 }
 
 
-.form-reservar h1 {
+.form-contacto h1 {
     margin-bottom: 2rem;
     color: var(--colorPrincipal);
     
 }
 
-.form-reservar p {
+.form-contacto p {
     max-width: 600px;
     color: var(--colorTerciario);
     margin-bottom: 3rem; 
@@ -53,36 +58,10 @@
 .formulario input::placeholder,
 .formulario textarea::placeholder {
     color: var(--colorTerciario); 
+    opacity: 0.6; 
     font-style: italic; 
 }
 
-
-#fecha {
-    color: var(--colorTerciario);
-    border: 1px solid var(--colorTerciario);
-    border-radius: 0.5rem;
-    font-family: var(--fuentePrincipal);
-    font-style: italic;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-
-
-.formulario select {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1.25rem;
-    color: var(--colorTerciario);
-    border: 1px solid var(--colorTerciario);
-    border-radius: 0.5rem;
-    font-family: var(--fuentePrincipal);
-    font-style: italic;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-}
-
- 
 
 .formulario button.btn-custom {
     border-color: var(--colorTerciario);
@@ -95,26 +74,11 @@
     color: var(--colorSecundario);
 }
 
-#mensaje {
-    color: var(--colorTerciario);
-}
-
-#medico p {
-  margin-bottom: 4px; 
-  font-size: 0.9rem; 
-  line-height: 1.4; 
-}
-
-#medico h2 {
-  font-size: 1.2rem; 
-  margin-bottom: 10px; 
-}
-
 
 
 /* Responsivo */
 @media (max-width: 768px) {
-    .form-reservar {
+    .form-contacto {
         padding: 5% 5%;
     }
 
