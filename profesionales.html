@@ -68,7 +68,7 @@
                     <p class="texto" id="totalProfesionales"></p>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-lg btn-admin px-4 my-5" id="btnAgregarEspecialidad">Agregar especialidad</button>
+                    <button type="button" class="btn btn-lg btn-admin px-4 my-5" id="agregarProfesional">Agregar Profesional</button>
                 </div>
             </section>
             <!--tabla-->
@@ -146,9 +146,9 @@
         </section>
 
         <!--modificar-->
-        <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-agregar">
+        <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario">
             <div class="text-end mb-4 w-75">
-                <button class="btn btn-admin botonCerrar" data-target="vista-formulario-agregar">
+                <button class="btn btn-admin botonCerrar" data-target="vista-formulario">
                     <i class="bi bi-x-lg"></i>
                     <span>Cerrar</span>
                 </button>
@@ -157,51 +157,51 @@
                 <h3 class="h3 display-6 fw-bold">Agregar Nuevo Profesional</h3>
             </div>
 
-            <form class="formulario w-100" action="#" method="post" id="formulario-agregar">
+            <form class="formulario w-100" action="#" method="post" id="formulario">
                 <div class="mb-3">
-                    <label for="apellidoAgregar" class="form-label">Apellido*</label>
-                    <input type="text" id="apellidoAgregar" name="apellidoAgregar" class="form-control" placeholder="Apellido">
+                    <label for="apellido" class="form-label">Apellido*</label>
+                    <input type="text" id="apellido" name="apellido" class="form-control" placeholder="Apellido">
                 </div>
 
                 <div class="mb-3">
-                    <label for="nombreAgregar" class="form-label">Nombre*</label>
-                    <input type="text" id="nombreAgregar" name="nombreAgregar" class="form-control" placeholder="Nombre">
+                    <label for="nombre" class="form-label">Nombre*</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre">
                 </div>
 
                 <div class="mb-3">
-                    <label for="matriculaAgregar" class="form-label">Matrícula profesional*</label>
-                    <input type="number" id="matriculaAgregar" name="matriculaAgregar" pattern="[0-9]{5,10}" min="0"  class="form-control" placeholder="Ej: 1123456789">
+                    <label for="matricula" class="form-label">Matrícula profesional*</label>
+                    <input type="number" id="matricula" name="matricula" pattern="[0-9]{5,10}" min="0"  class="form-control" placeholder="Ej: 1123456789">
                 </div>
 
                 <div class="mb-3">
-                    <label for="especialidadAgregar" class="form-label">Especialidad*</label>
-                    <select class="form-select" id="especialidadAgregar" required="">
+                    <label for="especialidad" class="form-label">Especialidad*</label>
+                    <select class="form-select" id="especialidad" required="">
                         </select>
                 </div>
 
                 <div class="mb-3">
-                    <label for="obrasocialAgregar" class="form-label">Obras sociales*</label>
-                    <div class="row pb-2" id="contenedorObrasocialesAgregar">
+                    <label for="obrasocial" class="form-label">Obras sociales*</label>
+                    <div class="row pb-2" id="contenedorObrasociales">
                         </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="fotografiaAgregar" class="form-label">Subir imagen*</label>
-                    <input type="file" id="fotografiaAgregar" name="fotografia" class="form-control" accept="image/png, image/jpg, image/jpeg">
+                    <label for="fotografia" class="form-label">Subir imagen*</label>
+                    <input type="file" id="fotografia" name="fotografia" class="form-control" accept="image/png, image/jpg, image/jpeg">
                 </div>
 
                 <div class="mb-3">
-                    <label for="valorConsultaAgregar" class="form-label">Valor consulta*</label>
-                    <input type="text" id="valorConsultaAgregar" name="valorConsultaAgregar" class="form-control" placeholder="$0">
+                    <label for="valorConsulta" class="form-label">Valor consulta*</label>
+                    <input type="text" id="valorConsulta" name="valorConsulta" class="form-control" placeholder="$0">
                 </div>
 
                 <div class="mb-3">
-                    <label for="descripcionAgregar" class="form-label">Descripción*</label>
-                    <textarea id="descripcionAgregar" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
+                    <label for="descripcion" class="form-label">Descripción*</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
                 </div>
 
                 <div class="mb-3">
-                    <p class="texto text-danger" id="mensajeErrorAgregar"></p>
+                    <p class="texto text-danger" id="mensajeError"></p>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-custom">Guardar</button>

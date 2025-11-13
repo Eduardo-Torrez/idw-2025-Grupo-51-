@@ -106,16 +106,19 @@ function eliminarProfesional(idDelProfesionalAEliminar){
 
 /*MODIFICAR DATOS DE UN PROFESIONAL*/
 //Definir variables
-const matriculaModificar= document.getElementById('matriculaModificar');
-const apellidoModificar= document.getElementById('apellidoModificar');
-const nombreModificar= document.getElementById('nombreModificar');
-const especialidadModificar= document.getElementById('especialidadModificar');
-const descripcionModificar= document.getElementById('descripcionModificar');
-const fotografiaModificar= document.getElementById('fotografiaModificar');
-const valorConsultaModificar= document.getElementById('valorConsultaModificar');
+const matriculaModificar= document.getElementById('matricula');
+const apellidoModificar= document.getElementById('apellido');
+const nombreModificar= document.getElementById('nombre');
+const especialidadModificar= document.getElementById('especialidad');
+const descripcionModificar= document.getElementById('descripcion');
+const fotografiaModificar= document.getElementById('fotografia');
+const valorConsultaModificar= document.getElementById('valorConsulta');
 const mensajeError = document.getElementById('mensajeError');
-let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
+const obrasocial=document.getElementById('contenedorObrasociales')
+let vistaDelFormulario = document.getElementById('vista-formulario');
+let agregarProfesional= document.getElementById('agregarProfesional');
 let profesionalSeleccionadoModificar = null;
+let formulario=document.getElementById('formulario');
 
 function editarProfesional(idDelProfesionalAEditar){
     //buscar el profesional en la lista
@@ -131,6 +134,7 @@ function editarProfesional(idDelProfesionalAEditar){
     especialidadModificar.value = profesionalSeleccionadoModificar.especialidad;
     descripcionModificar.value= profesionalSeleccionadoModificar.descripcion;
     valorConsultaModificar.value = profesionalSeleccionadoModificar.valorConsulta;
+
 
     
     //crear las opciones de especialidades y obras sociales y seleccionar las que coincidan con el profesional
@@ -149,8 +153,8 @@ function editarProfesional(idDelProfesionalAEditar){
     })
 
 };
-if(document.getElementById('formulario-modificar')){
-    document.getElementById('formulario-modificar').addEventListener('submit', evento =>{
+if(document.getElementById('formulario')){
+    document.getElementById('formulario').addEventListener('submit', evento =>{
         evento.preventDefault();
 
         const obraSocialModificar = Array.from(document.querySelectorAll('input:checked'));
@@ -201,7 +205,7 @@ if(document.getElementById('formulario-modificar')){
             return;
         }
         
-
+        profesionalSeleccionadoModificar.nombre=nombreModificar.value;
         profesionalSeleccionadoModificar.matricula = matriculaModificar.value;
         profesionalSeleccionadoModificar.apellido = apellidoModificar.value;
         profesionalSeleccionadoModificar.nombre = nombreModificar.value;
@@ -210,8 +214,12 @@ if(document.getElementById('formulario-modificar')){
         profesionalSeleccionadoModificar.obraSociales = obraSocialModificar.map(i=>listaObraSociales.find((obso)=> obso.id === i.value));
         profesionalSeleccionadoModificar.valorConsulta = valorConsultaModificar.value;
 
-        guardarDatos("medicos", medicos);
-
+        if(medicos.some(buscarProfesional => buscarProfesional.id=== profesionalSeleccionadoModificar.id)){
+            guardarDatos('medicos',medicos);
+        }else{
+            medicos.push(profesionalSeleccionadoModificar);
+            guardarDatos('medicos',medicos);
+        }
         console.clear();
         // console.log('Datos actualizados');
 
@@ -352,26 +360,42 @@ document.querySelectorAll('.botonCerrar').forEach(boton=>{
 });
 
 
+agregarProfesional.addEventListener('click', () => {
+    let nuevoProfesional={};
+    let id=Date.now().toString();
+    nuevoProfesional={
+        'id':id,
+        'matricula':matriculaModificar.value,
+        'nombre':nombreModificar.value,
+        'apellido':apellidoModificar.value,
+        'especialidad':especialidadModificar.value,
+        'descripcion':descripcionModificar.value,
+        'obraSociales':obrasocial.value,
+        'fotografia':fotografiaModificar.value,
+        'valorConsulta':valorConsultaModificar.value
+    };
+    crearOpcionesEspecialidad(nuevoProfesional);
+    crearOpcionesObraSocial(nuevoProfesional);
+    //Base64
+    fotografiaModificar.addEventListener('change', (e)=>{
+        const file = e.target.files[0]
+        const reader = new FileReader();
+        reader.onload = ()=>{
+            profesionalSeleccionadoModificar.fotografia = reader.result;
+            guardarDatos("medicos", medicos);
+        };
+        reader.readAsDataURL(file);
+    })
+    profesionalSeleccionadoModificar=nuevoProfesional;
+    vistaDelFormulario.classList.remove('d-none');
+    vistaDelFormulario.scrollIntoView({behavior:'smooth'});
+    formulario.reset();
+    mensajeError.innerHTML='';
 
-const btnAgregar = document.getElementById('btnAgregar');
-const vistaFormularioAgregar = document.getElementById('vista-formulario-agregar');
-const formularioAgregar = document.getElementById('formulario-agregar');
-
-
-btnAgregar.addEventListener('click', () => {
-    
-    formularioAgregar.reset();
-    
-    
-    vistaFormularioAgregar.classList.remove('d-none');
-    
-    
-    crearOpcionesEspecialidadAgregar();
-    crearOpcionesObraSocialAgregar();
 });
 
 
-formularioAgregar.addEventListener('submit', (e) => {
+/*formularioAgregar.addEventListener('submit', (e) => {
     e.preventDefault();
 
     
@@ -429,12 +453,12 @@ formularioAgregar.addEventListener('submit', (e) => {
         
         procesarFormulario(); 
     }
-});
+});*/
 
 
 
 
-function crearOpcionesEspecialidadAgregar() {
+/*function crearOpcionesEspecialidad() {
     let select = document.getElementById('especialidadAgregar'); // ID del nuevo select
     select.innerHTML = '<option selected disabled value="">Seleccionar especialidad...</option>';
 
@@ -446,7 +470,7 @@ function crearOpcionesEspecialidadAgregar() {
     });
 }
 
-function crearOpcionesObraSocialAgregar() {
+function crearOpcionesObraSocial() {
     
     let contenedor = document.getElementById('contenedorObrasocialesAgregar'); 
     contenedor.innerHTML = '';
@@ -472,4 +496,4 @@ function crearOpcionesObraSocialAgregar() {
         casilla.appendChild(label);
         contenedor.appendChild(casilla);
     });
-}
+}*/
