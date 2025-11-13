@@ -5,30 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
     <link rel="shortcut icon" href="img/favicon.png" type="icon">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/profesionales.css">
 </head>
 <body>
-    <main class="container mt-4">
-        <h2>Listas de Usuarios</h2>
-    <table class="table table-striped mt-3" id="tablaUsuarios">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Contraseña</th>>
-                <th>Email</th>
-                <th>Telefono</th>
-            </tr>
-        </thead>
-        <tbody>
-        <!--aqui renderisamops tood los usuarios-->
-        </tbody>
-    </table>
-</main>
-</body>
+    <header id="header" class="header fixed-top d-flex align-items-center py-2 py-lg-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="admin.html" class="logo d-flex align-items-center ps-lg-4">
+                <img src="img/logo.png" alt="logo" class="logo">
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn d-inline-block d-lg-none pe-2"></i>
+        </div>
+    </header>
+    <aside id="sidebar" class="sidebar py-lg-5">
+
+        <ul class="sidebar-nav py-2" id="sidebar-nav">
+            <li class="nav-item">
+                <a href="reservas.html" class="nav-link collapsed">
+                    <i class="bi bi-file-earmark-medical"></i> <span>Reservas</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="profesionales.html" class="nav-link collapsed">
+                    <i class="bi bi-person"></i> <span>Profesionales</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="especialidades.html" class="nav-link collapsed">
+                    <i class="bi bi-hospital"></i> <span>Especialidades</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="obrasSociales.html" class="nav-link collapsed">
+                    <i class="bi bi-shield-plus"></i> <span>Obras sociales</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="turnos.html" class="nav-link collapsed">
+                    <i class="bi bi-alarm"></i> <span>Turnos</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="consultas.html" class="nav-link collapsed">
+                    <i class="bi bi-envelope"></i> <span>Consultas</span></a>
+            </li>
+            <li class="nav-item">
+                <a href="usuarios.html" class="nav-link collapsed">
+                    <i class="bi bi-person-badge"></i> <span>Usuarios</span></a>
+            </li>
+            <li class="nav-item collapsed border-top mt-4 py-4">
+                <button type="button" class="nav-link" onclick="">
+                    <i class="bi bi-door-open"></i> Cerrar sesión
+                </button>
+            </li>
+        </ul>
+
+    </aside>
+
+    <main class="main" id="main">
+        <section class="container-fluid">
+            <div class="d-flex flex-column align-items-center g-4 p-5">
+            <section class="d-flex flex-column flex-lg-row justify-content-between align-items-center gap-2 w-100 ">
+                <div class="text-center text-lg-start">
+                    <h1 class="h1 display-6 fw-bold">Listas de Usuarios</h1>
+                </div>
+            </section>
+            <!--tabla-->
+            <section class="d-flex overflow-y-scroll py-5 w-100 tabla-profesionales">
+                <table class="table"  id="tablaUsuarios">
+                    <thead class="encabezado">
+                        <tr class="text-center align-middle">
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col password">Contraseña</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Telefono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--aqui renderisamops tood los usuarios-->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+        </section>
+
+    </main>
+
     <footer class="container-fluid p-5 w-100">
         <div class="row p-5 rounded-4 footer_contenedor justify-content-between">
             <div class=" col-12 col-md-4 mb-3 text-center text-lg-start">
@@ -87,9 +149,10 @@
             <small class="p-2 text-body-secondary fs-6">&copy;Clínica Integral. Todos los derechos reservados</small>
         </div>
     </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
-<script src="js/usuarios.js"></script>
+    <script src="js/panelDeControl.js"></script>
+    <script src="js/usuarios.js"></script>
 </body>
 </html>

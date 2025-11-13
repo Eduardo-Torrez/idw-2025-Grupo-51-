@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
                 fila.innerHTML=`
                 <td>${element.firstName}</td>
                 <td>${element.lastName}</td>
-                <td>${element.password}</td>
+                <td> <input style=" border: none; font-size:1.2rem; width:100%;" type="password" value="${element.password}" readonly></td> 
                 <td>${element.email}</td>
                 <td>${element.phone}</td>
         `;
