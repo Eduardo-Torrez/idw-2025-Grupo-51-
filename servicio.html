@@ -61,22 +61,29 @@
         </div>
 
         <section class="d-flex flex-column align-items-center justify-content-between rounded py-4 gap-4 filtrar">
-            <div class="row g-4 row-cols-1 row-cols-lg-2 w-100">
-                
-                <div class="col">
-                    <select id="filtro-especialidad" class="form-select" aria-label="Filtro por especialidad">
-                        <option value="">Filtrar por Especialidad</option>
-                    </select>
-                </div>
+    <div class="row g-4 row-cols-1 row-cols-lg-3 w-100">
+        
+        <div class="col">
+            <select id="filtro-especialidad" class="form-select" aria-label="Filtro por especialidad">
+                <option value="">Filtrar por Especialidad</option>
+            </select>
+        </div>
 
-                <div class="col">
-                    <select id="filtro-obra" class="form-select" aria-label="Filtrar por Obra social">
-                        <option selected>Filtrar por Obra social</option>
-                    </select>
-                </div>
+        <div class="col">
+            <select id="filtro-obra" class="form-select" aria-label="Filtrar por Obra social">
+                <option selected>Filtrar por Obra social</option>
+            </select>
+        </div>
+        
+        <div class="col">
+            <div class="input-group">
+                <input type="text" class="form-control" id="filtro-nombre" placeholder="Buscar por nombre y apellido...">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
             </div>
-            
-        </section>
+        </div>
+
+    </div>
+</section>
         
 
         <div class="container my-5">

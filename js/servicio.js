@@ -28,15 +28,18 @@ function mostrarMedicosAleatorios() {
         .sort((a, b) => a.sort - b.sort)
         .map(a => a.m);
 
-    cargarMedicos(null, null, medicosAleatorios);
+    
+    cargarMedicos(null, null, null, medicosAleatorios);
 }
 
 
 function inicializarFiltros() {
     const selectEspecialidad = document.getElementById('filtro-especialidad');
     const selectObra = document.getElementById('filtro-obra');
+    const inputNombre = document.getElementById('filtro-nombre'); // <-- NUEVO
     const titulo = document.getElementById('titulo-especialidad');
 
+    
     const especialidades = obtenerDatos("especialidades");
     if (especialidades && especialidades.length > 0) {
         selectEspecialidad.innerHTML = `
@@ -55,6 +58,8 @@ function inicializarFiltros() {
     }
 
     
+   
+
     selectEspecialidad.addEventListener('change', () => {
         const especialidades = obtenerDatos("especialidades");
         const seleccionado = selectEspecialidad.value;
@@ -62,41 +67,66 @@ function inicializarFiltros() {
         const nombreEspecialidad = espObj ? espObj.nombre : "Todos los profesionales";
         titulo.innerHTML = `Especialistas en <strong>${nombreEspecialidad}</strong>:`;
 
-        cargarMedicos(seleccionado, selectObra.value);
+       
+        cargarMedicos(seleccionado, selectObra.value, inputNombre.value);
     });
 
     
     selectObra.addEventListener('change', () => {
-        cargarMedicos(selectEspecialidad.value, selectObra.value);
+        cargarMedicos(selectEspecialidad.value, selectObra.value, inputNombre.value);
+    });
+
+    
+    inputNombre.addEventListener('input', () => {
+        
+        cargarMedicos(selectEspecialidad.value, selectObra.value, inputNombre.value);
     });
 }
 
 
-function cargarMedicos(filtroEspecialidad = null, filtroObra = null, medicosLista = null) {
+
+function cargarMedicos(filtroEspecialidad = null, filtroObra = null, filtroNombre = null, medicosLista = null) {
     const medicos = medicosLista || obtenerDatos("medicos");
     const especialidades = obtenerDatos("especialidades");
     const container = document.getElementById('lista-medicos-container');
     if (!container) return;
     container.innerHTML = '';
 
-    // Filtrar por especialidad 
-    let medicosFiltrados = filtroEspecialidad
-        ? medicos.filter(m => m.especialidad === filtroEspecialidad)
-        : medicos;
+    
+    let medicosFiltrados = medicos;
 
-    // Filtrar por obra social 
+    
+
+    
+    if (filtroEspecialidad) {
+        medicosFiltrados = medicosFiltrados.filter(m => m.especialidad === filtroEspecialidad);
+    }
+
+    
     if (filtroObra) {
         medicosFiltrados = medicosFiltrados.filter(medico =>
             medico.obraSociales && medico.obraSociales.some(os => os.id === filtroObra)
         );
     }
 
+    
+    if (filtroNombre) {
+       
+        const terminoBusqueda = filtroNombre.trim().toLowerCase(); 
+        
+        medicosFiltrados = medicosFiltrados.filter(medico => {
+            const nombreCompleto = `${medico.nombre} ${medico.apellido}`.toLowerCase();
+            return nombreCompleto.includes(terminoBusqueda);
+        });
+    }
+
+
     if (medicosFiltrados.length === 0) {
         container.innerHTML = '<p class="text-center col-12">No hay médicos que cumplan con los filtros seleccionados.</p>';
         return;
     }
 
-    // cards de médicos
+    
     medicosFiltrados.forEach(medico => {
         const especialidadObj = especialidades.find(esp => esp.id === medico.especialidad);
         const nombreEspecialidad = especialidadObj ? especialidadObj.nombre : "Sin especialidad";
