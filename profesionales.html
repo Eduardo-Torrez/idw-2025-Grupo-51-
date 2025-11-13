@@ -68,11 +68,7 @@
                     <p class="texto" id="totalProfesionales"></p>
                 </div>
                 <div>
-                    <li class="nav-item">
-                        <a href="cargaMedicos.html" class="btn btn-primary">
-                            <i class="bi bi-person-circle"></i>
-                            <span>Agregar Profecionales</span></a>
-                    </li>
+                    <button type="button" class="btn btn-lg btn-admin px-4 my-5" id="btnAgregarEspecialidad">Agregar especialidad</button>
                 </div>
             </section>
             <!--tabla-->
@@ -150,7 +146,7 @@
         </section>
 
         <!--modificar-->
-         <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-agregar">
+        <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-agregar">
             <div class="text-end mb-4 w-75">
                 <button class="btn btn-admin botonCerrar" data-target="vista-formulario-agregar">
                     <i class="bi bi-x-lg"></i>
@@ -184,7 +180,7 @@
                 </div>
 
                 <div class="mb-3">
-                     <label for="obrasocialAgregar" class="form-label">Obras sociales*</label>
+                    <label for="obrasocialAgregar" class="form-label">Obras sociales*</label>
                     <div class="row pb-2" id="contenedorObrasocialesAgregar">
                         </div>
                 </div>
@@ -200,12 +196,12 @@
                 </div>
 
                 <div class="mb-3">
-                     <label for="descripcionAgregar" class="form-label">Descripción*</label>
+                    <label for="descripcionAgregar" class="form-label">Descripción*</label>
                     <textarea id="descripcionAgregar" name="descripcion" rows="4" class="form-control" placeholder="Escriba una descripción"></textarea>
                 </div>
 
                 <div class="mb-3">
-                     <p class="texto text-danger" id="mensajeErrorAgregar"></p>
+                    <p class="texto text-danger" id="mensajeErrorAgregar"></p>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-custom">Guardar</button>
@@ -221,5 +217,6 @@
     crossorigin="anonymous"></script>
     <script src="js/panelDeControl.js"></script>
     <script type="module" src="js/profesionales.js"></script>
+    <!--<script src="js/almacenamiento.js"></script>-->
 </body>
 </html>

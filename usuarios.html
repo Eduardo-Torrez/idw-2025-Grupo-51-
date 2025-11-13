@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Clínica Integral</title>
+    <title>Usuarios</title>
     <link rel="shortcut icon" href="img/favicon.png" type="icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -11,43 +11,24 @@
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <main>
-        <div class="container py-4">
-            <div class="row align-items-center justify-content-center"> 
-                <div class="col-12 col-md-6 d-none d-md-block"> <div class="img-fluid w-100">
-                        <a href="index.html"> 
-                            <img src="img/login.jpg" alt="Imagen de Login" class="w-100 rounded shadow">
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="col-12 col-md-6 bg-luz p-4 p-md-5"> <div class="text-center mb-4">
-                        <a href="index.html"> 
-                            <img src="img/logo.png" alt="Logo Clínica Integral" width="200">
-                        </a>
-                    </div>
-                    <!--aqui empieza el login para poder registrarme-->>
-                    <h2 class="Bienbenido fw-bold text-center pt-3 mb-4">Bienvenido</h2>
-                    
-                    <form id="formLogin" class="row justify-content-center"> 
-                        <div class="col-md-6 col-lg-4">
-                            <div class="mb-3">
-                                <label for="usuario" class="form-label">Usuario</label>
-                                <input type="text" id="usuario" class="form-control" required> 
-                            </div>
-                            <div class="mb-3">
-                                <label for="clave" class="form-label">Contraseña</label>
-                                <input type="password" id="clave" class="form-control" required> 
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">Ingresar</button>
-                        </div>
-                    </form>
-                    <div id="mensaje" class="row justify-content mt-3"></div>
-                </div>
-            </div>
-        </div>
-    </main>
-
+    <main class="container mt-4">
+        <h2>Listas de Usuarios</h2>
+    <table class="table table-striped mt-3" id="tablaUsuarios">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Contraseña</th>>
+                <th>Email</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody>
+        <!--aqui renderisamops tood los usuarios-->
+        </tbody>
+    </table>
+</main>
+</body>
     <footer class="container-fluid p-5 w-100">
         <div class="row p-5 rounded-4 footer_contenedor justify-content-between">
             <div class=" col-12 col-md-4 mb-3 text-center text-lg-start">
@@ -106,10 +87,9 @@
             <small class="p-2 text-body-secondary fs-6">&copy;Clínica Integral. Todos los derechos reservados</small>
         </div>
     </footer>
-</body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
-    <!--<script src="confing/usuarios.js"></script>-->
-    <script type="module" src="js/login.js"></script>
+<script src="js/usuarios.js"></script>
+</body>
 </html>
