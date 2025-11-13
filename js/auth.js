@@ -5,7 +5,7 @@ export async function login(userParam,passParam) {
         const response= await fetch('https://dummyjson.com/auth/login',{
             method:'POST',
             headers : {
-                'Contert-type' : 'application/json'
+                'Content-type' : 'application/json'
             },
             //lo parceo a string
             body:JSON.stringify({
