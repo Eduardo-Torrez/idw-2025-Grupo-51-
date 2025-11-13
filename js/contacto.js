@@ -1,6 +1,3 @@
-// js/contacto.js
-
-
 import { guardarDatos, obtenerDatos } from "./localstorage.js"; 
 
 document.addEventListener('DOMContentLoaded', () => {
