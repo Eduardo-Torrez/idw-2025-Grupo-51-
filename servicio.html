@@ -61,41 +61,17 @@
         </div>
 
         <section class="d-flex flex-column align-items-center justify-content-between rounded py-4 gap-4 filtrar">
-            <div class="row g-4 row-cols-1 row-cols-lg-3 w-100">
-                <div class="col">
-                    <div class="container-fluid p-0">
-                        <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                        <button class="btn btn-servicio" type="submit">Buscar</button>
-                        </form>
-                    </div>
-                </div>
+            <div class="row g-4 row-cols-1 row-cols-lg-2 w-100">
                 
                 <div class="col">
-                    <select id="filtro-especialidad" class="form-select" aria-label="Default select example">
-                        <option selected>Filtrar por Especialidad</option>
-                        <option value="1">Medicina General</option>
-                        <option value="2">Cardiología</option>
-                        <option value="3">Nefrología</option>
-                        <option value="4">Reumatología</option>
-                        <option value="5">Psicología</option>
-                        <option value="6">Endocrinología</option>
-                        <option value="7">Pediatría</option>
-                        <option value="8">Neurología</option>
-                        <option value="9">Nutrición</option>
-                        <option value="10">Dermatología</option>
-                        <option value="11">Hematología</option>
-                        <option value="12">Traumatología</option>
+                    <select id="filtro-especialidad" class="form-select" aria-label="Filtro por especialidad">
+                        <option value="">Filtrar por Especialidad</option>
                     </select>
                 </div>
 
                 <div class="col">
-                    <select class="form-select" aria-label="Default select example">
+                    <select id="filtro-obra" class="form-select" aria-label="Filtrar por Obra social">
                         <option selected>Filtrar por Obra social</option>
-                        <option value="1">IPS</option>
-                        <option value="2">OSME</option>
-                        <option value="3">PAMI</option>
-                        <option value="4">PIEVE</option>
                     </select>
                 </div>
             </div>
@@ -107,7 +83,6 @@
             <h2 id="titulo-especialidad" class="text-center text-md-start mb-4">Especialistas</h2>
             <p id="medico-info" class="text-primary fw-semibold mb-4 text-center"></p>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 py-4" id="lista-medicos-container">
-                <!-- Las cards de los médicos se generan dinámicamente con JS -->
             </div>
         </div>
     </main>
@@ -174,120 +149,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script type="module">
-        import { obtenerDatos } from './js/localstorage.js'; 
-
-        const btn = document.getElementById('modoBtn');
-        btn.addEventListener('click', () => {
-            document.body.classList.toggle('bg-dark');
-            document.body.classList.toggle('text-white');
-            document.querySelectorAll('.card').forEach(card => {
-                card.classList.toggle('bg-secondary');
-                card.classList.toggle('text-white');
-            });
-            document.querySelectorAll('.logo').forEach(logo => {
-                logo.classList.toggle('invertido');
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            mostrarMedicosAleatorios(); // mostrar catálogo aleatorio al entrar
-            inicializarFiltroEspecialidad();
-        });
-
-        // función para mostrar médicos al azar al entrar
-        function mostrarMedicosAleatorios() {
-            const medicos = obtenerDatos("medicos");
-            if (!medicos || medicos.length === 0) return;
-
-            const medicosAleatorios = medicos
-                .map(m => ({ m, sort: Math.random() })) 
-                .sort((a, b) => a.sort - b.sort)
-                .map(a => a.m);
-
-            cargarMedicos(null, medicosAleatorios); // paso lista aleatoria
-        }
-
-        function inicializarFiltroEspecialidad() {
-            const selectEspecialidad = document.getElementById('filtro-especialidad');
-            const titulo = document.getElementById('titulo-especialidad');
-
-            selectEspecialidad.addEventListener('change', (e) => {
-                const especialidades = obtenerDatos("especialidades");
-                const seleccionado = e.target.value;
-
-                const espObj = especialidades.find(esp => esp.id === seleccionado);
-                const nombreEspecialidad = espObj ? espObj.nombre : "Todos los profesionales";
-
-                titulo.innerHTML = `Especialistas en <strong>${nombreEspecialidad}</strong>:`;
-
-                cargarMedicos(seleccionado); 
-            });
-        }
-
-        
-        function cargarMedicos(filtroEspecialidad = null, medicosLista = null) {
-            const medicos = medicosLista || obtenerDatos("medicos"); 
-            const especialidades = obtenerDatos("especialidades");
-            const container = document.getElementById('lista-medicos-container');
-
-            if (!container) return;
-            container.innerHTML = '';
-
-            const medicosFiltrados = filtroEspecialidad 
-                ? medicos.filter(m => m.especialidad === filtroEspecialidad)
-                : medicos;
-
-            if (medicosFiltrados.length === 0) {
-                container.innerHTML = '<p class="text-center col-12">No hay médicos registrados por el momento.</p>';
-                return;
-            }
-
-            medicosFiltrados.forEach(medico => {
-                const especialidadObj = especialidades.find(esp => esp.id === medico.especialidad);
-                const nombreEspecialidad = especialidadObj ? especialidadObj.nombre : "Sin especialidad";
-                const nombreCompleto = `${medico.nombre} ${medico.apellido}`;
-                const imagenSrc = medico.fotografia ? medico.fotografia : 'img/default-doctor.png';
-                const linkReserva = `reservarTurno.html?id=${medico.id}`;
-
-                const cardHTML = `
-                    <div class="col d-flex">
-                        <div class="card shadow-sm h-100 w-100">
-                            <img src="${imagenSrc}" class="card-img-top" alt="Foto de ${nombreCompleto}" style="height: 250px; object-fit: cover;">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">${nombreCompleto}</h5>
-                                <p class="card-text">${nombreEspecialidad}</p>
-                                <a href="${linkReserva}" class="btn btn-servicio">Reservar turno</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += cardHTML;
-            });
-
-            //asignarListenersRedireccion();
-        }
-
-        /*function asignarListenersRedireccion() {
-            const reservarBtns = document.querySelectorAll('.btn-servicio');
-
-            function redirigirARegistro(event) {
-                event.preventDefault();
-                const usuarioLogueado = false; 
-
-                if (!usuarioLogueado) {
-                    alert("Necesitas estar registrado para reservar un turno. Redirigiendo a la página de Registro.");
-                    window.location.href = "registro.html"; 
-                } else {
-                    window.location.href = event.currentTarget.href;
-                }
-            }
-
-            reservarBtns.forEach(btn => {
-                btn.addEventListener('click', redirigirARegistro);
-            });
-        }*/
-    </script>
+    <script type="module" src="js/servicio.js"></script>
 </body>
 </html>
