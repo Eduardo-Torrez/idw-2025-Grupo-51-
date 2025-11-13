@@ -1,5 +1,5 @@
 import { guardarDatos, obtenerDatos } from "./localstorage.js";
-import { botonCerrar } from "./utils.js";
+import { botonCerrar, visualizarForm } from "./utils.js";
 let medicos = obtenerDatos("medicos");
 let especialidades = obtenerDatos("especialidades");
 let listaObraSociales = obtenerDatos("listaObraSociales");
@@ -70,7 +70,6 @@ function listarProfesionales(){
             visualizarProfesional(medico.id);
         })
 
-
         div.appendChild(botonEliminar);
         div.appendChild(botonEditar);
         div.appendChild(botonVisualizar);
@@ -106,47 +105,49 @@ function eliminarProfesional(idDelProfesionalAEliminar){
 
 /*MODIFICAR DATOS DE UN PROFESIONAL*/
 //Definir variables
-const matriculaModificar= document.getElementById('matricula');
-const apellidoModificar= document.getElementById('apellido');
-const nombreModificar= document.getElementById('nombre');
-const especialidadModificar= document.getElementById('especialidad');
-const descripcionModificar= document.getElementById('descripcion');
-const fotografiaModificar= document.getElementById('fotografia');
-const valorConsultaModificar= document.getElementById('valorConsulta');
-const mensajeError = document.getElementById('mensajeError');
-const obrasocial=document.getElementById('contenedorObrasociales')
+let matriculaModificar= document.getElementById('matricula');
+let apellidoModificar= document.getElementById('apellido');
+let nombreModificar= document.getElementById('nombre');
+let especialidadModificar= document.getElementById('elegirEspecialidad');
+let descripcionModificar= document.getElementById('descripcion');
+let fotografiaModificar= document.getElementById('fotografia');
+let valorConsultaModificar= document.getElementById('valorConsulta');
+let mensajeError = document.getElementById('mensajeError');
+let obrasocial=document.getElementById('contenedorObrasociales')
 let vistaDelFormulario = document.getElementById('vista-formulario');
 let agregarProfesional= document.getElementById('agregarProfesional');
-let profesionalSeleccionadoModificar = null;
+let medicoSeleccionado = null;
 let formulario=document.getElementById('formulario');
+let tituloFormulario = document.getElementById('tituloFormulario');
 
 function editarProfesional(idDelProfesionalAEditar){
     //buscar el profesional en la lista
-    profesionalSeleccionadoModificar = medicos.find((p) => p.id === idDelProfesionalAEditar);
-    console.log(profesionalSeleccionadoModificar);
+    medicoSeleccionado = medicos.find((p) => p.id === idDelProfesionalAEditar);
+    console.log(medicoSeleccionado);
 
     vistaDelFormulario.classList.remove('d-none');
+    //crear las opciones de especialidades y obras sociales y seleccionar las que coincidan con el profesional
+    crearOpcionesEspecialidad(medicoSeleccionado);
+    crearOpcionesObraSocial(medicoSeleccionado);
 
     //se traen los datos del medico
-    matriculaModificar.value = profesionalSeleccionadoModificar.matricula;
-    apellidoModificar.value = profesionalSeleccionadoModificar.apellido;
-    nombreModificar.value = profesionalSeleccionadoModificar.nombre;
-    especialidadModificar.value = profesionalSeleccionadoModificar.especialidad;
-    descripcionModificar.value= profesionalSeleccionadoModificar.descripcion;
-    valorConsultaModificar.value = profesionalSeleccionadoModificar.valorConsulta;
-
-
+    matriculaModificar.value = medicoSeleccionado.matricula;
+    apellidoModificar.value = medicoSeleccionado.apellido;
+    nombreModificar.value = medicoSeleccionado.nombre;
+    especialidadModificar.value = medicoSeleccionado.especialidad;
+    descripcionModificar.value= medicoSeleccionado.descripcion;
+    valorConsultaModificar.value = medicoSeleccionado.valorConsulta;
     
-    //crear las opciones de especialidades y obras sociales y seleccionar las que coincidan con el profesional
-    crearOpcionesEspecialidad(profesionalSeleccionadoModificar);
-    crearOpcionesObraSocial(profesionalSeleccionadoModificar);
+    console.log(medicoSeleccionado.especialidad)
+    console.log(especialidadModificar.value)
+    console.log(especialidadModificar.value = medicoSeleccionado.especialidad)
 
     //Base64
     fotografiaModificar.addEventListener('change', (e)=>{
         const file = e.target.files[0]
         const reader = new FileReader();
         reader.onload = ()=>{
-            profesionalSeleccionadoModificar.fotografia = reader.result;
+            medicoSeleccionado.fotografia = reader.result;
             guardarDatos("medicos", medicos);
         };
         reader.readAsDataURL(file);
@@ -166,22 +167,18 @@ if(document.getElementById('formulario')){
 
         if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(nombreModificar.value)){
             warning+='*Nombre inválido<br>';
-            console.log('nombre error');
             erroresEncontrados = true;
         }
         if(!/^[a-zA-ZÀ-ÿ]{2,50}(?: [a-zA-Z]{2,50})*$/.test(apellidoModificar.value)){
             warning+= '*apellido inválido<br>';
-            console.log('Apellido inválido');
             erroresEncontrados = true;
         }
         if(!/^[0-9]{5}$/.test(matriculaModificar.value)){
-            warning+= '*matrícula inválida<br>';
-            console.log('Matricula inválida');
+            warning+= '*matrícula inválida (deben ser 5 dígitos)<br>';
             erroresEncontrados = true;
         }
         if(!/^(\d)$/.test(especialidadModificar.value)){
             warning+= '*especialidad inválida<br>';
-            console.log('Especialidad inválida');
             erroresEncontrados = true;
         }
         // if(0=== obraSocialModificar.length){
@@ -191,12 +188,10 @@ if(document.getElementById('formulario')){
         // }
         if(!/^(\d+([.,]\d+)?|[.,]\d+)$/.test(valorConsultaModificar.value)){
             warning+= '*valor consulta inválido<br>';
-            console.log('valor de consulta inválido');
             erroresEncontrados = true;
         }
         if(!descripcionModificar.value){
             warning+= '*agregue una descripción';
-            console.log('descripcion inválida');
             erroresEncontrados = true;
         }
 
@@ -205,31 +200,29 @@ if(document.getElementById('formulario')){
             return;
         }
         
-        profesionalSeleccionadoModificar.nombre=nombreModificar.value;
-        profesionalSeleccionadoModificar.matricula = matriculaModificar.value;
-        profesionalSeleccionadoModificar.apellido = apellidoModificar.value;
-        profesionalSeleccionadoModificar.nombre = nombreModificar.value;
-        profesionalSeleccionadoModificar.especialidad = especialidadModificar.value;
-        profesionalSeleccionadoModificar.descripcion = descripcionModificar.value;
-        profesionalSeleccionadoModificar.obraSociales = obraSocialModificar.map(i=>listaObraSociales.find((obso)=> obso.id === i.value));
-        profesionalSeleccionadoModificar.valorConsulta = valorConsultaModificar.value;
+        medicoSeleccionado.nombre=nombreModificar.value;
+        medicoSeleccionado.matricula = matriculaModificar.value;
+        medicoSeleccionado.apellido = apellidoModificar.value;
+        medicoSeleccionado.nombre = nombreModificar.value;
+        medicoSeleccionado.especialidad = especialidades.find((esp)=> esp.id === especialidadModificar.value).id;
+        medicoSeleccionado.descripcion = descripcionModificar.value;
+        medicoSeleccionado.obraSociales = obraSocialModificar.map(i=>listaObraSociales.find((obso)=> obso.id === i.value));
+        medicoSeleccionado.valorConsulta = valorConsultaModificar.value;
 
-        if(medicos.some(buscarProfesional => buscarProfesional.id=== profesionalSeleccionadoModificar.id)){
+        if(medicos.some(buscarProfesional => buscarProfesional.id=== medicoSeleccionado.id)){
             guardarDatos('medicos',medicos);
         }else{
-            medicos.push(profesionalSeleccionadoModificar);
+            medicos.push(medicoSeleccionado);
             guardarDatos('medicos',medicos);
         }
         console.clear();
-        // console.log('Datos actualizados');
-
         //reseteamos el formulario
-        document.getElementById('formulario-modificar').reset();
+        document.getElementById('formulario').reset();
 
         //actualizamos la lista
         listarProfesionales();
         alert('✅ Datos actualizados correctamente');
-        botonCerrar('vista-formulario-modificar');
+        botonCerrar('vista-formulario');
         
     });
 }
@@ -283,16 +276,14 @@ function contadorDeProfesioanles(){
 
 
 function mapearObraSocial(profesional){
-
     const obrasocialformateada = profesional.obraSociales.map(objeto => 
         listaObraSociales.find((buscarObraSocial)=> buscarObraSocial.id === objeto.id).nombre
     )
     return obrasocialformateada.join(", ");
-
 }
 
 function crearOpcionesEspecialidad(profesional){
-    let select = document.getElementById('especialidadModificar');
+    let select = document.getElementById('elegirEspecialidad');
     select.innerHTML ='';
 
     especialidades.forEach((item)=>{
@@ -300,7 +291,7 @@ function crearOpcionesEspecialidad(profesional){
         opcion.value = item.id;
         opcion.innerHTML= item.nombre;
 
-        if(item.id === profesional.especialidad){
+        if(profesional.especialidad && item.id == profesional.especialidad){
             opcion.selected = true;
         }
         select.appendChild(opcion);
@@ -328,8 +319,10 @@ function crearOpcionesObraSocial(profesional){
         label.for = item.nombre ;
         label.innerHTML= item.nombre;
 
-        for(let itemObraSocial = 0; profesional.obraSociales[itemObraSocial]; ++itemObraSocial){
-            if(profesional.obraSociales[itemObraSocial].id===item.id){
+        let obrasSociales = Array.isArray(profesional.obraSociales) ? profesional.obraSociales : [];
+        for(let itemObraSocial = 0; itemObraSocial<obrasSociales.length; ++itemObraSocial){
+        // for(let itemObraSocial = 0; profesional.obraSociales[itemObraSocial]; ++itemObraSocial){
+            if(obrasSociales[itemObraSocial].id===item.id){
 
                 input.checked = true;
                 casilla.appendChild(input);
@@ -341,7 +334,7 @@ function crearOpcionesObraSocial(profesional){
         casilla.appendChild(label);
         contenedor.appendChild(casilla);
 
-        if(profesional.obraSociales.length === 0){
+        if(obrasSociales.length === 0){
             input.checked = false;
             casilla.appendChild(input);
             casilla.appendChild(label);
@@ -381,119 +374,12 @@ agregarProfesional.addEventListener('click', () => {
         const file = e.target.files[0]
         const reader = new FileReader();
         reader.onload = ()=>{
-            profesionalSeleccionadoModificar.fotografia = reader.result;
+            nuevoProfesional.fotografia = reader.result;
             guardarDatos("medicos", medicos);
         };
         reader.readAsDataURL(file);
     })
-    profesionalSeleccionadoModificar=nuevoProfesional;
-    vistaDelFormulario.classList.remove('d-none');
-    vistaDelFormulario.scrollIntoView({behavior:'smooth'});
-    formulario.reset();
-    mensajeError.innerHTML='';
-
+    medicoSeleccionado=nuevoProfesional;
+    visualizarForm('Agregar nuevo profesional', vistaDelFormulario, formulario, mensajeError)
 });
 
-
-/*formularioAgregar.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    
-    const nombre = document.getElementById('nombreAgregar').value;
-    const apellido = document.getElementById('apellidoAgregar').value;
-    const matricula = document.getElementById('matriculaAgregar').value;
-    const especialidad = document.getElementById('especialidadAgregar').value;
-    const valorConsulta = document.getElementById('valorConsultaAgregar').value;
-    const descripcion = document.getElementById('descripcionAgregar').value;
-    const fotografiaInput = document.getElementById('fotografiaAgregar');
-    
-    
-    const obraSocialesChecks = document.querySelectorAll('#contenedorObrasocialesAgregar input:checked');
-    const obrasSocialesSeleccionadas = Array.from(obraSocialesChecks).map(check => {
-        
-        return listaObraSociales.find(os => os.id === check.value);
-    });
-
-
-    
-    const file = fotografiaInput.files[0];
-
-    const procesarFormulario = (fotografiaBase64 = "") => { 
-        
-        const nuevoMedico = {
-            id: Date.now().toString(), 
-            nombre: nombre,
-            apellido: apellido,
-            matricula: matricula,
-            especialidad: especialidad, 
-            valorConsulta: valorConsulta,
-            descripcion: descripcion,
-            fotografia: fotografiaBase64, 
-            obraSociales: obrasSocialesSeleccionadas 
-        };
-
-        
-        medicos.push(nuevoMedico);
-        guardarDatos("medicos", medicos);
-        
-        listarProfesionales(); 
-        
-        alert('✅ ¡Profesional agregado correctamente!');
-        formularioAgregar.reset();
-        vistaFormularioAgregar.classList.add('d-none'); 
-    };
-
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            procesarFormulario(reader.result); 
-        };
-        reader.readAsDataURL(file);
-    } else {
-        
-        procesarFormulario(); 
-    }
-});*/
-
-
-
-
-/*function crearOpcionesEspecialidad() {
-    let select = document.getElementById('especialidadAgregar'); // ID del nuevo select
-    select.innerHTML = '<option selected disabled value="">Seleccionar especialidad...</option>';
-
-    especialidades.forEach((item) => {
-        let opcion = document.createElement('option');
-        opcion.value = item.id;
-        opcion.innerHTML = item.nombre;
-        select.appendChild(opcion);
-    });
-}
-
-function crearOpcionesObraSocial() {
-    
-    let contenedor = document.getElementById('contenedorObrasocialesAgregar'); 
-    contenedor.innerHTML = '';
-
-    listaObraSociales.forEach((item) => {
-        let casilla = document.createElement('div');
-        casilla.classList.add("form-check", "col-6");
-
-        let input = document.createElement('input');
-        input.type = "checkbox";
-        input.classList.add("form-check-label", "me-2");
-        input.style.width = "auto";
-
-        let label = document.createElement('label');
-        label.classList.add('form-label');
-
-        input.id = `agregar-${item.id}`; 
-        input.value = item.id;
-        label.setAttribute('for', `agregar-${item.id}`); 
-        label.innerHTML = item.nombre;
-
-        casilla.appendChild(input);
-        casilla.appendChild(label);
-        contenedor.appendChild(casilla);
-    });
-}*/

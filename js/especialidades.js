@@ -1,5 +1,5 @@
 import { guardarDatos, obtenerDatos } from "./localstorage.js";
-import { botonCerrar } from "./utils.js";
+import { botonCerrar, visualizarForm, generarId } from "./utils.js";
 let especialidades = obtenerDatos("especialidades");
 let medicos = obtenerDatos("medicos");
 
@@ -84,25 +84,37 @@ function eliminarEspecialidad(idEspecialidadAEliminar){
 };
 
 
-/*MODIFICAR DATOS DE UNA ESPECIALIDAD*/
-//Definir variables
-const nombreModificar= document.getElementById('nombreModificar');
-const mensajeError = document.getElementById('mensajeError');
-let especialidadSeleccionadaModificar = null;
-let vistaDelFormulario = document.getElementById('vista-formulario-modificar');
 
+//Definir variables
+const crearEspecialidad = document.getElementById('crearEspecialidad');
+const nombreModificar= document.getElementById('nombre');
+const mensajeError = document.getElementById('mensajeError');
+let especialidadSeleccionada = null;
+let vistaDelFormulario = document.getElementById('vista-formulario');
+// let contadorID = 0;
+
+/*CREAR ESPECIALIDAD*/
+crearEspecialidad.addEventListener('click', ()=>{
+    let nuevaEspecialidad = {}
+    let id = generarId(especialidades);
+    nuevaEspecialidad = {'id':id, 'nombre': nombreModificar.value};
+    // console.log(nuevaEspecialidad);
+    especialidadSeleccionada = nuevaEspecialidad;
+
+    visualizarForm('Crear especialidad', vistaDelFormulario, formulario, mensajeError);
+})
+
+/*MODIFICAR DATOS DE UNA ESPECIALIDAD*/
 function editarEspecialidad(idEspecialidadAEditar){
     //buscar la especialidad
-    especialidadSeleccionadaModificar = especialidades.find((p) => p.id === idEspecialidadAEditar);
-    console.log(especialidadSeleccionadaModificar);
+    especialidadSeleccionada = especialidades.find((p) => p.id === idEspecialidadAEditar);
+    console.log(especialidadSeleccionada);
 
-    vistaDelFormulario.classList.remove('d-none');
-    nombreModificar.value = especialidadSeleccionadaModificar.nombre;
-
+    visualizarForm('Modificar información', vistaDelFormulario, formulario, mensajeError);
+    nombreModificar.value = especialidadSeleccionada.nombre;
 };
-if(document.getElementById('formulario-modificar')){
-
-    document.getElementById('formulario-modificar').addEventListener('submit', evento =>{
+if(document.getElementById('formulario')){
+    document.getElementById('formulario').addEventListener('submit', evento =>{
         evento.preventDefault();
 
         //si hay cambios se verifican si son correctos
@@ -121,17 +133,21 @@ if(document.getElementById('formulario-modificar')){
             return;
         }
         
-
-        especialidadSeleccionadaModificar.nombre = nombreModificar.value;
-        guardarDatos("especialidades", especialidades);
+        especialidadSeleccionada.nombre = nombreModificar.value;
+        if(especialidades.some((buscarEsp)=> buscarEsp.id === especialidadSeleccionada.id)){
+            guardarDatos("especialidades", especialidades);
+        }else{
+            especialidades.push(especialidadSeleccionada);
+            guardarDatos("especialidades", especialidades);
+        }
         console.clear();
         // console.log('Datos actualizados');
 
         //reseteamos el formulario y actualizamos la lista
-        document.getElementById('formulario-modificar').reset();
+        document.getElementById('formulario').reset();
         listarEspecialidades();
         alert('✅ Datos actualizados correctamente');
-        botonCerrar('vista-formulario-modificar');
+        botonCerrar('vista-formulario');
         
     });
 }

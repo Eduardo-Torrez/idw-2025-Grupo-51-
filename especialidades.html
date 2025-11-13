@@ -108,22 +108,22 @@
         </section>
 
         <!--modificar-->
-        <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario-modificar">
+        <section class="form-contacto container d-flex flex-column align-items-center gap-4 py-5 d-none" id="vista-formulario">
             <div class="text-end mb-4 w-75">
-                    <button class="btn btn-admin botonCerrar" data-target="vista-formulario-modificar">
+                    <button class="btn btn-admin botonCerrar" data-target="vista-formulario">
                         <i class="bi bi-x-lg"></i>
                         <span>Cerrar</span>
                     </button>
                 </div>
             <div class="text-center">
-                <h3 class="h3 display-6 fw-bold">Modificar información</h3>
+                <h3 class="h3 display-6 fw-bold" id="tituloFormulario"></h3>
             </div>
 
-            <form class="formulario w-100" action="#" method="post" id="formulario-modificar">
+            <form class="formulario w-100" id="formulario">
 
                 <div class="mb-3">
                     <label for="nombre" class="form-label ">Nombre*</label>
-                    <input type="text" id="nombreModificar" name="nombre" class="form-control" placeholder="Nombre">
+                    <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre">
                 </div>
 
                 <div class="mb-3">
