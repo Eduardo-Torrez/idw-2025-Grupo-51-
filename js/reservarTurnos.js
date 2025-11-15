@@ -43,122 +43,112 @@ document.addEventListener("DOMContentLoaded", () => {
       const selectObra = document.getElementById("obraSocial");
       if (selectObra) {
         selectObra.innerHTML =
-          '<option value="">Seleccioná una obra social</option>';
+            '<option value="">Seleccioná una obra social</option>';
 
         if (medico.obraSociales && medico.obraSociales.length > 0) {
-          medico.obraSociales.forEach((os) => {
-            const obra = obrasSociales.find((o) => o.id === os.id);
-            if (obra) {
-              const option = document.createElement("option");
-              option.value = obra.id;
-              option.textContent = `${obra.nombre} (${obra.porcentajeDescuento}% desc.)`;
-              selectObra.appendChild(option);
-            }
-          });
+            medico.obraSociales.forEach((os) => {
+                const obra = obrasSociales.find((o) => o.id === os.id);
+                if (obra) {
+                    const option = document.createElement("option");
+                    option.value = obra.id;
+                    option.textContent = `${obra.nombre} (${obra.porcentajeDescuento}% desc.)`;
+                    selectObra.appendChild(option);
+                }
+            });
         } else {
           const option = document.createElement("option");
-          option.textContent = "Este profesional no acepta obras sociales";
-          option.disabled = true;
+          option.value = "0";
+          option.textContent = "No acepta obras sociales";
+          option.selected = true;
           selectObra.appendChild(option);
         }
-      }
+    }
 
       // --- Turnos del médico ---
       const turnoMedico = turnos.find((t) => t.id_medico === idMedico);
       const selectHora = document.getElementById("hora");
-      const inputFecha = document.getElementById("fecha");
+      const selectFecha = document.getElementById("fecha");
 
-      if (inputFecha && selectHora) {
-        // Inicializar selectHora
-        selectHora.innerHTML = '<option value="">Seleccioná un horario</option>';
 
-        // Si el médico no tiene turnos configurados, mostrar aviso y deshabilitar
+      /* Los turnos se sacan para el mes siguiente */
+      function configurarRangoFechas(select, turnoMedico) {
         if (!turnoMedico) {
+          select.innerHTML = '<option value="">No hay fechas disponibles</option>';
+          return;
+        }
+        const hoy = new Date();
+        const primerDiaMesSiguiente = new Date(hoy.getFullYear(), hoy.getMonth() + 1, 1);
+        const ultimoDiaMesSiguiente = new Date(hoy.getFullYear(), hoy.getMonth() + 2, 0);
+
+        select.innerHTML = '<option value="">Seleccioná una fecha</option>';
+        //Traemos los dias que atiende el profesional y que estan guardados en localstorage
+        const diasDeAtencion = (turnoMedico.fechayhora || []).map(fh => parseInt(fh.dia));
+        let fecha = new Date(primerDiaMesSiguiente);
+        while (fecha <= ultimoDiaMesSiguiente) {
+          const diaLocalStorage = fecha.getDay();
+          // se agregan únicamente los dias que coinciden
+          if (diasDeAtencion.includes(diaLocalStorage)) {
+            const option = document.createElement("option");
+            option.value = fecha.toISOString().split("T")[0];
+            option.textContent = fecha.toLocaleDateString("es-AR");
+            select.appendChild(option);
+          }
+          fecha.setDate(fecha.getDate() + 1);
+        }
+    }
+
+
+    // Llenar fechas al cargar
+    configurarRangoFechas(selectFecha, turnoMedico);
+
+    if (selectFecha && selectHora) {
+      selectHora.innerHTML = '<option value="">Seleccioná un horario</option>';
+
+      if (!turnoMedico) {
           selectHora.innerHTML =
-            '<option value="">No hay turnos configurados para este profesional</option>';
+              '<option value="">No hay turnos configurados para este profesional</option>';
           selectHora.disabled = true;
-        } else {
+      } else {
           selectHora.disabled = false;
 
           const rellenarHorasParaFecha = () => {
-            // si no hay fecha seleccionada, limpiar select
-            if (!inputFecha.value) {
-              selectHora.innerHTML =
-                '<option value="">Seleccioná un horario</option>';
+            if (!selectFecha.value) {
+              selectHora.innerHTML = '<option value="">Seleccioná un horario</option>';
               return;
             }
 
-            // Evitar problemas de zona horaria añadiendo tiempo
-            const fechaSeleccionada = new Date(inputFecha.value + "T00:00:00");
+            const fechaSeleccionada = new Date(selectFecha.value + "T00:00:00");
+            const diaNumero = fechaSeleccionada.getDay();
 
-            // Mapa de días garantizado en el mismo formato que usamos en datos
-            const dias = [
-              "Domingo",
-              "Lunes",
-              "Martes",
-              "Miércoles",
-              "Jueves",
-              "Viernes",
-              "Sábado",
-            ];
-            const diaCapitalizado = dias[fechaSeleccionada.getDay()];
-
-            selectHora.innerHTML =
-              '<option value="">Seleccioná un horario</option>';
-
-            // Comparación normalizada (ignore case) por si los datos están en minúsculas o mayúsculas
-            const turnoDia = (turnoMedico.fechayhora || []).find((fh) =>
-              fh.dia &&
-              fh.dia.toString().toLowerCase() ===
-                diaCapitalizado.toLowerCase()
+            const turnosDelDia = (turnoMedico.fechayhora || []).filter(
+              fh => parseInt(fh.dia) === diaNumero
             );
 
-            if (turnoDia) {
-              // validar formato hora_inicio/hora_fin
-              if (!turnoDia.hora_inicio || !turnoDia.hora_fin) {
-                const option = document.createElement("option");
-                option.value = "";
-                option.textContent = "Horario mal configurado";
-                selectHora.appendChild(option);
-                return;
-              }
+            if (turnosDelDia.length > 0) {
+              turnosDelDia.forEach(turno => {
+                const inicio = parseInt(turno.hora_inicio.split(":")[0], 10);
+                const fin = parseInt(turno.hora_fin.split(":")[0], 10);
 
-              const inicioParts = turnoDia.hora_inicio.split(":");
-              const finParts = turnoDia.hora_fin.split(":");
-              const inicio = parseInt(inicioParts[0], 10);
-              const fin = parseInt(finParts[0], 10);
-
-              if (isNaN(inicio) || isNaN(fin) || inicio >= fin) {
-                const option = document.createElement("option");
-                option.value = "";
-                option.textContent = "Horario mal configurado";
-                selectHora.appendChild(option);
-                return;
-              }
-
-              for (let h = inicio; h < fin; h++) {
-                const hora = h.toString().padStart(2, "0") + ":00";
-                const option = document.createElement("option");
-                option.value = hora;
-                option.textContent = hora;
-                selectHora.appendChild(option);
-              }
+                for (let h = inicio; h < fin; h++) {
+                  const hora = h.toString().padStart(2, "0") + ":00";
+                  const option = document.createElement("option");
+                  option.value = hora;
+                  option.textContent = hora;
+                  selectHora.appendChild(option);
+                }
+              });
             } else {
               const option = document.createElement("option");
               option.value = "";
               option.textContent = "No hay turnos disponibles ese día";
               selectHora.appendChild(option);
             }
-          };
+        };
 
-          inputFecha.addEventListener("change", rellenarHorasParaFecha);
-
-          // Si ya hay una fecha en el input (p. ej. por autocompletado), rellenar ahora
-          if (inputFecha.value) {
-            rellenarHorasParaFecha();
-          }
-        }
+        selectFecha.addEventListener("change", rellenarHorasParaFecha);
       }
+  }
+
 
       // --- Envío del formulario ---
       const form = document.getElementById("formReserva");
