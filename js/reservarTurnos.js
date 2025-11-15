@@ -69,25 +69,25 @@ document.addEventListener("DOMContentLoaded", () => {
       const selectHora = document.getElementById("hora");
       const selectFecha = document.getElementById("fecha");
 
-
       /* Los turnos se sacan para el mes siguiente */
       function configurarRangoFechas(select, turnoMedico) {
         if (!turnoMedico) {
           select.innerHTML = '<option value="">No hay fechas disponibles</option>';
           return;
         }
+
         const hoy = new Date();
         const primerDiaMesSiguiente = new Date(hoy.getFullYear(), hoy.getMonth() + 1, 1);
         const ultimoDiaMesSiguiente = new Date(hoy.getFullYear(), hoy.getMonth() + 2, 0);
 
         select.innerHTML = '<option value="">Seleccioná una fecha</option>';
-        //Traemos los dias que atiende el profesional y que estan guardados en localstorage
+
         const diasDeAtencion = (turnoMedico.fechayhora || []).map(fh => parseInt(fh.dia));
+
         let fecha = new Date(primerDiaMesSiguiente);
         while (fecha <= ultimoDiaMesSiguiente) {
-          const diaLocalStorage = fecha.getDay();
-          // se agregan únicamente los dias que coinciden
-          if (diasDeAtencion.includes(diaLocalStorage)) {
+          const diaNumero = fecha.getDay();
+          if (diasDeAtencion.includes(diaNumero)) {
             const option = document.createElement("option");
             option.value = fecha.toISOString().split("T")[0];
             option.textContent = fecha.toLocaleDateString("es-AR");
@@ -95,60 +95,63 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           fecha.setDate(fecha.getDate() + 1);
         }
-    }
-
-
-    // Llenar fechas al cargar
-    configurarRangoFechas(selectFecha, turnoMedico);
-
-    if (selectFecha && selectHora) {
-      selectHora.innerHTML = '<option value="">Seleccioná un horario</option>';
-
-      if (!turnoMedico) {
-          selectHora.innerHTML =
-              '<option value="">No hay turnos configurados para este profesional</option>';
-          selectHora.disabled = true;
-      } else {
-          selectHora.disabled = false;
-
-          const rellenarHorasParaFecha = () => {
-            if (!selectFecha.value) {
-              selectHora.innerHTML = '<option value="">Seleccioná un horario</option>';
-              return;
-            }
-
-            const fechaSeleccionada = new Date(selectFecha.value + "T00:00:00");
-            const diaNumero = fechaSeleccionada.getDay();
-
-            const turnosDelDia = (turnoMedico.fechayhora || []).filter(
-              fh => parseInt(fh.dia) === diaNumero
-            );
-
-            if (turnosDelDia.length > 0) {
-              turnosDelDia.forEach(turno => {
-                const inicio = parseInt(turno.hora_inicio.split(":")[0], 10);
-                const fin = parseInt(turno.hora_fin.split(":")[0], 10);
-
-                for (let h = inicio; h < fin; h++) {
-                  const hora = h.toString().padStart(2, "0") + ":00";
-                  const option = document.createElement("option");
-                  option.value = hora;
-                  option.textContent = hora;
-                  selectHora.appendChild(option);
-                }
-              });
-            } else {
-              const option = document.createElement("option");
-              option.value = "";
-              option.textContent = "No hay turnos disponibles ese día";
-              selectHora.appendChild(option);
-            }
-        };
-
-        selectFecha.addEventListener("change", rellenarHorasParaFecha);
       }
-  }
+      function generarHorasEntre(inicio, fin) {
+        const horas = [];
+        let [hora, min] = inicio.split(":").map(Number);
+        const [horaFin, minFin] = fin.split(":").map(Number);
 
+        while (hora < horaFin) {
+          horas.push(hora); 
+          hora++;
+        }
+        if (minFin === 0) horas.push(horaFin);
+        return horas;
+      }
+
+      function rellenarHorasParaFecha() {
+        selectHora.innerHTML = '<option value="">Seleccioná un horario</option>';
+        if (!selectFecha.value) return;
+
+        const fechaSeleccionada = new Date(selectFecha.value + "T00:00:00");
+        const diaNumero = fechaSeleccionada.getDay();
+
+        const turnosDelDia = (turnoMedico.fechayhora || []).filter(
+          fh => parseInt(fh.dia) === diaNumero
+        );
+
+        const horasDisponibles = new Set();
+
+        turnosDelDia.forEach(turno => {
+          const horasTurno = generarHorasEntre(turno.hora_inicio, turno.hora_fin);
+          horasTurno.forEach(h => horasDisponibles.add(h));
+        });
+
+        if (horasDisponibles.size === 0) {
+          const option = document.createElement("option");
+          option.value = "";
+          option.textContent = "No hay turnos disponibles ese día";
+          selectHora.appendChild(option);
+        } else {
+          Array.from(horasDisponibles)
+            .sort((a,b) => a - b)
+            .forEach(hora => {
+              const option = document.createElement("option");
+              option.value = `${hora}:00`;
+              option.textContent = `${hora}:00`;
+              selectHora.appendChild(option);
+            });
+        }
+      }
+      configurarRangoFechas(selectFecha, turnoMedico);
+
+    if (selectFecha && selectHora && turnoMedico) {
+      selectHora.disabled = false;
+      selectFecha.addEventListener("change", rellenarHorasParaFecha);
+    } else if (!turnoMedico) {
+      selectHora.innerHTML = '<option value="">No hay turnos configurados para este profesional</option>';
+      selectHora.disabled = true;
+    }
 
       // --- Envío del formulario ---
       const form = document.getElementById("formReserva");
