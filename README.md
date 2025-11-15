@@ -3,6 +3,10 @@
 
 ### TEMA: Reserva de turnos médicos en una clínica
 
+
+### Video presentación: [ver video](https://drive.google.com/file/d/1XK3zW1AvBivDr7FlGERwfWgstp4o1fty/view)
+
+
 ## iwd-2025 Grupo Nro 51
 
 **Integrantes:**
@@ -82,7 +86,29 @@ información de los Médicos.
 #
 
 
+## Cuarta Etapa
+
+### OBJETIVOS:
+-   Ponga en práctica todos los conocimientos adquiridos sobre JavaScript y Fetch API.
+- Permita que la aplicación del lado del cliente se conecte con recursos de información externos.
+
+### CONSIGNA:
+-   Implementar la funcionalidad de inicio de sesión de usuario utilizando la API Rest pública auth/login 
+provista por DummyJSON. A tal fin, se presentan los siguientes datos:
+    -  La URL para iniciar sesión es https://dummyjson.com/auth/login
+    -  La lista de nombres de usuarios y contraseñas válidos están listadas en: 
+https://dummyjson.com/users
+-  Una vez iniciada la sesión, se deberá guardar el accessToken en sessionStorage.
+-  No se deberá permitir acceder a las funcionalidades de administración a usuarios que no se 
+encuentren logueados.
+-  Agregar una nueva página al panel de administración donde se muestren todos los usuarios 
+registrados en https://dummyjson.com/users (verificar que no se publiquen datos sensibles).
+-  Cumplimentar las funcionalidades de Listado, Creación, Modificación y Eliminación de todas las 
+entidades.
 
 
+
+##
+#
 
 
