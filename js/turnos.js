@@ -1,8 +1,10 @@
 import { guardarDatos, obtenerDatos } from "./localstorage.js";
-import { botonCerrar, diasdelasemana, horarios} from "./utils.js";
+import { botonCerrar, visualizarForm, diasdelasemana, horariosMatutino, horarioVerpertino} from "./utils.js";
 let medicos = obtenerDatos("medicos");
 let turnos = obtenerDatos("turnos");
+let especialidades = obtenerDatos("especialidades");
 
+console.log(turnos)
 //Listar turnos
 function listarTurnos(turnos){
     contadorDeTurnos();
@@ -25,7 +27,7 @@ function listarTurnos(turnos){
         idMedico.textContent = buscarMedico.nombre + ' ' + buscarMedico.apellido;
 
         let fechaYhora = document.createElement('td');
-        const mostrarSoloDias = turno.fechayhora.map((m)=> `${m.dia} ${m.hora_inicio} a ${m.hora_fin}`).join('\n');
+        const mostrarSoloDias = turno.fechayhora.map((m)=> `${diasdelasemana[m.dia]} ${m.hora_inicio} a ${m.hora_fin}`).join('\n');
         fechaYhora.textContent = mostrarSoloDias;
 
         let botones = document.createElement('td');
@@ -51,7 +53,7 @@ function listarTurnos(turnos){
         botonVisualizar.classList.add("btn", "btn-outline");
         botonVisualizar.innerHTML = '<i class="bi bi-eye"></i>';
         botonVisualizar.addEventListener('click', function(){
-            visualizarProfesional(turno.id);
+            visualizarTurno(turno.id);
         })
 
         div.appendChild(botonEliminar);
@@ -68,65 +70,49 @@ function listarTurnos(turnos){
 
 
 //Definir variables
+let turnoSeleccionado = null;
 const seleccionarMedico = document.getElementById('seleccionarMedico');
-const seleccionarDia = document.getElementById('seleccionarDia');
-const seleccionarHoraInicioManana = document.getElementById('seleccionarHoraInicioManana');
-const seleccionarHoraFinManana = document.getElementById('seleccionarHoraFinManana');
-const seleccionarHoraInicioTarde = document.getElementById('seleccionarHoraInicioTarde');
-const seleccionarHoraFinTarde = document.getElementById('seleccionarHoraFinTarde');
+let seleccionarHoraInicioManana = document.getElementById('seleccionarHoraInicioManana');
+let seleccionarHoraFinManana = document.getElementById('seleccionarHoraFinManana');
+let seleccionarHoraInicioTarde = document.getElementById('seleccionarHoraInicioTarde');
+let seleccionarHoraFinTarde = document.getElementById('seleccionarHoraFinTarde');
 const mensajeError = document.getElementById('mensajeError');
-let turnoSeleccionadoModificar = null;
-let tituloFormulario = document.getElementById('titulo-formulario');
 let vistaDelFormulario = document.getElementById('vista-formulario');
 let formularioTurnoMedico =  document.getElementById('formularioTurnoMedico');
 const crearTurno = document.getElementById('crearTurno');
+let fechayhora = [];
+let tituloFormulario = document.getElementById('tituloFormulario');
+let contadorID = 0;
 
 //Crear turno médico
 crearTurno.addEventListener('click', ()=>{
-    //crear un objeto de medicos que aun no tienen turno
     let medicosSinTurnos = medicos.filter(m => !turnos.some((buscarTurno) => buscarTurno.id_medico === m.id));
-
     crearOpcionesMedicos(medicosSinTurnos);
-    crearOpcionesDias();
-    crearOpcionesHorario();
+    let nuevoTurno = {
+        'id': generarId(),
+        'id_medico': seleccionarMedico.value,
+        'fechayhora': []
+    };
 
-    document.getElementById('nuevoTurno').classList.add('d-none');
-    tituloFormulario.innerHTML = `Crear nuevo turno médico`;
-    vistaDelFormulario.classList.remove('d-none');
-    formularioTurnoMedico.reset();
-    mensajeError.innerHTML = "";
+    turnoSeleccionado = nuevoTurno;
+    visualizarForm('Crear nuevo turno médico',vistaDelFormulario, formularioTurnoMedico, mensajeError);
 });
 
 function editarTurno(turnoAEditar){
     //buscar turno
-    turnoSeleccionadoModificar = turnos.find((t)=> t.id === turnoAEditar);
-    const buscarMedico = medicos.find((medico)=> medico.id === turnoSeleccionadoModificar.id_medico);
-    // console.log(turnoSeleccionadoModificar);
+    turnoSeleccionado = turnos.find((t)=> t.id === turnoAEditar);
+    const buscarMedico = medicos.find((medico)=> medico.id === turnoSeleccionado.id_medico);
+    // console.log(turnoSeleccionado);
 
-    tituloFormulario.innerHTML = `Modificar turnos  médicos del Dr. ${buscarMedico.nombre} ${buscarMedico.apellido}`;
-    vistaDelFormulario.classList.remove('d-none');
-    formularioTurnoMedico.reset();
-    mensajeError.innerHTML = "";
+    visualizarForm(`Modificar turnos médicos de ${buscarMedico.nombre} ${buscarMedico.apellido}`,vistaDelFormulario, formularioTurnoMedico, mensajeError);
 
-    seleccionarMedico.value = turnoSeleccionadoModificar.id_medico;
+    seleccionarMedico.value = turnoSeleccionado.id_medico;
     document.getElementById('select-medico').classList.add('d-none');
-
-    turnoSeleccionadoModificar.fechayhora.map(fecha =>{
-        crearOpcionesDias();
-        crearOpcionesHorario();
-        console.log(diasdelasemana.findIndex(d =>d ===fecha.dia));
-        seleccionarDia.value = diasdelasemana.findIndex(d =>d ===fecha.dia);
-        seleccionarHoraInicio.value = horarios.findIndex(horai =>horai ===fecha.hora_inicio);
-        seleccionarHoraFin.value = horarios.findIndex(horaf =>horaf ===fecha.hora_fin);
-        
-    })
+    mostrarDiasyHorario(turnoSeleccionado);
 }
 
 formularioTurnoMedico.addEventListener('submit', evento =>{
     evento.preventDefault();
-
-    let horarioManana = validarHora(seleccionarHoraInicioManana.value, seleccionarHoraFinManana.value);
-    let horarioTarde = validarHora(seleccionarHoraInicioTarde.value, seleccionarHoraFinTarde.value);
 
     let warning = "";
     let erroresEncontrados = false;
@@ -134,64 +120,92 @@ formularioTurnoMedico.addEventListener('submit', evento =>{
 
     if(!seleccionarMedico.value){
         warning+= '*Seleccione un(a) médico(a)<br>';
-        console.log('médico seleccionado invalido');
         erroresEncontrados = true;
     }
-    if(!seleccionarDia.value){
-        warning+= '*Día seleccionado invalido<br>';
-        console.log('día seleccionado invalido');
+    if(seleccionarDias('diasManana') === false && seleccionarDias('diasTarde') ===false){
+        warning+= '*Selecciona al menos un día de la semana<br>';
         erroresEncontrados = true;
     }
-    if(horarioManana === false && horarioTarde === false){
-        warning+= '*Hora invalida<br>';
-        console.log('hora invalida');
-        erroresEncontrados = true;
+    if(seleccionarDias('diasManana')){
+        if(!seleccionarHoraInicioManana.value){
+            warning+= '*Hora inválida<br>';
+            erroresEncontrados = true;
+        }
+        if(!seleccionarHoraFinManana.value){
+            warning+= '*Hora inválida<br>';
+            erroresEncontrados = true;
+        }
+    }
+    if(seleccionarDias('diasTarde')){
+        if(!seleccionarHoraInicioTarde.value){
+            warning+= '*Hora inválida<br>';
+            erroresEncontrados = true;
+        }
+        if(!seleccionarHoraFinTarde.value){
+            warning+= '*Hora inválida<br>';
+            erroresEncontrados = true;
+        }
     }
     if(erroresEncontrados){
         mensajeError.innerHTML=warning;
         return;
     }
 
-    let horaInicio =horarios;
-    let horaFin = horarios;
-    if(horarioManana){
-        horaInicio =horarios[seleccionarHoraInicioManana.value];
-        horaFin = horarios[seleccionarHoraFinManana.value];
-    } else{
-        horaInicio =horarios[seleccionarHoraInicioTarde.value];
-        horaFin = horarios[seleccionarHoraFinTarde.value];
-    }  
-    let id_medico = seleccionarMedico.value;
-    let dia = diasdelasemana[seleccionarDia.value];
-    let disponibilidad = {'dia':dia, 'hora_inicio':horaInicio, 'hora_fin':horaFin};
-    // console.log(disponibilidad);
 
-    if(turnoSeleccionadoModificar){
-        let existeHorario = turnoSeleccionadoModificar.fechayhora.map(fyh => fyh.dia === dia);
-        if(existeHorario){    
-            turnoSeleccionadoModificar.fechayhora = disponibilidad;
-            guardarDatos("turnos", turnos);
-        }
-        else{
-            turnoSeleccionadoModificar.fechayhora.push(disponibilidad);
-            guardarDatos("turnos", turnos);
-        }
+    let disponibilidad = {};
+    turnoSeleccionado.id_medico = seleccionarMedico.value;
+    if(seleccionarDias('diasManana')){
+        const seleccionarDiasManana = Array.from(document.querySelectorAll('#diasManana input:checked'));
+
+        disponibilidad = seleccionarDiasManana.map(dia =>({'dia':dia.value, 'hora_inicio':seleccionarHoraInicioManana.value, 'hora_fin':seleccionarHoraFinManana.value, 'franja': 'manana'}));
+        turnoSeleccionado.fechayhora.push(...disponibilidad);
+    }
+    if(seleccionarDias('diasTarde')){
+        const seleccionarDiasTarde = Array.from(document.querySelectorAll('#diasTarde input:checked'));
+        
+        disponibilidad = seleccionarDiasTarde.map(dia =>({'dia':dia.value, 'hora_inicio':seleccionarHoraInicioTarde.value, 'hora_fin':seleccionarHoraFinTarde.value, 'franja': 'tarde'}));
+        turnoSeleccionado.fechayhora.push(...disponibilidad);
+    }
+
+    console.log(turnoSeleccionado);
+    if(turnos.some(buscarTurno =>buscarTurno.id_medico === turnoSeleccionado.id_medico)){
+        guardarDatos('turnos', turnos);
     }else{
-        const id = turnos.length+1;
-        const fechayhora = [disponibilidad];
-        const turno = {id, id_medico, fechayhora};
-        turnos.push(turno);
-        guardarDatos("turnos", turnos);
+        turnos.push(turnoSeleccionado);
+        guardarDatos('turnos', turnos);
     }
     
     console.clear();
     //reseteamos el formulario
     document.getElementById('formularioTurnoMedico').reset();
-    //actualizamos la lista
     listarTurnos(turnos);
     alert('✅ Se creo turno correctamente');
     botonCerrar('vista-formulario');
 });
+
+/*Visualizar Turno*/
+//Definir variables
+let turnoActual = null;
+let vistaDeTarjetaProfesional = document.getElementById('card-vista');
+const vistaMedico = document.getElementById('vista-medico');
+const vistaEspecialidad = document.getElementById('vista-especialidad');
+const vistaFechaYHora = document.getElementById('vista-fechayhora');
+
+function visualizarTurno(idTurnoAVisualizar){
+    let turnoSeleccionado = turnos.find((t)=> t.id === idTurnoAVisualizar);
+    // console.log(turnoSeleccionado);
+
+    vistaDeTarjetaProfesional.classList.remove('d-none');
+    if(turnoActual !== turnoSeleccionado.id){
+        turnoActual = turnoSeleccionado.id
+
+        let buscarMedico = medicos.find((medico)=> medico.id === turnoSeleccionado.id_medico);
+        let buscarEspecialidad = especialidades.find((esp)=> esp.id === buscarMedico.especialidad);
+        vistaMedico.innerHTML = `Dr(a). ${buscarMedico.nombre} ${buscarMedico.apellido}`;
+        vistaEspecialidad.innerHTML = buscarEspecialidad.nombre;
+        vistaFechaYHora.innerHTML = turnoSeleccionado.fechayhora.map((fyh)=> `${diasdelasemana[fyh.dia]} ${fyh.hora_inicio} hs a ${fyh.hora_fin} hs`).join('<br>');
+    }
+}
 
 /*ELIMINAR DATOS DE UN TURNO*/
 function eliminarTurno(turnoAEliminar){
@@ -224,54 +238,44 @@ function crearOpcionesMedicos(listaMedicos){
         select.appendChild(opcion);
     })
 }
-function crearOpcionesDias(){
-    let select = document.getElementById('seleccionarDia');
-    select.innerHTML = '';
+function seleccionarDias(idContenedor){
+    const contenedor = document.getElementById(idContenedor);
+    return contenedor.querySelector("input[type='checkbox']:checked") !== null;
+}
 
-    let opcionInicial = document.createElement('option');
-    opcionInicial.value='';
-    opcionInicial.innerHTML = "Elegir un dia";
-    opcionInicial.selected = true;
-    select.appendChild(opcionInicial);
+function mostrarDiasyHorario(turnoElegido){
+    // console.log(turnoElegido.fechayhora)
+    turnoElegido.fechayhora.map(diahora =>{
+        // console.log(diahora)
+        if(diahora.franja === 'manana'){
+            // console.log(diahora.dia)
+            Array.from(document.querySelectorAll('#diasManana input[type="checkbox"]')).forEach(d =>{ 
+                if(d.value === diahora.dia){d.checked = true}
+            });
 
-    let valor = 0;
-    diasdelasemana.forEach((dia) =>{
-        let opcion = document.createElement('option');
-        opcion.value = valor++;
-        opcion.innerHTML = dia;
+            seleccionarHoraInicioManana.value = diahora.hora_inicio;
+            seleccionarHoraFinManana.value = diahora.hora_fin;
+        }else{
+            Array.from(document.querySelectorAll('#diasTarde input[type="checkbox"]')).forEach(d =>{ 
+                // console.log(diahora.dia)
+                if(d.value === diahora.dia){d.checked = true}
+            });
 
-        if(opcion.value>0 && opcion.value<6){
-            select.appendChild(opcion);
+            seleccionarHoraInicioTarde.value = diahora.hora_inicio;
+            seleccionarHoraFinTarde.value = diahora.hora_fin;
         }
     })
+}
+
+function generarId(){
+    if(turnos.length ===0){
+        return contadorID++;
+    }else{
+      contadorID = parseInt(turnos[turnos.length-1].id) + 1;
+      return contadorID;
+    }
     
 }
-function crearOpcionesHorario(){
-    let selectHoraInicioM = document.getElementById('seleccionarHoraInicioManana');
-    selectHoraInicioM.innerHTML = '';
-    let selectHoraFinM = document.getElementById('seleccionarHoraFinManana');
-    selectHoraFinM.innerHTML = '';
-
-    let selectHoraInicioT = document.getElementById('seleccionarHoraInicioTarde');
-    selectHoraInicioT.innerHTML = '';
-    let selectHoraFinT = document.getElementById('seleccionarHoraFinTarde');
-    selectHoraFinT.innerHTML = '';
-
-    let horaInicio = horarios.slice(0,-1).map(hora =>`<option value="${horarios.indexOf(hora)}">${hora}</option>`).join('');
-    let horaFin =horarios.slice(1).map(hora =>`<option value="${horarios.indexOf(hora)}">${hora}</option>`).join('');
-
-    selectHoraInicioM.innerHTML = `<option value="" selected>00:00</option>`+horaInicio;
-    selectHoraFinM.innerHTML = `<option value="" selected>00:00</option>`+horaFin;
-
-     selectHoraInicioT.innerHTML = `<option value="" selected>00:00</option>`+horaInicio;
-    selectHoraFinT.innerHTML = `<option value="" selected>00:00</option>`+horaFin;
-}
-
-function validarHora(inicio, fin){
-    if (!inicio && !fin) return false;
-    if (!inicio || !fin) return false;
-    return true;
-};
 
 function contadorDeTurnos(){
     let total = document.getElementById('totalTurnos');
@@ -292,3 +296,5 @@ document.querySelectorAll('.botonCerrar').forEach(boton=>{
 listarTurnos(turnos);
 contadorDeTurnos();
 crearOpcionesMedicos(medicos);
+
+
