@@ -177,7 +177,7 @@ if(document.getElementById('formulario')){
             warning+= '*matrícula inválida (deben ser 5 dígitos)<br>';
             erroresEncontrados = true;
         }
-        if(!/^(\d)$/.test(especialidadModificar.value)){
+        if(!especialidadModificar.value){
             warning+= '*especialidad inválida<br>';
             erroresEncontrados = true;
         }
@@ -352,6 +352,16 @@ document.querySelectorAll('.botonCerrar').forEach(boton=>{
     })
 });
 
+//Base64
+let fotografiaBase64 = "";
+fotografiaModificar.addEventListener('change', (e)=>{
+    const file = e.target.files[0]
+    const reader = new FileReader();
+    reader.onload = ()=>{
+        fotografiaBase64 = reader.result;
+    };
+    reader.readAsDataURL(file);
+})
 
 agregarProfesional.addEventListener('click', () => {
     let nuevoProfesional={};
@@ -364,21 +374,12 @@ agregarProfesional.addEventListener('click', () => {
         'especialidad':especialidadModificar.value,
         'descripcion':descripcionModificar.value,
         'obraSociales':obrasocial.value,
-        'fotografia':fotografiaModificar.value,
+        'fotografia':fotografiaBase64,
         'valorConsulta':valorConsultaModificar.value
     };
     crearOpcionesEspecialidad(nuevoProfesional);
     crearOpcionesObraSocial(nuevoProfesional);
-    //Base64
-    fotografiaModificar.addEventListener('change', (e)=>{
-        const file = e.target.files[0]
-        const reader = new FileReader();
-        reader.onload = ()=>{
-            nuevoProfesional.fotografia = reader.result;
-            guardarDatos("medicos", medicos);
-        };
-        reader.readAsDataURL(file);
-    })
+    
     medicoSeleccionado=nuevoProfesional;
     visualizarForm('Agregar nuevo profesional', vistaDelFormulario, formulario, mensajeError)
 });

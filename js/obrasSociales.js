@@ -80,7 +80,7 @@ function eliminarObrasocial(idAEliminar){
 
 
 //Definir variables
-const crearObraSocial = document.getElementById('crearObraSocial');
+// const crearObraSocial = document.getElementById('crearObraSocial');
 const nombreModificar= document.getElementById('nombre');
 const descripcionModificar= document.getElementById('descripcion');
 const porcentajeModificar = document.getElementById('porcentaje');
@@ -90,20 +90,20 @@ let vistaDelFormulario = document.getElementById('vista-formulario');
 
 
 /*CREAR OBRA SOCIAL*/
-crearObraSocial.addEventListener('click', ()=>{
-    let nuevaObraSocial = {}
-    let id = generarId(listaObraSociales);
-    nuevaObraSocial = {
-        'id':id, 
-        'nombre': nombreModificar.value,
-        'porcentajeDescuento': porcentajeModificar.value,
-        'descripcion': descripcionModificar.value
-    };
-    // console.log(nuevaObraSocial);
-    obraSocialSeleccionada = nuevaObraSocial;
+// crearObraSocial.addEventListener('click', ()=>{
+//     let nuevaObraSocial = {}
+//     let id = generarId(listaObraSociales);
+//     nuevaObraSocial = {
+//         'id':id, 
+//         'nombre': nombreModificar.value,
+//         'porcentajeDescuento': porcentajeModificar.value,
+//         'descripcion': descripcionModificar.value
+//     };
+//     // console.log(nuevaObraSocial);
+//     obraSocialSeleccionada = nuevaObraSocial;
 
-    visualizarForm('Crear obra social', vistaDelFormulario, formulario, mensajeError);
-})
+//     visualizarForm('Crear obra social', vistaDelFormulario, formulario, mensajeError);
+// })
 
 
 /*MODIFICAR DATOS DE UNA OBRA SOCIAL*/

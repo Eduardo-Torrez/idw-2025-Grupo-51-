@@ -94,15 +94,15 @@ let vistaDelFormulario = document.getElementById('vista-formulario');
 // let contadorID = 0;
 
 /*CREAR ESPECIALIDAD*/
-crearEspecialidad.addEventListener('click', ()=>{
-    let nuevaEspecialidad = {}
-    let id = generarId(especialidades);
-    nuevaEspecialidad = {'id':id, 'nombre': nombreModificar.value};
-    // console.log(nuevaEspecialidad);
-    especialidadSeleccionada = nuevaEspecialidad;
+// crearEspecialidad.addEventListener('click', ()=>{
+//     let nuevaEspecialidad = {}
+//     let id = generarId(especialidades);
+//     nuevaEspecialidad = {'id':id, 'nombre': nombreModificar.value};
+//     // console.log(nuevaEspecialidad);
+//     especialidadSeleccionada = nuevaEspecialidad;
 
-    visualizarForm('Crear especialidad', vistaDelFormulario, formulario, mensajeError);
-})
+//     visualizarForm('Crear especialidad', vistaDelFormulario, formulario, mensajeError);
+// })
 
 /*MODIFICAR DATOS DE UNA ESPECIALIDAD*/
 function editarEspecialidad(idEspecialidadAEditar){
@@ -221,7 +221,10 @@ formularioAgregar.addEventListener('submit', (e) => {
         nombre: nombre
     };
 
-    
+    if (!especialidades) {
+        especialidades = [];
+    }
+
     especialidades.push(nuevaEspecialidad);
     guardarDatos("especialidades", especialidades);
     
