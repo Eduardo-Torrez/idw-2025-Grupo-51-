@@ -235,6 +235,15 @@ formularioAgregar.addEventListener('submit', (e) => {
     const descripcion = document.getElementById('descripcionAgregar').value;
     const mensajeErrorAgregar = document.getElementById('mensajeErrorAgregar');
 
+    if (!nombre || !porcentaje || !descripcion) {
+        mensajeErrorAgregar.textContent = 'Todos los campos son obligatorios.';
+        return;
+    }
+    if (isNaN(porcentaje) || porcentaje < 0 || porcentaje > 100) {
+        mensajeErrorAgregar.textContent = 'El porcentaje debe ser un número entre 0 y 100.';
+        return;
+    }
+    mensajeErrorAgregar.innerHTML = ""; 
     
     const nuevaObraSocial = {
         id: Date.now().toString(), 
@@ -243,7 +252,9 @@ formularioAgregar.addEventListener('submit', (e) => {
         descripcion: descripcion
     };
 
-    
+    if (!listaObraSociales) {
+        listaObraSociales = [];
+    }
     listaObraSociales.push(nuevaObraSocial);
     guardarDatos("listaObraSociales", listaObraSociales);
     
